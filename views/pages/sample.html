@@ -1,0 +1,739 @@
+<div  ng-controller="PageController" ng-init="init()">
+<div class="row">
+	<div class="col-md-12">
+	<div class="list-group">
+			<div class="list-group-item list-group-header">
+				<div class="btn-group btn-group-sm pull-right" uib-dropdown>
+					<button class="btn btn-primary">1ST</button>
+					<button class="btn btn-default">2ND</button>
+					<button class="btn btn-default disabled">3RD</button>
+					<button class="btn btn-default disabled">4TH</button>
+					
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" uib-dropdown-toggle>
+						<span class="glyphicon glyphicon-option-vertical"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><a href="#/"><span class="glyphicon glyphicon-step-backward"></span> Back</a></li>
+						<li><a href="#/"><span class="glyphicon glyphicon-print"></span> Print</a></li>
+						<li><a href="#/"><span class="glyphicon glyphicon-export"></span> Export</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#/"><span class="glyphicon glyphicon-send"></span> Send to CGS</a></li>
+						
+					  </ul>
+				</div>
+				<label class="clear-fix">G8 Maharlika  Science </label>
+			</div>
+			<div class="list-group-canvas sheet">
+				  <div class="list-group-item sheet-header">
+						<div class="transluscent padding"></div>
+						<table class="table table-bordered table-condensed">
+							<thead>
+							<tr>
+								<th class="sheet-rowlumn" rowspan="3">
+									<h3 class="text-center">STUDENTS</h3>
+									<h5 class="sheet-load">8 Boys |  11 Girls</h5>
+								</th>
+								<th colspan="10" class="text-center"> 
+									Knowledge (25%)
+								</th>
+								<th colspan="3" class="text-center"> 
+									Understanding
+								</th>
+								<th class="text-center"> 
+									<div class="btn-group">
+										<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-print"></span></button>
+										<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-export"></span></button>
+									</div>
+								</th>
+							</tr>
+							<tr>
+								<th colspan="5" class="component text-center">
+									Quiz (50%)
+									<div class="btn-group btn-group-xs pull-right" uib-dropdown>
+										  <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" uib-dropdown-toggle>
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										  </button>
+										  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+											<li><a href="#/"> Add</a></li>
+											<li><a href="#/"> Modify</a></li>
+										  </ul>
+									</div>
+								</th>
+								<th colspan="4" class="component text-center">Project (50%)</th>
+								<th rowspan="2" class="component text-center sheet-column">
+									<div>KNW</div>
+									<div>WGT</div>
+								</th>
+								<th colspan="3" class="component text-center">Quarter Exam</th>
+								<th class="sheet-column">
+									<div class="btn-group">
+									<button class="btn btn-xs btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
+									<button class="btn btn-xs btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
+									</div>
+								</th>
+							</tr>
+							<tr>
+								<td class="sheet-column">
+									<div>Q1</div>
+								</td>
+								<td class="sheet-column">Q2
+								</td>
+								<td class="sheet-column">Q3
+								</td>
+								<td class="sheet-column">SUM
+								</td>
+								<td class="sheet-column">EQV
+								</td>
+								<td class="sheet-column">PJ1</td>
+								<td class="sheet-column">PJ2</td>
+								<td class="sheet-column">SUM
+								</td>
+								<td class="sheet-column">EQV
+								</td>
+								<td class="sheet-column">PRE
+								</td>
+								<td class="sheet-column">MID
+								</td>
+								<td class="sheet-column">FIN
+								</td>
+								<td class="sheet-column" style="vertical-align:middle" rowspan="2">
+									<div>1ST</div>
+									<div>GRD</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="transluscent">
+									<b class="pull-left">Boys</b>
+									<div class="pull-right">
+										<div class="btn-group">
+										<button class="btn btn-xs btn-default disabled"><span class="glyphicon glyphicon-map-marker"></span> B13,Q1</button>
+										<button class="btn btn-xs btn-default" ng-click="marginTop= marginTop - step"><span class="glyphicon glyphicon-chevron-up"></span></button>
+										<button class="btn btn-xs btn-default" ng-click="marginTop= marginTop + step"><span class="glyphicon glyphicon-chevron-down"></span></button>
+										</div>
+									</div>
+									<div class="clear-fix"></div>
+								</td>
+								<td colspan="13" class="transluscent">
+									<div class="input-group input-group-sm col-sm-12 hide">
+										<span class="input-group-addon"><span class="glyphicon glyphicon-console"></span></span>
+										<input type="text" class="form-control code" />
+									</div>
+								</td>
+							</tr>
+							</thead>
+						</table>
+				  </div>
+				  <div class="list-group-item sheet-entry">
+					<table class="table table-bordered table-condensed" style="margin-top:{{marginTop}}px">
+					<tbody>
+				  	<tr ng-repeat="student in ['Juan Dela Cruz','Andres Bonifacio','Emilio Aguinaldo','Jose Rizal','Juan Dela Cruz','Andres Bonifacio','Emilio Aguinaldo','Jose Rizal'] track by $index">
+							<td>{{student}}</td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control" /></td>
+							<td class="sheet-cell"><input type="text" class="form-control text-right"  readonly="readonly" value="{{85 + $index}}" /></td>
+						</tr>
+					 </tbody>
+					 </table>
+				  </div>
+			 </div>
+		</div>
+	</div>
+</div>
+<hr />
+<hr />
+<div class="row">
+	<div class="col-md-6">
+		<button class="btn btn-primary btn-fab bottom right fixed"><span class="glyphicon glyphicon-send"></span></button>
+		<div class="list-group">
+			<div class="list-group-item list-group-header">
+				<div class="btn-group btn-group-sm pull-right" uib-dropdown>
+					<button class="btn btn-default disabled">1 - 5 of 10</button>
+					<button class="btn btn-default" ng-disabled="!PrevPage || DataLoading" ng-click="navigatePage(PrevPage)"><span class="glyphicon glyphicon-chevron-left"></span></button>
+					<button class="btn btn-default" ng-disabled="!NextPage || DataLoading"  ng-click="navigatePage(NextPage)"><span class="glyphicon glyphicon-chevron-right"></span></button>
+					
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" uib-dropdown-toggle>
+						<span class="glyphicon glyphicon-chevron-down"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><a href="#/">Sort</a></li>
+						<li><a href="#/">Filter</a></li>
+						<li><a href="#/">Go to Page</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#/">Some other link</a></li>
+						
+					  </ul>
+				</div>
+				<label class="clear-fix">List</label>
+			</div>
+			<div class="list-group-canvas list-group-search-results">
+			  <div class="list-group-item text-center" ng-if="SearchBox">
+				<h4 class="list-group-item-heading">Search result(s) for <b><i>{{SearchBox}}</i></b>.</h4>
+				<p class="list-group-item-text">
+					Click the <span class="glyphicon glyphicon-search" aria-hidden="true"></span> to look further.
+					Click the <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> to cancel.
+				</p>
+			  </div>
+			  <div class="list-group-item" ng-hide="DataLoading" ng-class="{active:ActiveListItem.id==list.id}" ng-repeat="list in List | filter:filterSearch track by $index " ng-if="List.length" ng-click="openListItem($index)">
+				<h4 class="list-group-item-heading">{{list.title}}</h4>
+				<p class="list-group-item-text">{{list.description}}</p>
+			  </div>
+			   <div class="list-group-item text-center" ng-if="!List.length || DataLoading">
+					Loading...
+			   </div>
+			 </div>
+			 <div class="list-group-item list-group-search-box">
+				<div class="input-group"> 
+					<div class="input-group-btn" ng-click="confirmSearch()"><button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></div>
+					<input type="text" class="form-control" ng-model="SearchBox" placeholder="Search" />
+					<div class="input-group-btn" ng-click="cancelSearch()"><button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button></div>
+				</div>
+			  </div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="list-group">
+			<div class="list-group-item list-group-header">
+				<button class="btn btn-xs btn-danger" ng-click="closeListItem()"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+				<label>{{ActiveListItem? ActiveListItem.title:'List group item'}}</label>
+				<div class="btn-group btn-group-sm pull-right" uib-dropdown>
+					  <button class="btn btn-default dropdown-toggle" type="button"  uib-dropdown-toggle>
+						<span class="glyphicon glyphicon-chevron-down"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><a>Edit</a></li>
+						<li><a ng-click="deleteListItem(ActiveListItem.id)">Delete</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#/">Some other link</a></li>
+						
+					  </ul>
+				</div>
+			</div>
+			<div class="list-group-canvas">
+				<div class="list-group-item">
+					<div class="form-group">
+						<label for="">Content</label>
+						<p class="form-control-static" ng-if="ActiveListItem">
+							{{ActiveListItem.description}}
+						</p>
+						<p class="form-control-static" ng-if="!ActiveListItem">
+							No item selected
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="list-group">
+			<div class="list-group-item list-group-header">
+				<div class="btn-group btn-group-sm pull-right" uib-dropdown>
+					<button class="btn btn-default disabled">1 - 5 of 10</button>
+					<button class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
+					<button class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
+					
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" uib-dropdown-toggle>
+						<span class="glyphicon glyphicon-chevron-down"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><a href="#/">Sort</a></li>
+						<li><a href="#/">Filter</a></li>
+						<li><a href="#/">Go to Page</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#/">Some other link</a></li>
+						
+					  </ul>
+				</div>
+				<label class="clear-fix">Checklist</label>
+			</div>
+			<div class="list-group-canvas list-group-search-results">
+			  <div class="list-group-item" ng-repeat="list in List track by $index" ng-if="List.length">
+				<div class="row">
+					<div class="col-md-8">
+					 <div class="checkbox checkbox-lg">
+					  <label>
+						<input type="checkbox" value="" ng-checked="false">
+						<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					  </label>
+					  <div class="description">
+							<h4 class="list-group-item-heading">{{list.title}}</h4>
+							<p class="list-group-item-text">{{list.description}}</p>
+						</div>
+					</div>
+						
+					</div>
+					<div class="col-md-4">
+						<div class="input-group">
+						<span class="input-group-addon">P</span>
+						<input type="number" class="input-lg form-control" />
+						</div>
+						
+					</div>
+				</div>
+				
+			  </div>
+			   <div class="list-group-item text-center" ng-if="!List.length">
+					Loading...
+			   </div>
+			 </div>
+			 <div class="list-group-item list-group-search-box">
+				<div class="input-group"> 
+					<div class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></div>
+					<input type="text" class="form-control" placeholder="Search" />
+					<div class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button></div>
+				</div>
+			  </div>
+		</div>
+
+	</div>
+	<div class="col-md-6">
+		<div class="list-group"> 
+			<div class="list-group-item list-group-header">
+				<div class="input-group input-group-sm">
+					<span class="input-group-btn" uib-dropdown>	
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" uib-dropdown-toggle><span class="glyphicon glyphicon-filter"></span></button>
+						 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="#/">Sort</a></li>
+							<li><a href="#/">Filter</a></li>
+							<li><a href="#/">Go to Page</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#/">Some other link</a></li>
+						  </ul>
+					</span>
+					<input type="text" class="form-control" placeholder="Search list" />
+					<span class="input-group-btn">
+						<button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+						<button class="btn btn-default" disabled>1 - 5 of 10</button>
+						<button class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
+						<button class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
+					</span>
+					
+				</div>
+			</div>
+			<div class="list-group-canvas">
+				<div class="list-group-item">Item 1
+				</div>
+				<div class="list-group-item">Item 2
+				</div>
+				<div class="list-group-item">Item 3
+				</div>
+				<div class="list-group-item">Item 4
+				</div>
+				<div class="list-group-item">Item 5
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+		<div class="col-md-6">
+			<div class="list-group">
+				<div class="list-group-item list-group-header"> 
+					<label>Tables</label>
+				</div>
+				<div class="list-group-canvas">
+					<div class="list-group-item list-group-header"> 
+						<h5>Data Table</h5>
+					</div>
+					<div class="list-group-item">
+						<table class="table table-bordered table-condensed">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th class="col-md-1"><button class="btn btn-default"><span class="glyphicon glyphicon-sort"></span></button></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input type="number" class="form-control" placeholder="ID" /></td>
+									<td><input type="text" class="form-control" placeholder="Name" /></td>
+									<td><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
+								</tr>
+								<tr>
+									<td><input type="number" class="form-control" placeholder="ID" /></td>
+									<td><input type="text" class="form-control" placeholder="Name" /></td>
+									<td><button class="btn  btn-success"><span class="glyphicon glyphicon-plus"></span></button></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="list-group-item list-group-header"> 
+						<h5>Sort Table</h5>
+					</div>
+					<div class="list-group-item"> 
+						<table ui-tree class="table table-bordered table-condensed table-sort">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th class="col-md-1"><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></th>
+								</tr>
+							</thead>
+							<tbody ui-tree-nodes ng-model="data">
+								<tr ng-repeat="node in data" ui-tree-node>
+									<td class="col-md-6"> {{node.id}}</td>
+									<td class="col-md-5">{{node.title}}</td>
+									<td class="col-md-1"><button class="btn  btn-default" ui-tree-handle><span class="glyphicon glyphicon-sort"></span></button></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6"></div>
+	</div>
+
+<hr />
+<div class="row">
+	<div class="col-md-12">
+		<ul class="nav nav-pills nav-wizard">
+		<li class="active">
+			<a href="#/" data-toggle="tab"><span class="badge">STEP 1</span> Basic Information</a>
+			<div class="nav-arrow"></div>
+		</li>
+		 <li>
+			<div class="nav-wedge"></div>
+			<a href="#/" data-toggle="tab"><span class="badge"> 2</span> Contact Information</a>
+			<div class="nav-arrow"></div>
+		</li>
+		 <li>
+			<div class="nav-wedge"></div>
+			<a href="#/" data-toggle="tab"><span class="badge"> 3</span> Confirmation</a>
+		</li>
+	  </ul>
+  </div>
+</div>	
+ <div class="row">
+		<div class="col-md-6 col-md-push-6">
+			<button class="btn btn-primary btn-fab top right "><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+			<div class="list-group">
+			  <div class="list-group-item list-group-header">
+					<button class="btn btn-xs btn-danger"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+					<button class="btn btn-xs btn-warning"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+					<label>Basic Information</label>
+			  </div>
+			  <div class="list-group-canvas">
+			  <div class="list-group-item">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-6">
+							<label for=""> Department</label>
+							<div class="btn-group btn-group-justified">
+							  <div class="btn-group">
+								<button type="button" class="btn btn-default">Preschool</button>
+							  </div>
+							  <div class="btn-group">
+								<button type="button" class="btn btn-default">Grade S.</button>
+							  </div>
+							  <div class="btn-group">
+								<button type="button" class="btn btn-default">High S.</button>
+							  </div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<label for=""> Level</label>
+							<select name="" id="" class="form-control">
+								<option value="">Select Level</option>
+								<option value="1">Grade 1
+								</option>
+								<option value="2">Grade 2
+								</option>
+								<option value="3">Grade 3
+								</option>
+								<option value="4">Grade 4
+								</option>
+								<option value="5">Grade 5
+								</option>
+								<option value="6">Grade 6
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="">First Name</label>
+							<input type="text" class="form-control" placeholder="Given name">
+						</div>
+						<div class="col-md-6">
+							<label for="">Middle Name</label>
+							<input type="text" class="form-control" placeholder="Middle name">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="">Last Name</label>
+							<input type="text" class="form-control" placeholder="Family name">
+						</div>
+						<div class="col-md-6">
+							<label for="">Suffix</label>
+							<input type="text" class="form-control" placeholder="Jr., III">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-6">
+							<label for=""> Gender</label>
+							<div class="btn-group btn-group-justified">
+							  <div class="btn-group">
+								<button type="button" class="btn btn-default">Male</button>
+							  </div>
+							  <div class="btn-group">
+								<button type="button" class="btn btn-default">Female</button>
+							  </div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<label for=""> Birthday</label>
+							<input type="date" class="form-control" placeholder="mm/dd/yyy">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-12">
+							<label for=""> Birth Place</label>
+							<input type="text" class="form-control" placeholder="Address" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-6">
+							<label for=""> Religion</label>
+							<select name="" id="" class="form-control">
+								<option value="">Select Level</option>
+								<option value="1">Grade 1
+								</option>
+								<option value="2">Grade 2
+								</option>
+								<option value="3">Grade 3
+								</option>
+								<option value="4">Grade 4
+								</option>
+								<option value="5">Grade 5
+								</option>
+								<option value="6">Grade 6
+								</option>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<label for=""> Citizenship</label>
+							<select name="" id="" class="form-control">
+								<option value="">Select Level</option>
+								<option value="1">Grade 1
+								</option>
+								<option value="2">Grade 2
+								</option>
+								<option value="3">Grade 3
+								</option>
+								<option value="4">Grade 4
+								</option>
+								<option value="5">Grade 5
+								</option>
+								<option value="6">Grade 6
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			  </div>
+			   <div href="#" class="list-group-item">
+					<button class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span></button>
+					<label>Select One</label>
+				  </div>
+				  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+				  <a href="#" class="list-group-item">Morbi leo risus</a>
+				  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+				  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+				  <a href="#" class="list-group-item">Vestibulum at eros</a>
+				  <a href="#" class="list-group-item">&nbsp;</a>
+				  <a href="#" class="list-group-item">&nbsp;</a>
+				  <a href="#" class="list-group-item">&nbsp;</a>
+				  <div href="#" class="list-group-item">
+					<input type="text" class="form-control input-lg" placeholder="Search">
+				  </div>
+			  </div>
+			</div>
+		</div>
+		<div class="col-md-6 col-md-pull-6">
+			<button class="btn btn-primary btn-fab top right hide"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+			<div class="list-group"> 
+				
+				<div class="list-group-item list-group-header"> 
+					<button class="btn btn-xs btn-danger hide"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+					<button class="btn btn-xs btn-warning hide"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+					
+					<label for="">Summary</label>
+				</div>
+				<div class="list-group-canvas">
+				<div class="list-group-item"> 
+					First Name M. Last Name
+				</div>
+				<div class="list-group-item">&nbsp;
+				</div>
+				<div class="list-group-item">&nbsp;
+				</div>
+				<div class="list-group-item">&nbsp;
+				</div>
+				<div class="list-group-item">&nbsp;
+				</div>
+				<div class="list-group-item">&nbsp;
+				</div>
+				<div class="list-group-item">&nbsp;
+				</div>
+				<div class="list-group-item">&nbsp;
+				</div>
+				<div class="list-group-item">&nbsp;
+				</div>
+				<div class="list-group-item">&nbsp;
+				</div>
+				<div class="list-group-item">&nbsp;
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row hide">
+		<div class="col-md-6">
+			<button class="btn btn-primary btn-fab top right"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></button>
+			
+			 <div class="list-group">
+				  <div href="#" class="list-group-item">
+					<button class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span></button>
+					<label>Select One</label>
+				  </div>
+				  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+				  <a href="#" class="list-group-item">Morbi leo risus</a>
+				  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+				  <a href="#" class="list-group-item">Vestibulum at eros</a>
+				  <a href="#" class="list-group-item">&nbsp;</a>
+				  <a href="#" class="list-group-item">&nbsp;</a>
+				  <a href="#" class="list-group-item">&nbsp;</a>
+				  <div href="#" class="list-group-item">
+					<input type="text" class="form-control input-lg" placeholder="Search">
+				  </div>
+				  <div class="list-group-item">
+					<div class="btn-group btn-group-justified">
+					  <div class="btn-group">
+						<button type="button" class="btn btn-default btn-lg">Prev</button>
+					  </div>
+					  <div class="btn-group">
+						<button type="button" class="btn btn-default btn-lg">Next</button>
+					  </div>
+					</div>
+				</div>
+			  </div>
+		</div>
+	</div>   
+<div class="row hide">
+	<div class="col-lg-12">
+		 <div class="input-group input-group-lg">
+		  <span class="input-group-btn">
+			<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+		  </span>
+		  <input type="text" class="form-control" placeholder="Search for...">
+		   <span class="input-group-btn">
+			<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+		  </span>
+		</div>
+	</div>
+</div>
+<div class="row hide">
+	<div class="col-lg-12">
+		  <table id="sample-data-table" class="table table-data table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>Sample</th>
+					<th>Header</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Sample 1</td>
+					<td>Data 2</td>
+				</tr>
+				<tr>
+					<td>Sample 1</td>
+					<td>Data 2</td>
+				</tr>
+				<tr>
+					<td>Sample 1</td>
+					<td>Data 2</td>
+				</tr>
+				<tr>
+					<td>Sample 1</td>
+					<td>Data 2</td>
+				</tr>
+				<tr>
+					<td>Sample 1</td>
+					<td>Data 2</td>
+				</tr>
+				<tr>
+					<td>Sample 1</td>
+					<td>Data 2</td>
+				</tr>
+				<tr>
+					<td>Sample 1</td>
+					<td>Data 2</td>
+				</tr>
+				<tr>
+					<td>Sample 1</td>
+					<td>Data 2</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row hide">
+	<div class="col-lg-3">
+		 <div class="input-group input-group-sm pagination-goto">
+		  <span class="input-group-addon">Go to Page</span>
+		  <input type="text" class="form-control" placeholder="number...">
+		   <span class="input-group-btn">
+			<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></button>
+		  </span>
+		</div>
+	</div>
+	<div class="col-lg-4 col-lg-offset-5 text-right">
+		<nav>
+		  <ul class="pagination pagination-sm">
+			<li>
+			  <a href="#" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+			  </a>
+			</li>
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li>
+			  <a href="#" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+			  </a>
+			</li>
+		  </ul>
+		</nav>
+	</div>
+</div>
+</div>
+</div>
