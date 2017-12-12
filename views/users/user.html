@@ -1,3 +1,33 @@
-<div class="container">
-	aabb
+<div class="container" ng-controller="UserController" ng-init="init()">
+	<div class="col-md-6">
+		<div class="list-group">
+			<div class="list-group-item list-group-header">
+			
+			</div>
+			<div class="list-group-canvas">
+				<div class="list-group-item">
+					<h4>asdf</h4>
+				</div>
+				<div class="list-group-item" 
+					ng-repeat="User in Users"
+					ng-click="SetActiveUser(User)"
+					ng-class="{active:User.id===activeUser.id}">
+					<h4>{{User.last_name}}</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="list-group">
+			<div class="list-group-item list-group-header">
+				{{activeUser.id}}
+				<div class="clearfix"></div>
+			</div>
+			<div class="list-group-canvas">
+				<div class="list-group-item">
+					{{activeUser.first_name}}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
