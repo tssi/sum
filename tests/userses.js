@@ -18,9 +18,9 @@ define(['model'],function($model){
 				  "last_name": "NoMasChenko",
 				  "first_name": "Vasyl",
 				  "middle_name": "X",
-				  "username": "admin",
+				  "username": "matrix",
 				  "password": "password",
-				  "status": "ACTIVE",   
+				  "status": "INACTIVE",   
 				  "group_id": "ADMIN"
 				},
 				{
@@ -28,11 +28,11 @@ define(['model'],function($model){
 				  "last_name": "Rigo",
 				  "first_name": "Manuel",
 				  "middle_name": "C",
-				  "username": "admin",
+				  "username": "puti",
 				  "password": "password",
-				  "status": "ACTIVE",   
+				  "status": "LOCKED",   
 				  "group_id": "ADMIN"
-				},
+				}
 	];
 	var obj = {meta:meta,data:data};
 	var users = new $model(obj);

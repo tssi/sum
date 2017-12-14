@@ -1,18 +1,32 @@
 <div class="container" ng-controller="UserController" ng-init="init()">
+	<button class="btn btn-primary btn-fab top right"
+		ng-click="OpenModal()">
+		<span class="glyphicon glyphicon-plus"></span>
+	</button>
+	<script type="text/ng-template" id="ModalContent.html">
+		<div class="modal-body">
+			<textarea name="" id="" cols="30" rows="10" class="form-control">
+			</textarea>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-default pull-left" ng-click="closeModal()">Close</button>
+			<button class="btn btn-primary" ng-click="confirmModal()">Confirm</button>
+		</div>
+	</script>
 	<div class="col-md-6">
 		<div class="list-group">
 			<div class="list-group-item list-group-header">
-			
+				<label class="clear-fix">Whatever</label>
 			</div>
 			<div class="list-group-canvas">
-				<div class="list-group-item">
-					<h4>asdf</h4>
-				</div>
 				<div class="list-group-item" 
 					ng-repeat="User in Users"
 					ng-click="SetActiveUser(User)"
 					ng-class="{active:User.id===activeUser.id}">
 					<h4>{{User.last_name}}</h4>
+				</div>
+				<div class="list-group-item" 
+					<label class="clear-fix">{{Message}}</label>
 				</div>
 			</div>
 		</div>
@@ -20,12 +34,49 @@
 	<div class="col-md-6">
 		<div class="list-group">
 			<div class="list-group-item list-group-header">
-				{{activeUser.id}}
-				<div class="clearfix"></div>
+				<label class="clear-fix">User Information</label>
 			</div>
 			<div class="list-group-canvas">
 				<div class="list-group-item">
-					{{activeUser.first_name}}
+					<div class="well">
+						<span>No Information</span>
+					</div>
+				</div>
+				<div class="list-group-item list-group-header">
+					<label class="clear-fix">User Information</label>
+					<div class="pull-right">
+						<div class="btn-group btn-group-xs" uib-dropdown>
+							  <button class="btn btn-default dropdown-toggle" type="button"  uib-dropdown-toggle>
+								<span class="glyphicon glyphicon-chevron-down"></span>
+							  </button>
+							  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+								<li><a>Edit</a></li>
+								<li><a>Print</a></li>
+								<li><a>Activate</a></li>
+								<li><a>Deactivate</a></li>
+							  </ul>
+						</div>
+						<button class="btn btn-xs btn-danger"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+					</div>
+				</div>
+				<div class="list-group-item">
+					<dl class="dl-horizontal">
+						<dt>Name</dt>
+						<dd>{{activeUser.first_name}} {{activeUser.middle_name}} {{activeUser.last_name}}</dd>
+						<dt>Username</dt>
+						<dd>{{activeUser.username}}</dd>
+						<dt>Status</dt>
+						<dd>{{activeUser.status}}</dd>
+					</dl>
+				</div>
+				<div class="list-group-item list-group-header">
+					<label class="clear-fix">Access Details</label>
+				</div>
+				<div class="list-group-item">
+					<dl class="dl-horizontal">
+						<dt>Group ID</dt>
+						<dd>{{activeUser.group_id}}</dd>
+					</dl>
 				</div>
 			</div>
 		</div>
