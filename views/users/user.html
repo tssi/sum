@@ -5,7 +5,8 @@
 	</button>
 	<script type="text/ng-template" id="ModalContent.html">
 		<div class="modal-body">
-			<textarea name="" id="" cols="30" rows="10" class="form-control">
+			<textarea name="" id="" cols="30" rows="10" class="form-control"
+				ng-model="TAUser">
 			</textarea>
 		</div>
 		<div class="modal-footer">
@@ -16,7 +17,7 @@
 	<div class="col-md-6">
 		<div class="list-group">
 			<div class="list-group-item list-group-header">
-				<label class="clear-fix">Whatever</label>
+				<label class="clear-fix">Users</label>
 			</div>
 			<div class="list-group-canvas">
 				<div class="list-group-item" 
@@ -35,31 +36,26 @@
 		<div class="list-group">
 			<div class="list-group-item list-group-header">
 				<label class="clear-fix">User Information</label>
+						<div class="pull-right">
+							<div class="btn-group btn-group-xs" uib-dropdown>
+								  <button class="btn btn-default dropdown-toggle" type="button"  uib-dropdown-toggle>
+									<span class="glyphicon glyphicon-chevron-down"></span>
+								  </button>
+								  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+									<li><a>Edit</a></li>
+									<li><a>Print</a></li>
+									<li><a>Activate</a></li>
+									<li><a>Deactivate</a></li>
+								  </ul>
+							</div>
+							<button class="btn btn-xs btn-danger"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+						</div>
 			</div>
 			<div class="list-group-canvas">
-				<div class="list-group-item">
-					<div class="well">
-						<span>No Information</span>
-					</div>
+				<div class="list-group-item list-group-header" ng-show="activeUser">
+					<h5>User Information</h5>
 				</div>
-				<div class="list-group-item list-group-header">
-					<label class="clear-fix">User Information</label>
-					<div class="pull-right">
-						<div class="btn-group btn-group-xs" uib-dropdown>
-							  <button class="btn btn-default dropdown-toggle" type="button"  uib-dropdown-toggle>
-								<span class="glyphicon glyphicon-chevron-down"></span>
-							  </button>
-							  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-								<li><a>Edit</a></li>
-								<li><a>Print</a></li>
-								<li><a>Activate</a></li>
-								<li><a>Deactivate</a></li>
-							  </ul>
-						</div>
-						<button class="btn btn-xs btn-danger"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-					</div>
-				</div>
-				<div class="list-group-item">
+				<div class="list-group-item" ng-show="activeUser">
 					<dl class="dl-horizontal">
 						<dt>Name</dt>
 						<dd>{{activeUser.first_name}} {{activeUser.middle_name}} {{activeUser.last_name}}</dd>
@@ -69,14 +65,31 @@
 						<dd>{{activeUser.status}}</dd>
 					</dl>
 				</div>
-				<div class="list-group-item list-group-header">
-					<label class="clear-fix">Access Details</label>
+				<div class="list-group-item list-group-header" ng-show="activeUser">
+					<h5>Access Details</h5>
 				</div>
-				<div class="list-group-item">
+				<div class="list-group-item" ng-show="activeUser">
 					<dl class="dl-horizontal">
 						<dt>Group ID</dt>
 						<dd>{{activeUser.group_id}}</dd>
 					</dl>
+					<table class="table table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th class="text-center">Modules</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="Module in Modules">
+								<td>{{Module.name}}</td>
+							</tr> 
+						</tbody>
+					</table>
+				</div>
+				<div class="list-group-item" ng-hide="activeUser">
+					<div class="well">
+						<span>No Information</span>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 "use strict";
 define(["model"],function($model){
 	var meta =  {
-					title:"Module"
+					title:"Modules"
 				};
 	var data = [
 				{
