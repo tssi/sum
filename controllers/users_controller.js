@@ -44,7 +44,7 @@ define(['app','api'],function(app){
 								//console.log(data);
 								//$scope.activeItem = data;
 								$scope.Message = 'Modal closed';
-								//LoadItems();
+								LoadUsers();
 							};
 			var fallback = function(data){
 								$scope.Message = 'Modal dismissed';

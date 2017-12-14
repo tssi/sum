@@ -89,8 +89,7 @@ define(["model"],function($model){
 					return {success:{data:__USER,message:__MSG}};
 				break;
 				case 'register':
-					console.log(users);
-					return {success:users.save(data)};
+					return {success:this.save(data)};
 				break;
 			}
 		}
