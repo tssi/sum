@@ -1,26 +1,5 @@
 "use strict";
 define(["model"],function($model){
-	/*var user =  new $model(
-			{
-			  "meta": {
-			    "title": "Users"
-			  },
-			  "data": [
-			    {
-			      "id": 0,
-				 "username":"admin",
-				 "password":"password",
-				 "user_type":"admin"
-			    },
-			    {
-			      "id": 1,
-			     "username":"user",
-				 "password":"password",
-				 "user_type":"user"
-			    }
-			  ]
-			}
-		);*/
 	var meta =  {
 					title:"Users"
 				};
