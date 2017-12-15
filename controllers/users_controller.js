@@ -35,21 +35,23 @@ define(['app','api'],function(app){
 		$scope.SetActiveUser = function(user){
 			$scope.activeUser = user;
 		};
+		$scope.removeUserInfo = function(){
+			$scope.activeUser = null;
+		};
 		$scope.OpenModal = function(){
-			var b = null;
+			var user = null;
 			var config = {
 				templateUrl:"ModalContent.html",
 				controller:"ModalController",
 				resolve:{
-					Bitch:function(){
-						return b;
+					Users:function(){
+						return user;
 					}
 				}
 			};
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								console.log(data);
 								$scope.activeUser = data;
 								$scope.Message = 'Modal closed';
 								LoadUsers();
@@ -60,12 +62,19 @@ define(['app','api'],function(app){
 			promise.then(callback,fallback);
 		};
 	}]);
-	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Bitch',function($scope,$uibModalInstance,api,Bitch){
+	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Users',function($scope,$uibModalInstance,api,Users){
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
 		};
 		$scope.confirmModal = function(){
-			var data = {last_name:$scope.TAUser,action:"register"};
+			var data = 	{
+							action:"register",
+							last_name:$scope.lastName,
+							first_name:$scope.firstName,
+							middle_initial:$scope.middleInitial,
+							username:$scope.userName,
+							password:$scope.password
+						};
 			var successConfirm = function(response){
 				$uibModalInstance.close(response.data);
 			};

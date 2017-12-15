@@ -8,9 +8,70 @@
 			<h3 class="modal-title">User Information</h3>
 		</div>
 		<div class="modal-body">
-			<textarea name="" id="" cols="30" rows="10" class="form-control"
-				ng-model="TAUser">
-			</textarea>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						Name
+					</div>						
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<input type="text" placeholder="First Name" class="form-control" ng-model="firstName" ng-blur="setSeriesCounter(seriesStart)"/>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<input type="text" placeholder="Middle Initial" class="form-control" ng-model="middleInitial"/>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<input type="text" placeholder="Last Name" class="form-control" ng-model="lastName"/>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						Username
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						Access
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<input type="text" placeholder="Username" class="form-control" ng-model="userName"/>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<select class="form-control">
+							<!-- <option ng-repeat="R in Roles" ng-value="R" ng-selected="Role==R">{{R}}</option> -->
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						Password
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<input type="password" class="form-control input-lg" ng-model="password"/>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<button class="btn btn-default pull-left" ng-click="closeModal()">Close</button>
@@ -23,7 +84,7 @@
 				<label class="clear-fix">Users</label>
 			</div>
 			<div class="list-group-canvas">
-				<div class="list-group-item" 
+				<div class="list-group-item"
 					ng-repeat="User in Users"
 					ng-click="SetActiveUser(User)"
 					ng-class="{active:User.id===activeUser.id}">
@@ -52,7 +113,7 @@
 									<li><a>Deactivate</a></li>
 								  </ul>
 							</div>
-							<button class="btn btn-xs btn-danger"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+							<button class="btn btn-xs btn-danger" ng-click="removeUserInfo()"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
 						</div>
 			</div>
 			<div class="list-group-canvas">
@@ -62,11 +123,13 @@
 				<div class="list-group-item" ng-show="activeUser">
 					<dl class="dl-horizontal">
 						<dt>Name</dt>
-						<dd>{{activeUser.first_name}} {{activeUser.middle_name}} {{activeUser.last_name}}</dd>
+						<dd>{{activeUser.first_name}} {{activeUser.middle_initial}} {{activeUser.last_name}}</dd>
 						<dt>Username</dt>
 						<dd>{{activeUser.username}}</dd>
 						<dt>Status</dt>
 						<dd>{{activeUser.status}}</dd>
+						<dt>Password</dt>
+						<dd>{{activeUser.password}}</dd>
 					</dl>
 				</div>
 				<div class="list-group-item list-group-header" ng-show="activeUser">
