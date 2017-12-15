@@ -5,7 +5,6 @@ define(['app','api'],function(app){
 				$scope.Users = response.data;
 			};
 			var errorLoad = function(response){
-				
 			};
 			api.GET('users',successLoad,errorLoad);
 		};
@@ -14,15 +13,24 @@ define(['app','api'],function(app){
 				$scope.Modules = response.data;
 			};
 			var errorLoad = function(response){
-				
 			};
 			api.GET('modules',successLoad,errorLoad);
+		};
+		function LoadGroups(){
+			var successLoad = function(response){
+				//$scope.Groups = response.data;
+			};
+			var errorLoad = function(response){
+			};
+			api.GET('groups',successLoad,errorLoad);
 		};
 		$scope.init = function(){
 			$scope.Users = [];
 			LoadUsers();
 			$scope.Modules = [];
 			LoadModules();
+			$scope.Groups = [];
+			LoadGroups();
 		};
 		$scope.SetActiveUser = function(user){
 			$scope.activeUser = user;

@@ -21,6 +21,6 @@ define(["model"],function($model){
 				}
 	];
 	var obj = {meta:meta,data:data};
-	var groups = new $model(obj);
-	return groups;
+	var modules = new $model(obj);
+	return modules;
 });
