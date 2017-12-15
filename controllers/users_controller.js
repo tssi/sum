@@ -41,8 +41,8 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								//console.log(data);
-								//$scope.activeItem = data;
+								console.log(data);
+								$scope.activeUser = data;
 								$scope.Message = 'Modal closed';
 								LoadUsers();
 							};

@@ -26,16 +26,17 @@
 					ng-class="{active:User.id===activeUser.id}">
 					<h4>{{User.last_name}}</h4>
 				</div>
-				<div class="list-group-item" 
+				<!-- <div class="list-group-item" 
 					<label class="clear-fix">{{Message}}</label>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="list-group">
 			<div class="list-group-item list-group-header">
-				<label class="clear-fix">User Information</label>
+				<label class="clear-fix" ng-hide="activeUser">User Information</label>
+				<label class="clear-fix">{{activeUser.id}}</label>
 						<div class="pull-right">
 							<div class="btn-group btn-group-xs" uib-dropdown>
 								  <button class="btn btn-default dropdown-toggle" type="button"  uib-dropdown-toggle>
