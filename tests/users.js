@@ -6,10 +6,10 @@ define(["model"],function($model){
 	var data = [
 				{
 				  "id": 1,
-				  "last_name": "Dela Cruz",
-				  "first_name": "Juan",
-				  "middle_initial": "A",
-				  "username": "admin",
+				  "last_name": "Martinez",
+				  "first_name": "Melchor",
+				  "middle_initial": "E",
+				  "username": "kuya mel",
 				  "password": "password",
 				  "status": "ACTIVE",
 				  "group_id": "ADMIN"
@@ -32,16 +32,6 @@ define(["model"],function($model){
 				  "username": "habhab",
 				  "password": "password",
 				  "status": "LOCKED",
-				  "group_id": "ADMIN"
-				},
-				{
-				  "id": 4,
-				  "last_name": "Martinez",
-				  "first_name": "Melchor",
-				  "middle_initial": "E",
-				  "username": "kuya mel",
-				  "password": "password",
-				  "status": "ACTIVE",
 				  "group_id": "ADMIN"
 				}
 	];

@@ -6,7 +6,8 @@ define(['app','api'],function(app){
 			};
 			var errorLoad = function(response){
 			};
-			api.GET('users',successLoad,errorLoad);
+			var data = {status:"ACTIVE"}; 
+			api.GET('users',data,successLoad,errorLoad);
 		};
 		function LoadModules(){
 			var successLoad = function(response){
