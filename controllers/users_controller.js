@@ -16,21 +16,21 @@ define(['app','api'],function(app){
 			};
 			api.GET('modules',successLoad,errorLoad);
 		};
-		function LoadGroups(){
+		/*function LoadGroups(){
 			var successLoad = function(response){
-				//$scope.Groups = response.data;
+				$scope.Groups = response.data;
 			};
 			var errorLoad = function(response){
 			};
 			api.GET('groups',successLoad,errorLoad);
-		};
+		};*/
 		$scope.init = function(){
 			$scope.Users = [];
-			LoadUsers();
 			$scope.Modules = [];
+			//$scope.Groups = [];
+			LoadUsers();
 			LoadModules();
-			$scope.Groups = [];
-			LoadGroups();
+			//LoadGroups();
 		};
 		$scope.SetActiveUser = function(user){
 			$scope.activeUser = user;
@@ -62,7 +62,17 @@ define(['app','api'],function(app){
 			promise.then(callback,fallback);
 		};
 	}]);
-	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Users',function($scope,$uibModalInstance,api,Users){
+	app.register.controller('ModalController',['$scope','$uibModalInstance','api',function($scope,$uibModalInstance,api){
+		function LoadGroups(){
+			var successLoad = function(response){
+				$scope.Groups = response.data;
+			};
+			var errorLoad = function(response){
+			};
+			api.GET('groups',successLoad,errorLoad);
+		};
+		$scope.Groups = [];
+		LoadGroups();
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
 		};
@@ -73,6 +83,7 @@ define(['app','api'],function(app){
 							first_name:$scope.firstName,
 							middle_initial:$scope.middleInitial,
 							username:$scope.userName,
+							group_id:$scope.group,
 							password:$scope.password
 						};
 			var successConfirm = function(response){

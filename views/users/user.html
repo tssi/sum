@@ -52,8 +52,8 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<select class="form-control">
-							<!-- <option ng-repeat="R in Roles" ng-value="R" ng-selected="Role==R">{{R}}</option> -->
+						<select class="form-control" ng-model="group">
+							<option ng-repeat="Group in Groups">{{Group.id}}</option>
 						</select>
 					</div>
 				</div>
