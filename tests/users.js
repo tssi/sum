@@ -31,8 +31,28 @@ define(["model"],function($model){
 				  "middle_initial": "C",
 				  "username": "habhab",
 				  "password": "password",
-				  "status": "LOCKED",
+				  "status": "ACTIVE",
 				  "group_id": "ADMIN"
+				},
+				{
+				  "id": 4,
+				  "last_name": "Arago",
+				  "first_name": "Aaron",
+				  "middle_initial": "K",
+				  "username": "petlags",
+				  "password": "password",
+				  "status": "ACTIVE",
+				  "group_id": "USER"
+				},
+				{
+				  "id": 5,
+				  "last_name": "Quiambao",
+				  "first_name": "Enrika",
+				  "middle_initial": "T",
+				  "username": "betis",
+				  "password": "password",
+				  "status": "LOCKED",
+				  "group_id": "USER"
 				}
 	];
 	var obj = {meta:meta,data:data};
@@ -58,6 +78,7 @@ define(["model"],function($model){
 					return {success:{data:__USER,message:__MSG}};
 				break;
 				case 'register':
+					data.status="ACTIVE";
 					return {success:this.save(data)};
 				break;
 			}

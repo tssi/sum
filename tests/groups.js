@@ -7,7 +7,7 @@ define(["model"],function($model){
 				{
 				  "id": "ADMIN",
 				  "name": "Admin",
-				  "modules":[ 1 ]
+				  "modules":[ 1,3 ]
 				},
 				{
 				  "id": "USER",
