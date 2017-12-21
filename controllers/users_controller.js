@@ -60,6 +60,10 @@ define(['app','api'],function(app){
 			$scope.activeUser = null;
 		};
 		$scope.OpenModal = function(user,mode){
+			if(!mode){
+				mode = "register";
+				$scope.Mode = mode;
+			}
 			var group = $scope.Groups;
 			var config = {
 				templateUrl:"ModalContent.html",
@@ -79,7 +83,9 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								$scope.activeUser = data;
+								if(data.action!='reset'){
+									$scope.activeUser = data;
+								}
 								$scope.Message = 'Modal closed';
 								LoadUsers();
 								Kembi();
@@ -93,20 +99,32 @@ define(['app','api'],function(app){
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Groups','User','Mode',function($scope,$uibModalInstance,api,Groups,User,Mode){
 		$scope.Groups = Groups;
 		$scope.User = User;
-		console.log(Groups);
+			$scope.Mode = Mode;
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
 		};
 		$scope.confirmModal = function(){
 			var data = $scope.User;
 			data.action = "edit";
-			var successConfirm = function(response){
+			var success = function(response){
 				$uibModalInstance.close(response.data);
 			};
-			var errorConfirm = function(response){
+			var error = function(response){
 				
 			};
-			api.POST('users',data,successConfirm,errorConfirm);
+			api.POST('users',data,success,error);
+		};
+		$scope.resetModal = function(){
+			var data = {id:$scope.User.id,password:$scope.User.password};
+			data.action = "reset";
+			console.log(data);
+			var success = function(response){
+				$uibModalInstance.close(response.data);
+			};
+			var error = function(response){
+				
+			};
+			api.POST('users',data,success,error);
 		};
 	}]);
 });

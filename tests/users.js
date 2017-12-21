@@ -84,6 +84,9 @@ define(["model"],function($model){
 				case 'edit':
 					return {success:this.save(data)};
 				break;
+				case 'reset':
+					return {success:this.save(data)};
+				break;
 			}
 		}
 	return users;
