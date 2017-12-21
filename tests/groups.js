@@ -1,18 +1,18 @@
 "use strict";
 define(["model"],function($model){
 	var meta =  {
-					title:"Modules"
+					title:"Groups"
 				};
 	var data = [
 				{
 				  "id": "ADMIN",
 				  "name": "Admin",
-				  "modules":[ 1,3 ]
+				  "modules": [1,3]
 				},
 				{
 				  "id": "USER",
 				  "name": "User",
-				  "modules":[ 2 ]
+				  "modules": [2]
 				}
 	];
 	var obj = {meta:meta,data:data};

@@ -17,24 +17,42 @@ define(['app','api'],function(app){
 			};
 			api.GET('modules',successLoad,errorLoad);
 		};
-		/*function LoadGroups(){
+		function LoadGroups(){
 			var successLoad = function(response){
 				$scope.Groups = response.data;
 			};
 			var errorLoad = function(response){
 			};
 			api.GET('groups',successLoad,errorLoad);
-		};*/
+		};
 		$scope.init = function(){
 			$scope.Users = [];
 			$scope.Modules = [];
-			//$scope.Groups = [];
+			$scope.Groups = [];
+			$scope.activeGroup = null;
+			$scope.activeUser = null;
 			LoadUsers();
 			LoadModules();
-			//LoadGroups();
+			LoadGroups();
 		};
 		$scope.SetActiveUser = function(user){
 			$scope.activeUser = user;
+			$scope.activeGroup = null;
+			$scope.activeModules = [];
+			for(var i in $scope.Groups){
+				var group = $scope.Groups[i];
+				if($scope.activeUser.group_id == group.id){
+					$scope.activeGroup = group;
+				}
+			}
+			var am = $scope.activeGroup.modules;
+			for(var j in $scope.Modules){
+				var m = $scope.Modules[j];
+				//console.log(m);
+				if(am.indexOf(m.id) != -1){
+					$scope.activeModules.push(m);
+				}
+			}
 		};
 		$scope.removeUserInfo = function(){
 			$scope.activeUser = null;
@@ -45,7 +63,7 @@ define(['app','api'],function(app){
 				templateUrl:"ModalContent.html",
 				controller:"ModalController",
 				resolve:{
-					Users:function(){
+					User:function(){
 						return user;
 					}
 				}
@@ -63,7 +81,7 @@ define(['app','api'],function(app){
 			promise.then(callback,fallback);
 		};
 	}]);
-	app.register.controller('ModalController',['$scope','$uibModalInstance','api',function($scope,$uibModalInstance,api){
+	app.register.controller('ModalController',['$scope','$uibModalInstance','api','api',function($scope,$uibModalInstance,api){
 		function LoadGroups(){
 			var successLoad = function(response){
 				$scope.Groups = response.data;

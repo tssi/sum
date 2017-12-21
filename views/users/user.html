@@ -138,7 +138,7 @@
 				<div class="list-group-item" ng-show="activeUser">
 					<dl class="dl-horizontal">
 						<dt>Group ID</dt>
-						<dd>{{activeUser.group_id}}</dd>
+						<dd>{{activeGroup.name}}</dd>
 					</dl>
 					<table class="table table-condensed table-bordered">
 						<thead>
@@ -147,8 +147,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="Module in Modules">
-								<td>{{Module.name}}</td>
+							<tr ng-repeat="activeModule in activeModules">
+								<td>{{activeModule.name}}</td>
 							</tr> 
 						</tbody>
 					</table>
