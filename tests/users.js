@@ -81,6 +81,9 @@ define(["model"],function($model){
 					data.status="ACTIVE";
 					return {success:this.save(data)};
 				break;
+				case 'edit':
+					return {success:this.save(data)};
+				break;
 			}
 		}
 	return users;
