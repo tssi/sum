@@ -25,7 +25,7 @@ define(['app','api'],function(app){
 			};
 			api.GET('groups',successLoad,errorLoad);
 		};
-		function Kembi(){
+		function AGAM(){
 			$scope.activeGroup = null;
 			$scope.activeModules = [];
 			for(var i in $scope.Groups){
@@ -54,14 +54,24 @@ define(['app','api'],function(app){
 		};
 		$scope.SetActiveUser = function(user){
 			$scope.activeUser = user;
-			Kembi();
+			AGAM();
+			//console.log($scope.Users);
 		};
 		$scope.removeUserInfo = function(){
 			$scope.activeUser = null;
 		};
 		$scope.OpenModal = function(user,mode){
 			if(!mode){
-				mode = "register";
+				mode = "add";
+				$scope.Mode = mode;
+			}
+			else if(mode == "edit"){
+				$scope.Mode = mode;
+			}
+			else if(mode == "reset"){
+				$scope.Mode = mode;
+			}
+			else if(mode == "deactivate"){
 				$scope.Mode = mode;
 			}
 			var group = $scope.Groups;
@@ -83,12 +93,12 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								if(data.action!='reset'){
+								if(data.action!='reset' && data.action!='deactivate'){
 									$scope.activeUser = data;
 								}
 								$scope.Message = 'Modal closed';
 								LoadUsers();
-								Kembi();
+								AGAM();
 							};
 			var fallback = function(data){
 								$scope.Message = 'Modal dismissed';
@@ -99,13 +109,20 @@ define(['app','api'],function(app){
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Groups','User','Mode',function($scope,$uibModalInstance,api,Groups,User,Mode){
 		$scope.Groups = Groups;
 		$scope.User = User;
-			$scope.Mode = Mode;
+		$scope.Mode = Mode;
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
 		};
-		$scope.confirmModal = function(){
-			var data = $scope.User;
-			data.action = "edit";
+		$scope.confirmModal = function(mode){
+			console.log(mode);
+			if(mode=="addoredit"){
+				var data = $scope.User;
+				data.action = "edit";
+			}
+			else if(mode=="deactivate"){
+				var data = {id:$scope.User.id,status:"INACTIVE"};
+				data.action = "deactivate";
+			}
 			var success = function(response){
 				$uibModalInstance.close(response.data);
 			};
@@ -117,7 +134,6 @@ define(['app','api'],function(app){
 		$scope.resetModal = function(){
 			var data = {id:$scope.User.id,password:$scope.User.password};
 			data.action = "reset";
-			console.log(data);
 			var success = function(response){
 				$uibModalInstance.close(response.data);
 			};
@@ -126,5 +142,17 @@ define(['app','api'],function(app){
 			};
 			api.POST('users',data,success,error);
 		};
+		/*$scope.deactivateModal = function(){
+			var data = {id:$scope.User.id,status:"INACTIVE"};
+			data.action = "deactivate";
+			//console.log(data.action);
+			var success = function(response){
+				$uibModalInstance.close(response.data);
+			};
+			var error = function(response){
+				
+			};
+			api.POST('users',data,success,error);
+		};*/
 	}]);
 });

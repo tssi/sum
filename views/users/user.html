@@ -1,21 +1,22 @@
 <div class="container" ng-controller="UserController" ng-init="init()">
-	<button class="btn btn-primary btn-fab top right"
-		ng-click="OpenModal()">
+	<button class="btn btn-primary btn-fab top right" ng-click="OpenModal()">
 		<span class="glyphicon glyphicon-plus"></span>
 	</button>
 	<script type="text/ng-template" id="ModalContent.html">
 		<div class="modal-header">
-			<h3 class="modal-title">User Information</h3>
+			<h3 class="modal-title" ng-show="Mode==='add' || Mode==='edit'">User Information</h3>
+			<h3 class="modal-title" ng-show="Mode==='reset'">Reset password</h3>
+			<h3 class="modal-title" ng-show="Mode==='deactivate'">Deactivate</h3>
 		</div>
 		<div class="modal-body">
-			<div class="row" ng-hide="Mode==='reset'">
+			<div class="row" ng-show="Mode==='add' || Mode==='edit'">
 				<div class="col-md-12">
 					<div class="form-group">
 						Name
 					</div>						
 				</div>
 			</div>
-			<div class="row" ng-hide="Mode==='reset'">
+			<div class="row" ng-show="Mode==='add' || Mode==='edit'">
 				<div class="col-md-4">
 					<div class="form-group">
 						<input type="text" placeholder="First Name" class="form-control" ng-model="User.first_name" ng-blur="setSeriesCounter(seriesStart)"/>
@@ -32,25 +33,25 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-6" ng-hide="Mode==='reset'">
+			<div class="row" ng-show="Mode==='add' || Mode==='edit'">
+				<div class="col-md-6">
 					<div class="form-group">
 						Username
 					</div>
 				</div>
-				<div class="col-md-6" ng-hide="Mode==='reset'">
+				<div class="col-md-6">
 					<div class="form-group">
 						Access
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-6" ng-hide="Mode==='reset'">
+			<div class="row" ng-show="Mode==='add' || Mode==='edit'">
+				<div class="col-md-6">
 					<div class="form-group">
 						<input type="text" placeholder="Username" class="form-control" ng-model="User.username"/>
 					</div>
 				</div>
-				<div class="col-md-6" ng-hide="Mode==='reset'">
+				<div class="col-md-6">
 					<div class="form-group">
 						<select class="form-control" ng-model="User.group_id">
 							<option ng-repeat="Group in Groups">{{Group.id}}</option>
@@ -60,7 +61,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="form-group" ng-hide="Mode==='reset'">
+					<div class="form-group" ng-show="Mode==='add' || Mode==='edit'">
 						Password
 					</div>
 					<div class="form-group" ng-show="Mode==='reset'">
@@ -68,7 +69,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row" ng-hide="Mode==='deactivate'">
 				<div class="col-md-12">
 					<div class="form-group">
 						<input type="password" class="form-control input-lg" ng-model="User.password"/>
@@ -77,9 +78,11 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-default pull-left" ng-click="closeModal()">Close</button>{{Mode}}
-			<button class="btn btn-primary" ng-click="confirmModal()" ng-hide="Mode==='reset'">Confirm</button>
+			<button class="btn btn-default pull-left" ng-click="closeModal()">Close</button>
+			<button class="btn btn-primary" ng-click="confirmModal('addoredit')" ng-show="Mode==='add' || Mode==='edit'">Confirm</button>
 			<button class="btn btn-danger" ng-click="resetModal()" ng-show="Mode==='reset'">Reset</button>
+			<!-- <button class="btn btn-primary" ng-click="deactivateModal()" ng-show="Mode==='deactivate'">Confirm</button> -->
+			<button class="btn btn-primary" ng-click="confirmModal('deactivate')" ng-show="Mode==='deactivate'">Confirm</button>
 		</div>
 	</script>
 	<div class="col-md-6">
@@ -94,9 +97,6 @@
 					ng-class="{active:User.id===activeUser.id}">
 					<h4>{{User.last_name}}</h4>
 				</div>
-				<!-- <div class="list-group-item" 
-					<label class="clear-fix">{{Message}}</label>
-				</div> -->
 			</div>
 		</div>
 	</div>
@@ -113,7 +113,10 @@
 								  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
 									<li><a ng-click="OpenModal(activeUser,'edit')">Edit</a></li>
 									<li><a ng-click="OpenModal(activeUser,'reset')">Reset Password</a></li>
-									<li><a>Activate</a></li>
+									<li ng-show="activeUser.status=='INACTIVE'"><a>Activate</a></li>
+									<li ng-show="activeUser.status=='ACTIVE'">
+										<a ng-click="OpenModal(activeUser,'deactivate')">Deactivate</a>
+									</li>
 								  </ul>
 							</div>
 							<button class="btn btn-xs btn-danger" ng-click="removeUserInfo()"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
@@ -163,5 +166,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>{{Mode}}
 </div>

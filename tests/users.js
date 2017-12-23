@@ -78,13 +78,21 @@ define(["model"],function($model){
 					return {success:{data:__USER,message:__MSG}};
 				break;
 				case 'register':
+					//data.status="ACTIVE";
+					return {success:this.save(data)};
+				break;
+				/*case 'add':
+					data.status="ACTIVE";
+					return {success:this.save(data)};
+				break;*/
+				case 'edit':
 					data.status="ACTIVE";
 					return {success:this.save(data)};
 				break;
-				case 'edit':
+				case 'reset':
 					return {success:this.save(data)};
 				break;
-				case 'reset':
+				case 'deactivate':
 					return {success:this.save(data)};
 				break;
 			}
