@@ -62,7 +62,7 @@ define(["model"],function($model){
 				case 'login':
 					var __MSG = 'Invalid username/password';
 					var __USER = {users:null};
-					var users =  users.data;
+					var users =  this.data;
 					for(var index in users){
 						var u = users[index];
 						if(u.username==data.username && u.password==data.password){
