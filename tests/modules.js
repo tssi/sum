@@ -7,17 +7,23 @@ define(["model"],function($model){
 				{
 					"id": 1,
 					"name":"Account Management",
-					"url":"#/accounts/index"
+					"url":"#/accounts/index",
+					"revoked":['USER'],
+					"granted":['ADMIN']
 				},
 				{
 					"id": 2,
 					"name":"Home",
-					"url":"#/"
+					"url":"#/",
+					"revoked":['USER'],
+					"granted":['ADMIN']
 				},
 				{
 					"id": 3,
 					"name":"Logout",
-					"url":"#/logout"
+					"url":"#/logout",
+					"revoked":['USER'],
+					"granted":['ADMIN']
 				}
 	];
 	var obj = {meta:meta,data:data};
