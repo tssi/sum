@@ -39,8 +39,10 @@ define(['app','api'],function(app){
 		$scope.removeGroupInfo = function(){
 			$scope.activeGroup = null;
 		};
-		$scope.OpenModal = function(){
+		$scope.OpenModal = function(group,mode){
 			var group;
+			//console.log(group);
+			//console.log(mode);
 			var config = {
 				templateUrl:"ModalContent.html",
 				controller:"ModalController",
@@ -54,7 +56,7 @@ define(['app','api'],function(app){
 			var promise = modal.result;
 			var callback = function(data){
 								$scope.Message = 'Modal closed';
-								LoadUsers();
+								//LoadUsers();
 							};
 			var fallback = function(data){
 								$scope.Message = 'Modal dismissed';
