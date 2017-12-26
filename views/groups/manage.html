@@ -2,9 +2,50 @@
 	<button class="btn btn-primary btn-fab top right" ng-click="OpenModal()">
 		<span class="glyphicon glyphicon-plus"></span>
 	</button>
+	<script type="text/ng-template" id="ModalContent.html">
+		<div class="modal-header">
+			<h3 class="modal-title">Group Information</h3>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						Group
+					</div>				
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<input type="text" placeholder="ID" class="form-control" ng-blur="setSeriesCounter(seriesStart)"/>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<input type="text" placeholder="Name" class="form-control"/>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						Modules
+					</div>				
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-default pull-left" ng-click="closeModal()">Close</button>
+			<button class="btn btn-primary" ng-click="confirmModal()">Confirm</button>
+		</div>
+	</script>
 	<div class="col-md-4">
 		<div class="list-group">
 			<div class="list-group-item list-group-header">
+				<div class="btn-group btn-group-sm pull-right" uib-dropdown>
+					<button class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
+					<button class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
+				</div>
 				<label class="clear-fix">Groups</label>
 			</div>
 			<div class="list-group-canvas">
@@ -13,6 +54,13 @@
 					ng-click="SetActiveGroup(Group)"
 					ng-class="{active:Group.id===activeGroup.id}">
 					<h4>{{Group.id}}</h4>
+				</div>
+			</div>
+			<div class="list-group-item list-group-search-box">
+				<div class="input-group"> 
+					<div class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></div>
+					<input type="text" class="form-control" placeholder="Search"/>
+					<div class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button></div>
 				</div>
 			</div>
 		</div>
@@ -65,5 +113,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>{{Message}}
 </div>
