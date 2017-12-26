@@ -6,7 +6,7 @@ define(['app','api'],function(app){
 			};
 			var errorLoad = function(response){
 			};
-			var data = {status:"ACTIVE"}; 
+			var data = {status:"ACTIVE"};
 			api.GET('users',data,successLoad,errorLoad);
 		};
 		function LoadModules(){
@@ -71,6 +71,9 @@ define(['app','api'],function(app){
 			else if(mode == "reset"){
 				$scope.Mode = mode;
 			}
+			else if(mode == "activate"){
+				$scope.Mode = mode;
+			}
 			else if(mode == "deactivate"){
 				$scope.Mode = mode;
 			}
@@ -93,7 +96,8 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								if(data.action!='reset' && data.action!='deactivate'){
+								console.log(data);
+								if(data.action!='reset' && data.action!='deactivate' && data.action!='activate'){
 									$scope.activeUser = data;
 								}
 								$scope.Message = 'Modal closed';
@@ -118,6 +122,10 @@ define(['app','api'],function(app){
 			if(mode=="addoredit"){
 				var data = $scope.User;
 				data.action = "edit";
+			}
+			else if(mode=="activate"){
+				var data = {id:$scope.User.id,status:"ACTIVE"};
+				data.action = "activate";
 			}
 			else if(mode=="deactivate"){
 				var data = {id:$scope.User.id,status:"INACTIVE"};
