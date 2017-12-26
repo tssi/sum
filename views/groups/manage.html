@@ -1,0 +1,69 @@
+<div class="container" ng-controller="GroupsController" ng-init="init()">
+	<button class="btn btn-primary btn-fab top right" ng-click="OpenModal()">
+		<span class="glyphicon glyphicon-plus"></span>
+	</button>
+	<div class="col-md-4">
+		<div class="list-group">
+			<div class="list-group-item list-group-header">
+				<label class="clear-fix">Groups</label>
+			</div>
+			<div class="list-group-canvas">
+				<div class="list-group-item"
+					ng-repeat="Group in Groups"
+					ng-click="SetActiveGroup(Group)"
+					ng-class="{active:Group.id===activeGroup.id}">
+					<h4>{{Group.id}}</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="list-group">
+			<div class="list-group-item list-group-header">
+				<label class="clear-fix" ng-hide="activeGroup">Group Information</label>
+				<label class="clear-fix">{{activeGroup.id}}</label>
+						<div class="pull-right" ng-show="activeGroup">
+							<div class="btn-group btn-group-xs" uib-dropdown>
+								<button class="btn btn-default dropdown-toggle" type="button"  uib-dropdown-toggle>
+									<span class="glyphicon glyphicon-chevron-down"></span>
+								</button>
+								<ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+									<li><a ng-click="OpenModal()">Edit</a></li>
+								</ul>
+							</div>
+							<button class="btn btn-xs btn-danger" ng-click="removeGroupInfo()"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+						</div>
+			</div>
+			<div class="list-group-canvas">
+				<div class="list-group-item list-group-header" ng-show="activeGroup">
+					<h5>Group Information</h5>
+				</div>
+				<div class="list-group-item" ng-show="activeGroup">
+					<dl class="dl-horizontal">
+						<dt>ID</dt>
+						<dd>{{activeGroup.id}}</dd>
+						<dt>Name</dt>
+						<dd>{{activeGroup.name}}</dd>
+					</dl>
+				</div>
+				<div class="list-group-item list-group-header" ng-show="activeGroup">
+					<h5>Modules</h5>
+				</div>
+				<div class="list-group-item" ng-show="activeGroup">
+					<table class="table table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th class="text-center">Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="activeModule in activeModules">
+								<td>{{activeModule.name}}</td>
+							</tr> 
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
