@@ -4,8 +4,10 @@
 	</button>
 	<script type="text/ng-template" id="ModalContent.html">
 		<div class="modal-header">
-			<h3 class="modal-title" ng-show="Mode==='add' || Mode==='edit'">User Information</h3>
+			<h3 class="modal-title" ng-show="Mode==='add'">User Information</h3>
+			<h3 class="modal-title" ng-show="Mode==='edit'">Edit</h3>
 			<h3 class="modal-title" ng-show="Mode==='reset'">Reset password</h3>
+			<h3 class="modal-title" ng-show="Mode==='activate'">Activate</h3>
 			<h3 class="modal-title" ng-show="Mode==='deactivate'">Deactivate</h3>
 		</div>
 		<div class="modal-body">
@@ -69,10 +71,24 @@
 					</div>
 				</div>
 			</div>
-			<div class="row" ng-hide="Mode==='deactivate'">
+			<div class="row" ng-show="Mode==='add' || Mode==='edit' || Mode==='reset'">
 				<div class="col-md-12">
 					<div class="form-group">
 						<input type="password" class="form-control input-lg" ng-model="User.password"/>
+					</div>
+				</div>
+			</div>
+			<div class="row" ng-show="Mode==='activate'">
+				<div class="col-md-12">
+					<div class="form-group">
+						Are you sure you want to activate this user?
+					</div>
+				</div>
+			</div>
+			<div class="row" ng-show="Mode==='deactivate'">
+				<div class="col-md-12">
+					<div class="form-group">
+						Are you sure you want to deactivate this user?
 					</div>
 				</div>
 			</div>
@@ -82,6 +98,7 @@
 			<button class="btn btn-primary" ng-click="confirmModal('addoredit')" ng-show="Mode==='add' || Mode==='edit'">Confirm</button>
 			<button class="btn btn-danger" ng-click="resetModal()" ng-show="Mode==='reset'">Reset</button>
 			<!-- <button class="btn btn-primary" ng-click="deactivateModal()" ng-show="Mode==='deactivate'">Confirm</button> -->
+			<button class="btn btn-primary" ng-click="confirmModal('activate')" ng-show="Mode==='activate'">Confirm</button>
 			<button class="btn btn-primary" ng-click="confirmModal('deactivate')" ng-show="Mode==='deactivate'">Confirm</button>
 		</div>
 	</script>
@@ -113,7 +130,9 @@
 								  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
 									<li><a ng-click="OpenModal(activeUser,'edit')">Edit</a></li>
 									<li><a ng-click="OpenModal(activeUser,'reset')">Reset Password</a></li>
-									<li ng-show="activeUser.status=='INACTIVE'"><a>Activate</a></li>
+									<li ng-show="activeUser.status=='INACTIVE'">
+										<a ng-click="OpenModal(activeUser,'activate')">Activate</a>
+									</li>
 									<li ng-show="activeUser.status=='ACTIVE'">
 										<a ng-click="OpenModal(activeUser,'deactivate')">Deactivate</a>
 									</li>

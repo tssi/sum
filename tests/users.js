@@ -62,7 +62,7 @@ define(["model"],function($model){
 				case 'login':
 					var __MSG = 'Invalid username/password';
 					var __USER = {users:null};
-					var users =  users.data;
+					var users =  this.data;
 					for(var index in users){
 						var u = users[index];
 						if(u.username==data.username && u.password==data.password){
@@ -78,7 +78,6 @@ define(["model"],function($model){
 					return {success:{data:__USER,message:__MSG}};
 				break;
 				case 'register':
-					//data.status="ACTIVE";
 					return {success:this.save(data)};
 				break;
 				/*case 'add':
@@ -90,6 +89,9 @@ define(["model"],function($model){
 					return {success:this.save(data)};
 				break;
 				case 'reset':
+					return {success:this.save(data)};
+				break;
+				case 'activate':
 					return {success:this.save(data)};
 				break;
 				case 'deactivate':
