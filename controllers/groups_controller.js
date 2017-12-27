@@ -18,11 +18,15 @@ define(['app','api'],function(app){
 		};
 		function LoadActiveModules(){
 			$scope.activeModules = [];
+			$scope.notActiveModules = [];
 			var am = $scope.activeGroup.modules;
 			for(var j in $scope.Modules){
 				var m = $scope.Modules[j];
 				if(am.indexOf(m.id) != -1){
 					$scope.activeModules.push(m);
+				}
+				else{
+					$scope.notActiveModules.push(m);
 				}
 			}
 		};
@@ -41,7 +45,8 @@ define(['app','api'],function(app){
 		};
 		$scope.OpenModal = function(group,mode){
 			var group;
-			var modules = $scope.activeModules;
+			var activemodules = $scope.activeModules;
+			var notactivemodules = $scope.notActiveModules;
 			//console.log(group);
 			//console.log(mode);
 			var config = {
@@ -51,8 +56,11 @@ define(['app','api'],function(app){
 					Group:function(){
 						return group;
 					},
-					Modules:function(){
-						return modules;
+					ActiveModules:function(){
+						return activemodules;
+					},
+					NotActiveModules:function(){
+						return notactivemodules;
 					},
 					Mode:function(){
 						return mode;
@@ -70,11 +78,12 @@ define(['app','api'],function(app){
 			promise.then(callback,fallback);
 		};
 	}]);
-	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Group','Modules','Mode',function($scope,$uibModalInstance,api,Group,Modules,Mode){
-		console.log(Mode);
+	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Group','ActiveModules','NotActiveModules','Mode',function($scope,$uibModalInstance,api,Group,ActiveModules,NotActiveModules,Mode){
+		console.log(ActiveModules);
+		console.log(NotActiveModules);
 		$scope.Group = Group;
 		if (Mode == 'edit'){
-			$scope.activeModules = Modules;
+			$scope.activeModules = ActiveModules;
 		}
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
