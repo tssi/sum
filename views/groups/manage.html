@@ -17,12 +17,12 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-						<input type="text" placeholder="ID" class="form-control" ng-blur="setSeriesCounter(seriesStart)"/>
+						<input type="text" placeholder="ID" class="form-control" ng-blur="setSeriesCounter(seriesStart)" ng-model="Group.id"/>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<input type="text" placeholder="Name" class="form-control"/>
+						<input type="text" placeholder="Name" class="form-control" ng-model="Group.name"/>
 					</div>
 				</div>
 			</div>
@@ -40,8 +40,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>aaaa</td>
+								<tr ng-repeat="activeModule in activeModules">
+									<td>{{activeModule.name}}</td>
 									<td><button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
 								</tr>
 							</tbody>

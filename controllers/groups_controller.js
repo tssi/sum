@@ -41,6 +41,7 @@ define(['app','api'],function(app){
 		};
 		$scope.OpenModal = function(group,mode){
 			var group;
+			var modules = $scope.activeModules;
 			//console.log(group);
 			//console.log(mode);
 			var config = {
@@ -49,6 +50,12 @@ define(['app','api'],function(app){
 				resolve:{
 					Group:function(){
 						return group;
+					},
+					Modules:function(){
+						return modules;
+					},
+					Mode:function(){
+						return mode;
 					}
 				}
 			};
@@ -56,17 +63,19 @@ define(['app','api'],function(app){
 			var promise = modal.result;
 			var callback = function(data){
 								$scope.Message = 'Modal closed';
-								//LoadUsers();
 							};
 			var fallback = function(data){
 								$scope.Message = 'Modal dismissed';
-								//console.log($scope.activeGroup.modules);
-								//console.log($scope.Modules);
 							};
 			promise.then(callback,fallback);
 		};
 	}]);
-	app.register.controller('ModalController',['$scope','$uibModalInstance','api',function($scope,$uibModalInstance,api){
+	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Group','Modules','Mode',function($scope,$uibModalInstance,api,Group,Modules,Mode){
+		console.log(Mode);
+		$scope.Group = Group;
+		if (Mode == 'edit'){
+			$scope.activeModules = Modules;
+		}
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
 		};

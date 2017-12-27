@@ -55,7 +55,6 @@ define(['app','api'],function(app){
 		$scope.SetActiveUser = function(user){
 			$scope.activeUser = user;
 			AGAM();
-			//console.log($scope.Users);
 		};
 		$scope.removeUserInfo = function(){
 			$scope.activeUser = null;
@@ -113,6 +112,7 @@ define(['app','api'],function(app){
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Groups','User','Mode',function($scope,$uibModalInstance,api,Groups,User,Mode){
 		$scope.Groups = Groups;
 		$scope.User = User;
+		console.log($scope.User);
 		$scope.Mode = Mode;
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
