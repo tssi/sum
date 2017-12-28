@@ -95,7 +95,7 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								console.log(data);
+								//console.log(data);
 								if(data.action!='reset' && data.action!='deactivate' && data.action!='activate'){
 									$scope.activeUser = data;
 								}
@@ -112,13 +112,13 @@ define(['app','api'],function(app){
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Groups','User','Mode',function($scope,$uibModalInstance,api,Groups,User,Mode){
 		$scope.Groups = Groups;
 		$scope.User = User;
-		console.log($scope.User);
+		//console.log($scope.User);
 		$scope.Mode = Mode;
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
 		};
 		$scope.confirmModal = function(mode){
-			console.log(mode);
+			//console.log(mode);
 			if(mode=="addoredit"){
 				var data = $scope.User;
 				data.action = "edit";

@@ -76,6 +76,7 @@ define(['app','api'],function(app){
 			var promise = modal.result;
 			var callback = function(data){
 								$scope.Message = 'Modal closed';
+								LoadGroups();
 							};
 			var fallback = function(data){
 								$scope.Message = 'Modal dismissed';
@@ -86,7 +87,6 @@ define(['app','api'],function(app){
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Group','Modules','ActiveModules','NotActiveModules','Mode',function($scope,$uibModalInstance,api,Group,Modules,ActiveModules,NotActiveModules,Mode){
 		$scope.Mode = Mode;
 		$scope.Group = Group;
-		console.log($scope.Mode);
 		if (Mode != 'edit'){
 			$scope.Modules = Modules;
 		}
@@ -95,15 +95,14 @@ define(['app','api'],function(app){
 		}
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
+		//console.log($scope.Group);
 		};
 		$scope.confirmModal = function(){
-			var success = function(response){
-				
-			};
-			var error = function(response){
-				
-			};
-			api.POST('groups',success,error);
+			var data = $scope.Group;
+			api.POST('groups',data,function success(response){
+				console.log(response);
+				$uibModalInstance.close(response.data);
+			});
 		};
 	}]);
 });
