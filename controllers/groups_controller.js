@@ -49,8 +49,6 @@ define(['app','api'],function(app){
 			var modules = $scope.Modules;
 			var activemodules = $scope.activeModules;
 			var notactivemodules = $scope.notActiveModules;
-			//console.log(group);
-			//console.log(mode);
 			var config = {
 				templateUrl:"ModalContent.html",
 				controller:"ModalController",
@@ -75,6 +73,7 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
+								//console.log(data);
 								$scope.Message = 'Modal closed';
 								LoadGroups();
 							};
@@ -87,7 +86,6 @@ define(['app','api'],function(app){
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Group','Modules','ActiveModules','NotActiveModules','Mode',function($scope,$uibModalInstance,api,Group,Modules,ActiveModules,NotActiveModules,Mode){
 		$scope.Mode = Mode;
 		$scope.Group = Group;
-		console.log(NotActiveModules);
 		if (Mode != 'edit'){
 			$scope.Modules = Modules;
 		}
@@ -97,12 +95,19 @@ define(['app','api'],function(app){
 		}
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
-		//console.log($scope.Group);
+		};
+		$scope.addModule = function(){
+			var a = $scope.Tom
+			a = parseInt(a);
+			$scope.Group.modules.push(a);
+			console.log($scope.Group);
+			$scope.Group = Group;
 		};
 		$scope.confirmModal = function(){
 			var data = $scope.Group;
+			//console.log(data);
 			api.POST('groups',data,function success(response){
-				console.log(response);
+				//console.log(response);
 				$uibModalInstance.close(response.data);
 			});
 		};
