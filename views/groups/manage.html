@@ -32,10 +32,10 @@
 						Modules
 					</div>	
 					<div>
-						<!-- <div class="form-group" ng-show="Mode!=='edit'">
+						<div class="form-group" ng-show="Mode!=='edit'">
 							<select class="form-control" ng-model="Group.modules">
 								<option ng-repeat="Module in Modules">{{Module.name}}</option>
-							</select> -->
+							</select>
 						</div>
 						<table class="table table-condensed table-bordered" ng-show="Mode==='edit'">
 							<thead>
@@ -47,14 +47,13 @@
 								<tr ng-repeat="activeModule in activeModules">
 									<td>
 										{{activeModule.name}}<button class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-										
 									</td>
 								</tr>
 							</tbody>
 						</table>
-											<select class="form-control">
-												<option ng-repeat="notActiveModule in notActiveModules">{{notActiveModule.name}}</option>
-											</select>
+						<select class="form-control" ng-show="Mode==='edit'">
+							<option ng-repeat="notActiveModule in notActiveModules">{{notActiveModule.name}}</option>
+						</select>
 					</div>
 				</div>
 			</div>
