@@ -64,9 +64,12 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								//console.log(data);
+								console.log(data);
+								$scope.activeGroup = data;
 								$scope.Message = 'Modal closed';
 								LoadGroups();
+								//LoadModules();
+								//console.log($scope.Groups);
 							};
 			var fallback = function(data){
 								$scope.Message = 'Modal dismissed';
