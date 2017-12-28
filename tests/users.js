@@ -56,13 +56,13 @@ define(["model"],function($model){
 				}
 	];
 	var obj = {meta:meta,data:data};
-	var users = new $model(obj);
-		users.POST = function(data){
+	var User = new $model(obj);
+		User.POST = function(data){
 			switch(data.action){
 				case 'login':
 					var __MSG = 'Invalid username/password';
 					var __USER = {users:null};
-					var users =  this.data;
+					var users =  User.data;
 					for(var index in users){
 						var u = users[index];
 						if(u.username==data.username && u.password==data.password){
@@ -78,7 +78,7 @@ define(["model"],function($model){
 					return {success:{data:__USER,message:__MSG}};
 				break;
 				case 'register':
-					return {success:this.save(data)};
+					return {success:User.save(data)};
 				break;
 				/*case 'add':
 					data.status="ACTIVE";
@@ -86,18 +86,18 @@ define(["model"],function($model){
 				break;*/
 				case 'edit':
 					data.status="ACTIVE";
-					return {success:this.save(data)};
+					return {success:User.save(data)};
 				break;
 				case 'reset':
-					return {success:this.save(data)};
+					return {success:User.save(data)};
 				break;
 				case 'activate':
-					return {success:this.save(data)};
+					return {success:User.save(data)};
 				break;
 				case 'deactivate':
-					return {success:this.save(data)};
+					return {success:User.save(data)};
 				break;
 			}
 		}
-	return users;
+	return User;
 });
