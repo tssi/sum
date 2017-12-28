@@ -87,11 +87,13 @@ define(['app','api'],function(app){
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Group','Modules','ActiveModules','NotActiveModules','Mode',function($scope,$uibModalInstance,api,Group,Modules,ActiveModules,NotActiveModules,Mode){
 		$scope.Mode = Mode;
 		$scope.Group = Group;
+		console.log(NotActiveModules);
 		if (Mode != 'edit'){
 			$scope.Modules = Modules;
 		}
 		else if (Mode == 'edit'){
 			$scope.activeModules = ActiveModules;
+			$scope.notActiveModules = NotActiveModules;
 		}
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
