@@ -39,18 +39,16 @@ define(['app','api'],function(app){
 		$scope.removeGroupInfo = function(){
 			$scope.activeGroup = null;
 		};
-		$scope.OpenModal = function(group,mode){
+		$scope.OpenModal = function(activegroup,mode){
 			$scope.Mode = mode;
-			var group;
 			var modules = $scope.Modules;
 			var activemodules = $scope.activeModules;
-			var notactivemodules = $scope.notActiveModules;
 			var config = {
 				templateUrl:"ModalContent.html",
 				controller:"ModalController",
 				resolve:{
-					Group:function(){
-						return group;
+					ActiveGroup:function(){
+						return activegroup;
 					},
 					Modules:function(){
 						return modules;
@@ -76,28 +74,34 @@ define(['app','api'],function(app){
 			promise.then(callback,fallback);
 		};
 	}]);
-	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Group','Modules','ActiveModules','Mode',function($scope,$uibModalInstance,api,Group,Modules,ActiveModules,Mode){
+	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveGroup','Modules','ActiveModules','Mode',function($scope,$uibModalInstance,api,ActiveGroup,Modules,ActiveModules,Mode){
 		$scope.Mode = Mode;
-		$scope.Group = Group;
-		//console.log(Group);
-		if (Mode != 'edit'){
-		}
-		else if (Mode == 'edit'){
-			$scope.activeModules = ActiveModules;
-			$scope.Modules = Modules;
-		}
+		$scope.ActiveGroup = ActiveGroup;
+		//$scope.activeModules = ActiveModules;
+		//console.log($scope.ActiveGroup.modules);
+		$scope.Modules = Modules;
+		function LoadActiveModules(){
+			$scope.activeModules = [];
+			var am = $scope.ActiveGroup.modules;
+			for(var j in $scope.Modules){
+				var m = $scope.Modules[j];
+				if(am.indexOf(m.id) != -1){
+					$scope.activeModules.push(m);
+				}
+			}
+		};
+		LoadActiveModules();
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
 		};
 		$scope.addModule = function(){
 			var a = $scope.Tom
 			a = parseInt(a);
-			$scope.Group.modules.push(a);
-			console.log($scope.Group);
-			//$scope.Groups = Group;
+			$scope.ActiveGroup.modules.push(a);
+			LoadActiveModules();
 		};
 		$scope.confirmModal = function(){
-			var data = $scope.Group;
+			var data = $scope.ActiveGroup;
 			api.POST('groups',data,function success(response){
 				$uibModalInstance.close(response.data);
 			});
