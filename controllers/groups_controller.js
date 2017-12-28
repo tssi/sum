@@ -84,9 +84,9 @@ define(['app','api'],function(app){
 		};
 	}]);
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Group','Modules','ActiveModules','NotActiveModules','Mode',function($scope,$uibModalInstance,api,Group,Modules,ActiveModules,NotActiveModules,Mode){
-		console.log(ActiveModules);
-		console.log(NotActiveModules);
+		$scope.Mode = Mode;
 		$scope.Group = Group;
+		console.log($scope.Mode);
 		if (Mode != 'edit'){
 			$scope.Modules = Modules;
 		}

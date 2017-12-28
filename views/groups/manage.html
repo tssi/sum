@@ -32,22 +32,23 @@
 						Modules
 					</div>	
 					<div>
-						<table class="table table-condensed table-bordered">
+						<div class="form-group" ng-show="Mode!=='edit'">
+							<select class="form-control">
+								<option ng-repeat="Module in Modules">{{Module.name}}</option>
+							</select>
+						</div>
+						<table class="table table-condensed table-bordered" ng-show="Mode==='edit'">
 							<thead>
 								<tr>
 									<th class="text-center">Name</th>
-									<th class="text-center"></th>
 								</tr>
 							</thead>
 							<tbody>
-								<div class="form-group" ng-hide="Mode==='edit'">
-									<select class="form-control">
-										<option ng-repeat="Module in Modules">{{Module.name}}</option>
-									</select>
-								</div>
-								<tr ng-repeat="activeModule in activeModules" ng-hide="Mode==='edit'">
-									<td>{{activeModule.name}}</td>
-									<td><button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+								<tr ng-repeat="activeModule in activeModules">
+									<td>
+										{{activeModule.name}}
+										<button class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+									</td>
 								</tr>
 							</tbody>
 						</table>
