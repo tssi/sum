@@ -78,7 +78,6 @@ define(['app','api'],function(app){
 		$scope.Modules = Modules;
 		function LoadActiveModules(){
 			$scope.activeModules = [];
-			$scope.ActiveGroup.modules;
 			for (var j in $scope.Modules){
 				if ($scope.ActiveGroup.modules.indexOf($scope.Modules[j].id) != -1){
 					$scope.activeModules.push($scope.Modules[j]);
