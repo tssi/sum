@@ -90,42 +90,47 @@ define(['app','api'],function(app){
 				}
 			}
 		};
+		function LoadActiveModuless(){
+			$scope.activeModules = [];
+			for (var i in $scope.Modules){
+				if ($scope.ggg.indexOf($scope.Modules[i].id) != -1){
+					$scope.activeModules.push($scope.Modules[i]);
+				}
+			}
+		};
 		if ($scope.Mode == 'edit'){
 			LoadActiveModules();
 		}
 		$scope.addModule = function(){
 			var a = $scope.Tom;
-			a = parseInt(a);;
+			a = parseInt(a);
 			if ($scope.Mode == 'edit'){
 				$scope.ActiveGroup.modules.push(a)
 				LoadActiveModules();
 			}
 			else if ($scope.Mode == 'add'){
 				$scope.ggg.push(a);
-				//console.log($scope.ggg);
-				$scope.activeModules = [];
-				for (var i in $scope.Modules){
-					if ($scope.ggg.indexOf($scope.Modules[i].id) != -1){
-						$scope.activeModules.push($scope.Modules[i]);
-					}
-				}
+				LoadActiveModuless();
 			}
 		};
 		$scope.removeModule = function(index){
-			$scope.ActiveGroup.modules.splice(index,1);
-			LoadActiveModules();
+			if ($scope.Mode == 'edit'){
+				$scope.ActiveGroup.modules.splice(index,1);
+				LoadActiveModules();
+			}
+			else if ($scope.Mode == 'add'){
+				$scope.ggg.splice(index,1);
+				LoadActiveModuless();
+			}
 		};
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
 		};
 		$scope.confirmModal = function(){
-			if ($scope.Mode == 'edit'){
-				var data = $scope.ActiveGroup;
-			}
-			else if ($scope.Mode == 'add'){
+			if ($scope.Mode == 'add'){
 				$scope.ActiveGroup.modules = $scope.ggg;
-				var data = $scope.ActiveGroup;
 			}
+			var data = $scope.ActiveGroup;
 			console.log(data);
 			var success = function(response){
 				/*if ($scope.Mode == 'add'){
