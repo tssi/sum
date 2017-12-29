@@ -89,12 +89,16 @@ define(['app','api'],function(app){
 			LoadActiveModules();
 		}
 		$scope.addModule = function(){
-				var a = $scope.Tom;
-				a = parseInt(a);
-				$scope.ActiveGroup.modules.push(a);
-				if ($scope.Mode == 'edit'){
-					LoadActiveModules();
-				}
+			var a = $scope.Tom;
+			a = parseInt(a);
+			$scope.ActiveGroup.modules.push(a);
+			if ($scope.Mode == 'edit'){
+				LoadActiveModules();
+			}
+		};
+		$scope.removeModule = function(index){
+			$scope.ActiveGroup.modules.splice(index,1);
+			LoadActiveModules();
 		};
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
