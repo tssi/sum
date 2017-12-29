@@ -133,9 +133,6 @@ define(['app','api'],function(app){
 			var data = $scope.ActiveGroup;
 			console.log(data);
 			var success = function(response){
-				/*if ($scope.Mode == 'add'){
-					response.data.modules = $scope.ggg;
-				}*/
 				$uibModalInstance.close(response.data);
 			};
 			var error = function(response){
