@@ -19,10 +19,12 @@ define(['app','api'],function(app){
 		function LoadActiveModules(){
 			$scope.activeModules = [];
 			var am = $scope.activeGroup.modules;
-			for (var j in $scope.Modules){
-				var m = $scope.Modules[j];
-				if (am.indexOf(m.id) != -1){
-					$scope.activeModules.push(m);
+			if (am){
+				for (var j in $scope.Modules){
+					var m = $scope.Modules[j];
+					if (am.indexOf(m.id) != -1){
+						$scope.activeModules.push(m);
+					}
 				}
 			}
 		};
@@ -40,6 +42,9 @@ define(['app','api'],function(app){
 			$scope.activeGroup = null;
 		};
 		$scope.OpenModal = function(activegroup,mode){
+			if (!mode){
+				mode = 'add';
+			}
 			$scope.Mode = mode;
 			var modules = $scope.Modules;
 			var activemodules = $scope.activeModules;
@@ -74,6 +79,7 @@ define(['app','api'],function(app){
 	}]);
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveGroup','Modules','Mode',function($scope,$uibModalInstance,api,ActiveGroup,Modules,Mode){
 		$scope.Mode = Mode;
+		$scope.ggg = [];
 		$scope.ActiveGroup = ActiveGroup;
 		$scope.Modules = Modules;
 		function LoadActiveModules(){
@@ -89,10 +95,20 @@ define(['app','api'],function(app){
 		}
 		$scope.addModule = function(){
 			var a = $scope.Tom;
-			a = parseInt(a);
-			$scope.ActiveGroup.modules.push(a);
+			a = parseInt(a);;
 			if ($scope.Mode == 'edit'){
+				$scope.ActiveGroup.modules.push(a)
 				LoadActiveModules();
+			}
+			else if ($scope.Mode == 'add'){
+				$scope.ggg.push(a);
+				//console.log($scope.ggg);
+				$scope.activeModules = [];
+				for (var i in $scope.Modules){
+					if ($scope.ggg.indexOf($scope.Modules[i].id) != -1){
+						$scope.activeModules.push($scope.Modules[i]);
+					}
+				}
 			}
 		};
 		$scope.removeModule = function(index){
@@ -103,10 +119,18 @@ define(['app','api'],function(app){
 			$uibModalInstance.dismiss();
 		};
 		$scope.confirmModal = function(){
-			var data = $scope.ActiveGroup;
+			if ($scope.Mode == 'edit'){
+				var data = $scope.ActiveGroup;
+			}
+			else if ($scope.Mode == 'add'){
+				$scope.ActiveGroup.modules = $scope.ggg;
+				var data = $scope.ActiveGroup;
+			}
+			console.log(data);
 			var success = function(response){
-				response.data.modules = [2,3];
-			console.log(response.data);
+				/*if ($scope.Mode == 'add'){
+					response.data.modules = $scope.ggg;
+				}*/
 				$uibModalInstance.close(response.data);
 			};
 			var error = function(response){
