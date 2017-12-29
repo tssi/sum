@@ -19,9 +19,9 @@ define(['app','api'],function(app){
 		function LoadActiveModules(){
 			$scope.activeModules = [];
 			var am = $scope.activeGroup.modules;
-			for(var j in $scope.Modules){
+			for (var j in $scope.Modules){
 				var m = $scope.Modules[j];
-				if(am.indexOf(m.id) != -1){
+				if (am.indexOf(m.id) != -1){
 					$scope.activeModules.push(m);
 				}
 			}
@@ -53,9 +53,6 @@ define(['app','api'],function(app){
 					Modules:function(){
 						return modules;
 					},
-					ActiveModules:function(){
-						return activemodules;
-					},
 					Mode:function(){
 						return mode;
 					}
@@ -64,12 +61,10 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								console.log(data);
 								$scope.activeGroup = data;
 								$scope.Message = 'Modal closed';
 								LoadGroups();
-								//LoadModules();
-								//console.log($scope.Groups);
+								LoadActiveModules();
 							};
 			var fallback = function(data){
 								$scope.Message = 'Modal dismissed';
@@ -77,37 +72,61 @@ define(['app','api'],function(app){
 			promise.then(callback,fallback);
 		};
 	}]);
-	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveGroup','Modules','ActiveModules','Mode',function($scope,$uibModalInstance,api,ActiveGroup,Modules,ActiveModules,Mode){
+	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveGroup','Modules','Mode',function($scope,$uibModalInstance,api,ActiveGroup,Modules,Mode){
 		$scope.Mode = Mode;
 		$scope.ActiveGroup = ActiveGroup;
-		//$scope.activeModules = ActiveModules;
-		//console.log($scope.ActiveGroup.modules);
 		$scope.Modules = Modules;
 		function LoadActiveModules(){
 			$scope.activeModules = [];
-			var am = $scope.ActiveGroup.modules;
-			for(var j in $scope.Modules){
-				var m = $scope.Modules[j];
-				if(am.indexOf(m.id) != -1){
-					$scope.activeModules.push(m);
+			$scope.ActiveGroup.modules;
+			for (var j in $scope.Modules){
+				if ($scope.ActiveGroup.modules.indexOf($scope.Modules[j].id) != -1){
+					$scope.activeModules.push($scope.Modules[j]);
 				}
 			}
 		};
-		LoadActiveModules();
+		if ($scope.Mode == 'edit'){
+			LoadActiveModules();
+		}
+		$scope.addModule = function(){
+				var a = $scope.Tom;
+				a = parseInt(a);
+				$scope.ActiveGroup.modules.push(a);
+				if ($scope.Mode == 'edit'){
+					LoadActiveModules();
+				}
+		};
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
 		};
-		$scope.addModule = function(){
-			var a = $scope.Tom
-			a = parseInt(a);
-			$scope.ActiveGroup.modules.push(a);
-			LoadActiveModules();
-		};
 		$scope.confirmModal = function(){
+			var data = $scope.ActiveGroup;
+			var success = function(response){
+				response.data.modules = [2,3];
+			console.log(response.data);
+				$uibModalInstance.close(response.data);
+			};
+			var error = function(response){
+				
+			};
+			api.POST('groups',data,success,error);
+		};
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*$scope.confirmModal = function(){
 			var data = $scope.ActiveGroup;
 			api.POST('groups',data,function success(response){
 				$uibModalInstance.close(response.data);
 			});
-		};
+		};*/
 	}]);
 });
