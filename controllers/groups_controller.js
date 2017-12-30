@@ -85,18 +85,14 @@ define(['app','api'],function(app){
 		function LoadActiveModules(){
 			$scope.activeModules = [];
 			for (var j in $scope.Modules){
-				if ($scope.ActiveGroup.modules.indexOf($scope.Modules[j].id) != -1){
+				if ($scope.Mode == 'edit'){
+					$scope.ggg = $scope.ActiveGroup.modules;
+				}
+				if ($scope.ggg.indexOf($scope.Modules[j].id) != -1){
 					$scope.activeModules.push($scope.Modules[j]);
 				}
 			}
-		};
-		function LoadActiveModuless(){
-			$scope.activeModules = [];
-			for (var i in $scope.Modules){
-				if ($scope.ggg.indexOf($scope.Modules[i].id) != -1){
-					$scope.activeModules.push($scope.Modules[i]);
-				}
-			}
+			console.log($scope.ggg);
 		};
 		if ($scope.Mode == 'edit'){
 			LoadActiveModules();
@@ -104,24 +100,13 @@ define(['app','api'],function(app){
 		$scope.addModule = function(){
 			var a = $scope.Tom;
 			a = parseInt(a);
-			if ($scope.Mode == 'edit'){
-				$scope.ActiveGroup.modules.push(a)
-				LoadActiveModules();
-			}
-			else if ($scope.Mode == 'add'){
-				$scope.ggg.push(a);
-				LoadActiveModuless();
-			}
+			$scope.ggg.push(a);
+			LoadActiveModules();
 		};
 		$scope.removeModule = function(index){
-			if ($scope.Mode == 'edit'){
-				$scope.ActiveGroup.modules.splice(index,1);
-				LoadActiveModules();
-			}
-			else if ($scope.Mode == 'add'){
-				$scope.ggg.splice(index,1);
-				LoadActiveModuless();
-			}
+			console.log(index);
+			$scope.ggg.splice(index,1);
+			LoadActiveModules();
 		};
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
@@ -151,11 +136,36 @@ define(['app','api'],function(app){
 		
 		
 		
-		/*$scope.confirmModal = function(){
-			var data = $scope.ActiveGroup;
-			api.POST('groups',data,function success(response){
-				$uibModalInstance.close(response.data);
-			});
+		/*function LoadActiveModules(){
+			$scope.activeModules = [];
+			for (var j in $scope.Modules){
+				if ($scope.Mode == 'edit'){
+					if ($scope.ActiveGroup.modules.indexOf($scope.Modules[j].id) != -1){
+						$scope.activeModules.push($scope.Modules[j]);
+					}
+				}
+				else if ($scope.Mode == 'add'){
+					if ($scope.ggg.indexOf($scope.Modules[j].id) != -1){
+						$scope.activeModules.push($scope.Modules[j]);
+					}
+				}
+			}
+		};
+		function LoadActiveModules(){
+			$scope.activeModules = [];
+			for (var j in $scope.Modules){
+				if ($scope.ActiveGroup.modules.indexOf($scope.Modules[j].id) != -1){
+					$scope.activeModules.push($scope.Modules[j]);
+				}
+			}
+		};
+		function LoadActiveModuless(){
+			$scope.activeModules = [];
+			for (var i in $scope.Modules){
+				if ($scope.ggg.indexOf($scope.Modules[i].id) != -1){
+					$scope.activeModules.push($scope.Modules[i]);
+				}
+			}
 		};*/
 	}]);
 });
