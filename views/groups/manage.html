@@ -51,9 +51,8 @@
 							</tbody>
 							<tbody>
 								<tr>
-									<td>
-										<select class="form-control" ng-model="Tom" >
-											<option ng-repeat="Module in Modules" ng-value="Module.id">{{Module.name}}</option>
+									<td>	
+										<select class="form-control" ng-model="Tom" ng-options="module as module.name for module in Modules track by module.id"  >
 										</select>
 									</td>
 									<td class="text-center">
