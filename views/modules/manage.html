@@ -1,0 +1,65 @@
+<div class="container" ng-controller="ModulesController" ng-init="init()">
+	<div class="col-md-4">
+		<div class="list-group">
+			<div class="list-group-item list-group-header">
+				<div class="btn-group btn-group-sm pull-right" uib-dropdown>
+					<button class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
+					<button class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
+				</div>
+				<label class="clear-fix">Modules</label>
+			</div>
+			<div class="list-group-canvas">
+				<div class="list-group-item"
+					ng-repeat="Module in Modules"
+					ng-click="SetActiveModule(Module)"
+					ng-class="{active:Module.id===activeModule.id}">
+					<h4>{{Module.name}}</h4>
+				</div>
+			</div>
+			<div class="list-group-item list-group-search-box">
+				<div class="input-group">
+					<div class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></div>
+					<input type="text" class="form-control" placeholder="Search" ng-model="Search"/>
+					<div class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="list-group">
+			<div class="list-group-item list-group-header">
+				<label class="clear-fix">Module Information</label>
+			</div>
+			<div class="list-group-canvas">
+				<div class="list-group-item list-group-header">
+					<h5>Module Information</h5>
+				</div>
+				<div class="list-group-item">
+					<dl class="dl-horizontal">
+						<dt>ID</dt>
+						<dd>{{activeModule.id}}</dd>
+						<dt>Name</dt>
+						<dd>{{activeModule.name}}</dd>
+					</dl>
+				</div>
+				<div class="list-group-item list-group-header" ng-show="activeModule">
+					<h5>Groups</h5>
+				</div>
+				<div class="list-group-item" ng-show="activeModule">
+					<table class="table table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th class="text-center">Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="activeGroup in activeGroups">
+								<td>{{activeGroup.name}}</td>
+							</tr> 
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -83,16 +83,16 @@
 			</div>
 			<div class="list-group-canvas">
 				<div class="list-group-item"
-					ng-repeat="Group in Groups"
+					ng-repeat="Group in Groups | filter:Search"
 					ng-click="SetActiveGroup(Group)"
 					ng-class="{active:Group.id===activeGroup.id}">
 					<h4>{{Group.id}}</h4>
 				</div>
 			</div>
 			<div class="list-group-item list-group-search-box">
-				<div class="input-group"> 
+				<div class="input-group">
 					<div class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></div>
-					<input type="text" class="form-control" placeholder="Search"/>
+					<input type="text" class="form-control" placeholder="Search" ng-model="Search"/>
 					<div class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button></div>
 				</div>
 			</div>

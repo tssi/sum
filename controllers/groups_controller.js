@@ -79,16 +79,17 @@ define(['app','api'],function(app){
 	}]);
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveGroup','Modules','Mode',function($scope,$uibModalInstance,api,ActiveGroup,Modules,Mode){
 		$scope.Mode = Mode;
-		$scope.ggg = [];
+		$scope.modalModules = [];
+			$scope.activeModules = [];
 		$scope.ActiveGroup = angular.copy(ActiveGroup);
 		$scope.Modules = angular.copy(Modules);
 		function LoadActiveModules(){
 			$scope.activeModules = [];
 			for (var j in $scope.Modules){
-				if ($scope.Mode == 'edit'){
-					$scope.ggg = $scope.ActiveGroup.modules;
-				}
-				if ($scope.ggg.indexOf($scope.Modules[j].id) != -1){
+				//if ($scope.Mode == 'edit'){
+				$scope.modalModules = $scope.ActiveGroup.modules;
+				//}
+				if ($scope.modalModules.indexOf($scope.Modules[j].id) != -1){
 					$scope.activeModules.push($scope.Modules[j]);
 				}
 			}
@@ -99,13 +100,11 @@ define(['app','api'],function(app){
 		$scope.addModule = function(){
 			var a = $scope.Tom;
 			var b = parseInt(a.id);
-			$scope.ggg.push(b);
+			$scope.modalModules.push(b);
 			$scope.activeModules.push(a);
-			//LoadActiveModules();
 		};
 		$scope.removeModule = function(index){
-				//console.log(index);
-				$scope.ggg.splice(index,1);
+				$scope.modalModules.splice(index,1);
 				LoadActiveModules();
 		};
 		$scope.closeModal = function(){
@@ -113,7 +112,7 @@ define(['app','api'],function(app){
 		};
 		$scope.confirmModal = function(){
 			if ($scope.Mode == 'add'){
-				$scope.ActiveGroup.modules = $scope.ggg;
+				$scope.ActiveGroup.modules = $scope.modalModules;
 			}
 			var data = $scope.ActiveGroup;
 			console.log(data);
