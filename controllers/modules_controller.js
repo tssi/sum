@@ -17,22 +17,26 @@ define(['app','api'],function(app){
 			api.GET('groups',success,error);
 		};
 		function PasaLoad(){
-			console.log($scope.activeModule.revoked);
 			$scope.PasaLoadGroups = [];
 			//if ($scope.Groups.id){
 				for (var i in $scope.Groups){
+			//console.log($scope.Groups[i].id);
+			//console.log($scope.activeModule.revoked);
 					if ($scope.Groups[i].id == $scope.activeModule.revoked){
-						alert("aaaaa");
+						$scope.PasaLoadGroups.push($scope.activeModule.revoked);
+					}
+					if ($scope.Groups[i].id == $scope.activeModule.granted){
+						$scope.PasaLoadGroups.push($scope.activeModule.granted);
 					}
 				}
 			//}
+			console.log($scope.PasaLoadGroups);
 		};
 		$scope.init = function(){
 			$scope.Modules = [];
 			$scope.Groups = [];
 			LoadModules();
 			LoadGroups();
-			//PasaLoad();
 		};
 		$scope.SetActiveModule = function(module){
 			$scope.activeModule = module;
