@@ -12,7 +12,7 @@ define(["model"],function($model){
 				{
 				  "id": "USER",
 				  "name": "User",
-				  "modules": [2]
+				  "modules": [2,3]
 				}
 	];
 	var obj = {meta:meta,data:data};

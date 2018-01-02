@@ -16,14 +16,27 @@ define(['app','api'],function(app){
 			};
 			api.GET('groups',success,error);
 		};
+		function PasaLoad(){
+			console.log($scope.activeModule.revoked);
+			$scope.PasaLoadGroups = [];
+			//if ($scope.Groups.id){
+				for (var i in $scope.Groups){
+					if ($scope.Groups[i].id == $scope.activeModule.revoked){
+						alert("aaaaa");
+					}
+				}
+			//}
+		};
 		$scope.init = function(){
 			$scope.Modules = [];
 			$scope.Groups = [];
 			LoadModules();
 			LoadGroups();
+			//PasaLoad();
 		};
 		$scope.SetActiveModule = function(module){
 			$scope.activeModule = module;
+			PasaLoad();
 		};
 	}]);
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api',function($scope,$uibModalInstance,api){

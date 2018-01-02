@@ -9,13 +9,13 @@ define(["model"],function($model){
 					"name":"Account Management",
 					"url":"#/accounts/index",
 					"revoked":['USER'],
-					"granted":['ADMIN']
+					"granted":null
 				},
 				{
 					"id": 2,
 					"name":"Home",
 					"url":"#/",
-					"revoked":['USER'],
+					"revoked":null,
 					"granted":['ADMIN']
 				},
 				{
