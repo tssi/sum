@@ -92,19 +92,20 @@ define(['app','api'],function(app){
 					$scope.activeModules.push($scope.Modules[j]);
 				}
 			}
-			console.log($scope.ggg);
 		};
 		if ($scope.Mode == 'edit'){
 			LoadActiveModules();
 		}
 		$scope.addModule = function(){
 			var a = $scope.Tom;
-			a = parseInt(a);
-				$scope.ggg.push(a);
-				LoadActiveModules();
+			console.log($scope.Tom);
+			var b = parseInt(a.id);
+				$scope.ggg.push(b);
+				$scope.activeModules.push(a);
+				//LoadActiveModules();
 		};
 		$scope.removeModule = function(index){
-				console.log(index);
+				//console.log(index);
 				$scope.ggg.splice(index,1);
 				LoadActiveModules();
 		};
