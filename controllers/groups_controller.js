@@ -100,13 +100,13 @@ define(['app','api'],function(app){
 		$scope.addModule = function(){
 			var a = $scope.Tom;
 			a = parseInt(a);
-			$scope.ggg.push(a);
-			LoadActiveModules();
+				$scope.ggg.push(a);
+				LoadActiveModules();
 		};
 		$scope.removeModule = function(index){
-			console.log(index);
-			$scope.ggg.splice(index,1);
-			LoadActiveModules();
+				console.log(index);
+				$scope.ggg.splice(index,1);
+				LoadActiveModules();
 		};
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
