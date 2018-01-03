@@ -50,10 +50,9 @@ define(['app','api'],function(app){
 			PasaLoad();
 		};
 		$scope.revoke = function(index){
-			$scope.Rs.push($scope.Gs[index]);
+			$scope.activeModule.revoked.push($scope.Gs[index]);
+			console.log($scope.activeModule.revoked);
 			$scope.Gs.splice(index,1);
-			//alert($scope.Gs[index]);
-			//alert($scope.Rs[index]);
 		};
 		$scope.grant = function(index){
 			$scope.Gs.push($scope.Rs[index]);

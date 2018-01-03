@@ -9,13 +9,13 @@ define(["model"],function($model){
 					"name":"Account Management",
 					"url":"#/accounts/index",
 					"revoked":['USER'],
-					"granted":null
+					"granted":[]
 				},
 				{
 					"id": 2,
 					"name":"Home",
 					"url":"#/",
-					"revoked":null,
+					"revoked":[],
 					"granted":['ADMIN']
 				},
 				{
@@ -29,11 +29,11 @@ define(["model"],function($model){
 					"id": 4,
 					"name":"Trip Lungs",
 					"url":"#/trip",
-					"revoked":null,
+					"revoked":[],
 					"granted":['ADMIN','USER']
 				}
 	];
 	var obj = {meta:meta,data:data};
-	var modules = new $model(obj);
-	return modules;
+	var Module = new $model(obj);
+	return Module;
 });
