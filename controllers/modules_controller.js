@@ -43,7 +43,27 @@ define(['app','api'],function(app){
 			$scope.activeModule = module;
 			PasaLoad();
 		};
+		$scope.OpenModal = function(){
+			var config = {
+				templateUrl:"ModalContent.html",
+				controller:"ModalController"
+			};
+			var modal = $uibModal.open(config);
+			var promise = modal.result;
+			var callback = function(data){
+								$scope.Message = 'Modal closed';
+							};
+			var fallback = function(data){
+								$scope.Message = 'Modal dismissed';
+							};
+			promise.then(callback,fallback);
+		};
 	}]);
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api',function($scope,$uibModalInstance,api){
+		$scope.closeModal = function(){
+			$uibModalInstance.dismiss();
+		};
+		$scope.confirmModal = function(){
+		};
 	}]);
 });
