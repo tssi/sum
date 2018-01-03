@@ -20,13 +20,13 @@ define(['app','api'],function(app){
 			$scope.PasaLoadGroups = [];
 			//if ($scope.Groups.id){
 				for (var i in $scope.Groups){
-			//console.log($scope.Groups[i].id);
-			//console.log($scope.activeModule.revoked);
 					if ($scope.Groups[i].id == $scope.activeModule.revoked){
-						$scope.PasaLoadGroups.push($scope.activeModule.revoked);
+						$scope.PasaLoadGroups.push($scope.Groups[i].id);
+						//$scope.Levo = 'Grant';
 					}
 					if ($scope.Groups[i].id == $scope.activeModule.granted){
-						$scope.PasaLoadGroups.push($scope.activeModule.granted);
+						$scope.PasaLoadGroups.push($scope.Groups[i].id);
+						//$scope.Levo = 'Revoke';
 					}
 				}
 			//}
@@ -35,6 +35,7 @@ define(['app','api'],function(app){
 		$scope.init = function(){
 			$scope.Modules = [];
 			$scope.Groups = [];
+			$scope.Levo = '';
 			LoadModules();
 			LoadGroups();
 		};

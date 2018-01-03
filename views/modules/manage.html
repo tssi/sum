@@ -56,7 +56,10 @@
 						<tbody>
 							<tr ng-repeat="PasaLoadGroup in PasaLoadGroups">
 								<td>{{PasaLoadGroup}}</td>
-								<td><button class="btn btn-primary">Revoke</button></td>
+								<td>
+									<button class="btn btn-primary" ng-show="PasaLoadGroup=='ADMIN'">Revoke</button>
+									<button class="btn btn-primary" ng-show="PasaLoadGroup=='USER'">Grant</button>
+								</td>
 							</tr>
 						</tbody>
 					</table>
