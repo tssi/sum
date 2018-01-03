@@ -75,16 +75,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="text-center" ng-repeat="PasaLoadGroup in PasaLoadGroups">
-								<td>{{PasaLoadGroup}}</td>
-								<td>
-									<button class="btn btn-primary" ng-show="PasaLoadGroup=='ADMIN'">Revoke</button>
-									<button class="btn btn-primary" ng-show="PasaLoadGroup=='USER'">Grant</button>
-								</td>
+							<tr class="text-center" ng-repeat="G in Gs">
+								<td>{{G}}</td>
+								<td><button class="btn btn-danger" ng-click="revoke($index)">Revoke</button></td>
+							</tr>
+							<tr class="text-center" ng-repeat="R in Rs">
+								<td>{{R}}</td>
+								<td><button class="btn btn-success" ng-click="grant($index)">Grant</button></td>
 							</tr>
 						</tbody>
 					</table>
-				</div>
+				</div>{{Message}}
 			</div>
 		</div>
 	</div>

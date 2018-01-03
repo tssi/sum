@@ -17,25 +17,31 @@ define(['app','api'],function(app){
 			api.GET('groups',success,error);
 		};
 		function PasaLoad(){
-			$scope.PasaLoadGroups = [];
-			//if ($scope.Groups.id){
-				for (var i in $scope.Groups){
-					if ($scope.Groups[i].id == $scope.activeModule.revoked){
-						$scope.PasaLoadGroups.push($scope.Groups[i].id);
-						//$scope.Levo = 'Grant';
-					}
-					if ($scope.Groups[i].id == $scope.activeModule.granted){
-						$scope.PasaLoadGroups.push($scope.Groups[i].id);
-						//$scope.Levo = 'Revoke';
+			$scope.Rs = [];
+			$scope.Gs = [];
+			for (var i in $scope.Groups){
+				for (var j in $scope.activeModule.revoked){
+					if ($scope.activeModule.revoked){
+						if ($scope.Groups[i].id == $scope.activeModule.revoked[j]){
+							$scope.Rs.push($scope.activeModule.revoked[j]);
+						}
 					}
 				}
-			//}
-			console.log($scope.PasaLoadGroups);
+				for (var k in $scope.activeModule.granted){
+					if ($scope.activeModule.granted){
+						if ($scope.Groups[i].id == $scope.activeModule.granted[k]){
+							$scope.Gs.push($scope.activeModule.granted[k]);
+						}
+					}
+				}
+			}
+			//console.log($scope.Rs);
+			//console.log($scope.Gs);
 		};
 		$scope.init = function(){
 			$scope.Modules = [];
 			$scope.Groups = [];
-			$scope.Levo = '';
+			$scope.Message = null;
 			LoadModules();
 			LoadGroups();
 		};
@@ -43,10 +49,20 @@ define(['app','api'],function(app){
 			$scope.activeModule = module;
 			PasaLoad();
 		};
+		$scope.revoke = function(index){
+			$scope.Rs.push($scope.Gs[index]);
+			$scope.Gs.splice(index,1);
+			//alert($scope.Gs[index]);
+			//alert($scope.Rs[index]);
+		};
+		$scope.grant = function(index){
+			$scope.Gs.push($scope.Rs[index]);
+			$scope.Rs.splice(index,1);
+		};
 		$scope.OpenModal = function(){
 			var config = {
 				templateUrl:"ModalContent.html",
-				controller:"ModalController"
+				controller:"ModalController"	
 			};
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
