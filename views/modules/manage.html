@@ -7,11 +7,32 @@
 			<h3 class="modal-title">Module Information</h3>
 		</div>
 		<div class="modal-body">
-			<div class="row">
+			<div class="row">			
 				<div class="col-md-12">
 					<div class="form-group">
-						Module
-					</div>				
+						Name
+					</div>	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="ActiveModule.name"/>
+					</div>
+				</div>
+			</div>
+			<div class="row">			
+				<div class="col-md-12">
+					<div class="form-group">
+						Link
+					</div>	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="ActiveModule.url"/>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -31,7 +52,7 @@
 			</div>
 			<div class="list-group-canvas">
 				<div class="list-group-item"
-					ng-repeat="Module in Modules"
+					ng-repeat="Module in Modules | filter:Search"
 					ng-click="SetActiveModule(Module)"
 					ng-class="{active:Module.id===activeModule.id}">
 					<h4>{{Module.name}}</h4>
