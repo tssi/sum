@@ -19,24 +19,29 @@ define(['app','api'],function(app){
 		function PasaLoad(){
 			$scope.Rs = [];
 			$scope.Gs = [];
-			for (var i in $scope.Groups){
+			$scope.i;
+			for ($scope.i in $scope.Groups){
+				Pasa();
+				Load();
+			}
+		};
+		function Pasa(){
 				for (var j in $scope.activeModule.revoked){
 					if ($scope.activeModule.revoked){
-						if ($scope.Groups[i].id == $scope.activeModule.revoked[j]){
+						if ($scope.Groups[$scope.i].id == $scope.activeModule.revoked[j]){
 							$scope.Rs.push($scope.activeModule.revoked[j]);
 						}
 					}
 				}
+		};
+		function Load(){
 				for (var k in $scope.activeModule.granted){
 					if ($scope.activeModule.granted){
-						if ($scope.Groups[i].id == $scope.activeModule.granted[k]){
+						if ($scope.Groups[$scope.i].id == $scope.activeModule.granted[k]){
 							$scope.Gs.push($scope.activeModule.granted[k]);
 						}
 					}
 				}
-			}
-			//console.log($scope.Rs);
-			//console.log($scope.Gs);
 		};
 		$scope.init = function(){
 			$scope.Modules = [];
@@ -52,15 +57,29 @@ define(['app','api'],function(app){
 		$scope.revoke = function(index){
 			$scope.activeModule.revoked.push($scope.Gs[index]);
 			$scope.Rs.push($scope.Gs[index]);
-			//console.log($scope.activeModule.revoked);
 			$scope.activeModule.granted.splice(index,1);
 			$scope.Gs.splice(index,1);
+			var a = $scope.activeModule;
+			console.log(a);
+			var success = function(response){
+			};
+			var error = function(response){
+				
+			};
+			api.POST('modules',a,success,error);
 		};
 		$scope.grant = function(index){
 			$scope.activeModule.granted.push($scope.Rs[index]);
 			$scope.Gs.push($scope.Rs[index]);
 			$scope.activeModule.revoked.splice(index,1);
 			$scope.Rs.splice(index,1);
+			var b = $scope.activeModule;
+			var success = function(response){
+			};
+			var error = function(response){
+				
+			};
+			api.POST('modules',b,success,error);
 		};
 		$scope.OpenModal = function(activemodule){
 			var config = {
@@ -75,10 +94,10 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
+								LoadModules();
 								$scope.activeModule = data;
 								$scope.Message = 'Modal closed';
-								LoadModules();
-								PasaLoad();
+								//PasaLoad();
 							};
 			var fallback = function(data){
 								$scope.Message = 'Modal dismissed';

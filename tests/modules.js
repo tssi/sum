@@ -24,14 +24,14 @@ define(["model"],function($model){
 					"url":"#/logout",
 					"revoked":['USER'],
 					"granted":['ADMIN']
-				},
+				}/*,
 				{
 					"id": 4,
 					"name":"Trip Lungs",
 					"url":"#/trip",
 					"revoked":[],
 					"granted":['ADMIN','USER']
-				}
+				}*/
 	];
 	var obj = {meta:meta,data:data};
 	var Module = new $model(obj);
