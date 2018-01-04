@@ -81,13 +81,22 @@ define(['app','api'],function(app){
 			};
 			api.POST('modules',b,success,error);
 		};
-		$scope.OpenModal = function(activemodule){
+		$scope.removeModuleInfo = function(){
+			$scope.activeModule = null;
+			$scope.Rs = [];
+			$scope.Gs = [];
+		};
+		$scope.OpenModal = function(activemodule,mode){
+			$scope.Mode = mode;
 			var config = {
 				templateUrl:"ModalContent.html",
 				controller:"ModalController",
 				resolve:{
 					ActiveModule:function(){
 						return activemodule;
+					},
+					Mode:function(){
+						return mode;
 					}
 				}
 			};
@@ -105,7 +114,8 @@ define(['app','api'],function(app){
 			promise.then(callback,fallback);
 		};
 	}]);
-	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveModule',function($scope,$uibModalInstance,api,ActiveModule){
+	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveModule','Mode',function($scope,$uibModalInstance,api,ActiveModule,Mode){
+		//console.log(Mode);
 		$scope.ActiveModule = ActiveModule;
 		$scope.closeModal = function(){
 			//console.log($scope.ActiveModule);
@@ -113,9 +123,11 @@ define(['app','api'],function(app){
 		};
 		$scope.confirmModal = function(){
 			var data = $scope.ActiveModule;
-			data.revoked = ['USER','ADMIN'];
-			data.granted = [];
-			//console.log(data);
+			if (Mode != 'edit'){
+				data.revoked = [];
+				data.granted = [];
+			}
+			console.log(data);
 			var success = function(response){
 				$uibModalInstance.close(response.data);
 			};

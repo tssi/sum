@@ -71,12 +71,23 @@
 		<div class="list-group">
 			<div class="list-group-item list-group-header">
 				<label class="clear-fix">Module Information</label>
+				<div class="pull-right" ng-show="activeModule">
+					<div class="btn-group btn-group-xs" uib-dropdown>
+						<button class="btn btn-default dropdown-toggle" type="button" uib-dropdown-toggle>
+							<span class="glyphicon glyphicon-chevron-down"></span>
+						</button>
+						<ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+							<li><a ng-click="OpenModal(activeModule,'edit')">Edit</a></li>
+						</ul>
+					</div>
+					<button class="btn btn-xs btn-danger" ng-click="removeModuleInfo()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+				</div>
 			</div>
 			<div class="list-group-canvas">
-				<div class="list-group-item list-group-header">
+				<div class="list-group-item list-group-header" ng-show="activeModule">
 					<h5>Module Information</h5>
 				</div>
-				<div class="list-group-item">
+				<div class="list-group-item" ng-show="activeModule">
 					<dl class="dl-horizontal">
 						<dt>ID</dt>
 						<dd>{{activeModule.id}}</dd>
@@ -84,10 +95,10 @@
 						<dd>{{activeModule.name}}</dd>
 					</dl>
 				</div>
-				<div class="list-group-item list-group-header">
+				<div class="list-group-item list-group-header" ng-show="activeModule">
 					<h5>Groups</h5>
 				</div>
-				<div class="list-group-item">
+				<div class="list-group-item" ng-show="activeModule">
 					<table class="table table-condensed table-bordered">
 						<thead>
 							<tr>
