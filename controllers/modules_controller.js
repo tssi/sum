@@ -51,11 +51,16 @@ define(['app','api'],function(app){
 		};
 		$scope.revoke = function(index){
 			$scope.activeModule.revoked.push($scope.Gs[index]);
-			console.log($scope.activeModule.revoked);
+			$scope.Rs.push($scope.Gs[index]);
+			//console.log($scope.activeModule.revoked);
+			$scope.activeModule.granted.splice(index,1);
 			$scope.Gs.splice(index,1);
 		};
 		$scope.grant = function(index){
+			$scope.activeModule.granted.push($scope.Rs[index]);
 			$scope.Gs.push($scope.Rs[index]);
+			//console.log($scope.activeModule.revoked);
+			$scope.activeModule.revoked.splice(index,1);
 			$scope.Rs.splice(index,1);
 		};
 		$scope.OpenModal = function(){
