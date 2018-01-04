@@ -35,5 +35,16 @@ define(["model"],function($model){
 	];
 	var obj = {meta:meta,data:data};
 	var Module = new $model(obj);
+	Module.POST =  function(data){
+		console.log(data);
+		switch(data.action){
+			case 'grant':
+			
+			break;
+		}
+		console.log(Module.data);
+		return {success:Module.save(data)};
+		
+	}
 	return Module;
 });

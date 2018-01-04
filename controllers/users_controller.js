@@ -124,11 +124,11 @@ define(['app','api'],function(app){
 				data.action = "edit";
 			}
 			else if(mode=="activate"){
-				var data = {id:$scope.User.id,status:"ACTIVE"};
+				var data = {id:$scope.User.id};
 				data.action = "activate";
 			}
 			else if(mode=="deactivate"){
-				var data = {id:$scope.User.id,status:"INACTIVE"};
+				var data = {id:$scope.User.id};
 				data.action = "deactivate";
 			}
 			var success = function(response){

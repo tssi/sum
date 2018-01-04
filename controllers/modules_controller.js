@@ -115,7 +115,7 @@ define(['app','api'],function(app){
 		};
 	}]);
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveModule','Mode',function($scope,$uibModalInstance,api,ActiveModule,Mode){
-		//console.log(Mode);
+		console.log(Mode);
 		$scope.ActiveModule = ActiveModule;
 		$scope.closeModal = function(){
 			//console.log($scope.ActiveModule);
