@@ -24,12 +24,17 @@ define(['app','api'],function(app){
 				Pasa();
 				Load();
 			}
+							//console.log($scope.Rs);
+							//console.log($scope.Gs);
 		};
 		function Pasa(){
 				for (var j in $scope.activeModule.revoked){
 					if ($scope.activeModule.revoked){
 						if ($scope.Groups[$scope.i].id == $scope.activeModule.revoked[j]){
-							$scope.Rs.push($scope.activeModule.revoked[j]);
+							var a = [];
+							a.id = $scope.activeModule.id;
+							a.laman = $scope.activeModule.revoked[j];
+							$scope.Rs.push(a);
 						}
 					}
 				}
@@ -38,7 +43,10 @@ define(['app','api'],function(app){
 				for (var k in $scope.activeModule.granted){
 					if ($scope.activeModule.granted){
 						if ($scope.Groups[$scope.i].id == $scope.activeModule.granted[k]){
-							$scope.Gs.push($scope.activeModule.granted[k]);
+							var b = [];
+							b.id = $scope.activeModule.id;
+							b.laman = $scope.activeModule.granted[k];
+							$scope.Gs.push(b);
 						}
 					}
 				}
@@ -54,7 +62,7 @@ define(['app','api'],function(app){
 			$scope.activeModule = module;
 			PasaLoad();
 		};
-		$scope.revoke = function(index){
+		/*$scope.revoke = function(index){
 			$scope.activeModule.revoked.push($scope.Gs[index]);
 			$scope.Rs.push($scope.Gs[index]);
 			$scope.activeModule.granted.splice(index,1);
@@ -80,6 +88,11 @@ define(['app','api'],function(app){
 				
 			};
 			api.POST('modules',b,success,error);
+		};*/
+		$scope.revoke = function(index){
+			data = $scope.Rs[index];
+			data.action = "revoke";
+			console.log(data);
 		};
 		$scope.removeModuleInfo = function(){
 			$scope.activeModule = null;
