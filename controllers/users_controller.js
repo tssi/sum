@@ -124,7 +124,6 @@ define(['app','api'],function(app){
 			}
 			else if(mode == "edit"){
 				var data = {id:$scope.User.id};
-				console.log(data);
 				data.action = "edit";
 			}
 			else if(mode == "activate"){
@@ -134,6 +133,7 @@ define(['app','api'],function(app){
 			else if(mode == "deactivate"){
 				var data = {id:$scope.User.id};
 				data.action = "deactivate";
+				console.log(data);
 			}
 			var success = function(response){
 				$uibModalInstance.close(response.data);
