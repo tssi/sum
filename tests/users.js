@@ -79,19 +79,24 @@ define(["model"],function($model){
 				break;
 				case 'register':
 					data.status = "ACTIVE";
+					console.log(User.data);
 					return {success:User.save(data)};
 				break;
 				case 'edit':
+					console.log(User.data);
 					return {success:User.save(data)};
 				break;
 				case 'reset':
+					console.log(User.data);
 					return {success:User.save(data)};
 				break;
 				case 'activate':
+					console.log(User.data);
 					data.status = "ACTIVE";
 					return {success:User.save(data)};
 				break;
 				case 'deactivate':
+					console.log(User.data);
 					data.status = "INACTIVE";
 					return {success:User.save(data)};
 				break;

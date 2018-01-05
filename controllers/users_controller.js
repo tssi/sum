@@ -42,6 +42,19 @@ define(['app','api'],function(app){
 				}
 			}
 		};
+		function SetActive(){
+			for (var k in $scope.Users){
+				//console.log($scope.SanMin.id);
+				//console.log($scope.Users[k].id);
+				if ($scope.SanMin.id == $scope.Users[k].id){
+					if ($scope.Mode == "reset"){
+						$scope.Users[k].password = $scope.SanMin.password;
+					}
+					$scope.activeUser = $scope.Users[k];
+					console.log($scope.Mode);
+				}
+			}
+		};
 		$scope.init = function(){
 			$scope.Users = [];
 			$scope.Modules = [];
@@ -95,23 +108,26 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								console.log(data);
-								if(data.action == "register"){
+								//console.log(data);
+								$scope.SanMin = data;
+								SetActive();
+								if (data.action == "register" || data.action == "edit"){
 									$scope.activeUser = data;
 								}
-								$scope.Message = 'Modal closed';
 								LoadUsers();
 								AGAM();
+								if (data.action == "activate" || data.action == "deactivate"){
+									$scope.activeUser = null;
+								}
 							};
 			var fallback = function(data){
-								$scope.Message = 'Modal dismissed';
 							};
 			promise.then(callback,fallback);
 		};
 	}]);
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Groups','User','Mode',function($scope,$uibModalInstance,api,Groups,User,Mode){
-		$scope.Groups = Groups;
-		$scope.User = User;
+		$scope.Groups = angular.copy(Groups);
+		$scope.User = angular.copy(User);
 		$scope.Mode = Mode;
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
@@ -119,11 +135,12 @@ define(['app','api'],function(app){
 		$scope.confirmModal = function(mode){
 			if(mode == "add"){
 				var data = $scope.User;
-				console.log(data);
+				//delete data.id;
+				//console.log(data);
 				data.action = "register";
 			}
 			else if(mode == "edit"){
-				var data = {id:$scope.User.id};
+				var data = $scope.User;
 				data.action = "edit";
 			}
 			else if(mode == "activate"){
@@ -133,7 +150,6 @@ define(['app','api'],function(app){
 			else if(mode == "deactivate"){
 				var data = {id:$scope.User.id};
 				data.action = "deactivate";
-				console.log(data);
 			}
 			var success = function(response){
 				$uibModalInstance.close(response.data);
