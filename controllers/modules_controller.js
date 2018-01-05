@@ -60,7 +60,7 @@ define(['app','api'],function(app){
 			$scope.activeModule.granted.splice(index,1);
 			$scope.Gs.splice(index,1);
 			var a = $scope.activeModule;
-			console.log(a);
+			//console.log(a);
 			var success = function(response){
 			};
 			var error = function(response){
@@ -87,7 +87,12 @@ define(['app','api'],function(app){
 			$scope.Gs = [];
 		};
 		$scope.OpenModal = function(activemodule,mode){
+			if(!mode){
+				mode = "add";
+				$scope.Mode = mode;
+			}
 			$scope.Mode = mode;
+			//alert($scope.Mode);
 			var config = {
 				templateUrl:"ModalContent.html",
 				controller:"ModalController",
@@ -115,7 +120,7 @@ define(['app','api'],function(app){
 		};
 	}]);
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveModule','Mode',function($scope,$uibModalInstance,api,ActiveModule,Mode){
-		console.log(Mode);
+		//console.log(Mode);
 		$scope.ActiveModule = ActiveModule;
 		$scope.closeModal = function(){
 			//console.log($scope.ActiveModule);
@@ -123,11 +128,13 @@ define(['app','api'],function(app){
 		};
 		$scope.confirmModal = function(){
 			var data = $scope.ActiveModule;
-			if (Mode != 'edit'){
-				data.revoked = [];
-				data.granted = [];
+			if (Mode == "add"){
+				data.action = "register";
 			}
-			console.log(data);
+			else if (Mode == "edit"){
+				data.action = "edit";
+			}
+			//console.log(data);
 			var success = function(response){
 				$uibModalInstance.close(response.data);
 			};

@@ -64,7 +64,9 @@ define(['app','api'],function(app){
 				mode = "add";
 				$scope.Mode = mode;
 			}
-			else if(mode == "edit"){
+			$scope.Mode = mode;
+			alert($scope.Mode);
+			/*else if(mode == "edit"){
 				$scope.Mode = mode;
 			}
 			else if(mode == "reset"){
@@ -75,7 +77,7 @@ define(['app','api'],function(app){
 			}
 			else if(mode == "deactivate"){
 				$scope.Mode = mode;
-			}
+			}*/
 			var group = $scope.Groups;
 			var config = {
 				templateUrl:"ModalContent.html",
@@ -101,7 +103,7 @@ define(['app','api'],function(app){
 											$scope.Users[k].password = data.password;
 										}
 										$scope.activeUser = $scope.Users[k];
-										console.log($scope.Mode);
+										//console.log($scope.Mode);
 									}
 								}
 								if (data.action == "register" || data.action == "edit"){

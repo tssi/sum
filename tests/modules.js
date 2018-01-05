@@ -38,13 +38,15 @@ define(["model"],function($model){
 	Module.POST =  function(data){
 		console.log(data);
 		switch(data.action){
-			case 'grant':
-			
+			case 'register':
+				data.revoked = [];
+				data.granted = [];
+				return {success:Module.save(data)};
+			break;
+			case 'edit':
+				return {success:Module.save(data)};
 			break;
 		}
-		console.log(Module.data);
-		return {success:Module.save(data)};
-		
 	}
 	return Module;
 });
