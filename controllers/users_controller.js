@@ -42,19 +42,6 @@ define(['app','api'],function(app){
 				}
 			}
 		};
-		function SetActive(){
-			for (var k in $scope.Users){
-				//console.log($scope.SanMin.id);
-				//console.log($scope.Users[k].id);
-				if ($scope.SanMin.id == $scope.Users[k].id){
-					if ($scope.Mode == "reset"){
-						$scope.Users[k].password = $scope.SanMin.password;
-					}
-					$scope.activeUser = $scope.Users[k];
-					console.log($scope.Mode);
-				}
-			}
-		};
 		$scope.init = function(){
 			$scope.Users = [];
 			$scope.Modules = [];
@@ -108,9 +95,15 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								//console.log(data);
-								$scope.SanMin = data;
-								SetActive();
+								for (var k in $scope.Users){
+									if (data.id == $scope.Users[k].id){
+										if ($scope.Mode == "reset"){
+											$scope.Users[k].password = data.password;
+										}
+										$scope.activeUser = $scope.Users[k];
+										console.log($scope.Mode);
+									}
+								}
 								if (data.action == "register" || data.action == "edit"){
 									$scope.activeUser = data;
 								}
@@ -135,8 +128,6 @@ define(['app','api'],function(app){
 		$scope.confirmModal = function(mode){
 			if(mode == "add"){
 				var data = $scope.User;
-				//delete data.id;
-				//console.log(data);
 				data.action = "register";
 			}
 			else if(mode == "edit"){
