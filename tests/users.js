@@ -78,7 +78,7 @@ define(["model"],function($model){
 					return {success:{data:__USER,message:__MSG}};
 				break;
 				case 'register':
-					data.status="ACTIVE";
+					data.status = "ACTIVE";
 					return {success:User.save(data)};
 				break;
 				case 'edit':
@@ -92,7 +92,7 @@ define(["model"],function($model){
 					return {success:User.save(data)};
 				break;
 				case 'deactivate':
-					data.status="INACTIVE";
+					data.status = "INACTIVE";
 					return {success:User.save(data)};
 				break;
 			}

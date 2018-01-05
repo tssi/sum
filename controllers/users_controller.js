@@ -95,8 +95,8 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								//console.log(data);
-								if(data.action!='reset' && data.action!='deactivate' && data.action!='activate'){
+								console.log(data);
+								if(data.action == "register"){
 									$scope.activeUser = data;
 								}
 								$scope.Message = 'Modal closed';
@@ -117,15 +117,21 @@ define(['app','api'],function(app){
 			$uibModalInstance.dismiss();
 		};
 		$scope.confirmModal = function(mode){
-			if(mode=="addoredit"){
+			if(mode == "add"){
 				var data = $scope.User;
+				console.log(data);
+				data.action = "register";
+			}
+			else if(mode == "edit"){
+				var data = {id:$scope.User.id};
+				console.log(data);
 				data.action = "edit";
 			}
-			else if(mode=="activate"){
+			else if(mode == "activate"){
 				var data = {id:$scope.User.id};
 				data.action = "activate";
 			}
-			else if(mode=="deactivate"){
+			else if(mode == "deactivate"){
 				var data = {id:$scope.User.id};
 				data.action = "deactivate";
 			}
@@ -151,7 +157,6 @@ define(['app','api'],function(app){
 		/*$scope.deactivateModal = function(){
 			var data = {id:$scope.User.id,status:"INACTIVE"};
 			data.action = "deactivate";
-			//console.log(data.action);
 			var success = function(response){
 				$uibModalInstance.close(response.data);
 			};

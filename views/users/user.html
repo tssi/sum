@@ -95,7 +95,8 @@
 		</div>
 		<div class="modal-footer">
 			<button class="btn btn-default pull-left" ng-click="closeModal()">Close</button>
-			<button class="btn btn-primary" ng-click="confirmModal('addoredit')" ng-show="Mode==='add' || Mode==='edit'">Confirm</button>
+			<button class="btn btn-primary" ng-click="confirmModal('add')" ng-show="Mode==='add'">Confirm</button>
+			<button class="btn btn-primary" ng-click="confirmModal('edit')" ng-show="Mode==='edit'">Confirm</button>
 			<button class="btn btn-danger" ng-click="resetModal()" ng-show="Mode==='reset'">Reset</button>
 			<!-- <button class="btn btn-primary" ng-click="deactivateModal()" ng-show="Mode==='deactivate'">Confirm</button> -->
 			<button class="btn btn-primary" ng-click="confirmModal('activate')" ng-show="Mode==='activate'">Confirm</button>
