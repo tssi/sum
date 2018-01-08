@@ -97,7 +97,7 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								for (var k in $scope.Users){
+								/* for (var k in $scope.Users){
 									if (data.id == $scope.Users[k].id){
 										if ($scope.Mode == "reset"){
 											$scope.Users[k].password = data.password;
@@ -105,6 +105,9 @@ define(['app','api'],function(app){
 										$scope.activeUser = $scope.Users[k];
 										//console.log($scope.Mode);
 									}
+								} */
+								if (data.action == "reset"){
+									$scope.activeUser.password = data.password;
 								}
 								if (data.action == "register" || data.action == "edit"){
 									$scope.activeUser = data;
@@ -127,7 +130,7 @@ define(['app','api'],function(app){
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
 		};
-		$scope.confirmModal = function(mode){
+		$scope.confirmModal = function(mode){//change switch case
 			if(mode == "add"){
 				var data = $scope.User;
 				data.action = "register";
