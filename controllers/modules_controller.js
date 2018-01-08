@@ -24,7 +24,9 @@ define(['app','api'],function(app){
 				Pasa();
 				Load();
 			}
+							//console.log("Rs");
 							//console.log($scope.Rs);
+							//console.log("Gs");
 							//console.log($scope.Gs);
 		};
 		function Pasa(){
@@ -60,7 +62,34 @@ define(['app','api'],function(app){
 		};
 		$scope.SetActiveModule = function(module){
 			$scope.activeModule = module;
+			//console.log($scope.activeModule);
 			PasaLoad();
+		};
+		$scope.revoke = function(index){
+			data = $scope.Gs[index];
+			data.action = "revoke";
+			var success = function(response){
+				LoadModules();
+				$scope.activeModule = response.data;
+				PasaLoad();
+			};
+			var error = function(response){
+				
+			};
+			api.POST('modules',data,success,error);
+		};
+		$scope.grant = function(index){
+			data = $scope.Rs[index];
+			data.action = "grant";
+			var success = function(response){
+				LoadModules();
+				$scope.activeModule = response.data;
+				PasaLoad();
+			};
+			var error = function(response){
+				
+			};
+			api.POST('modules',data,success,error);
 		};
 		/*$scope.revoke = function(index){
 			$scope.activeModule.revoked.push($scope.Gs[index]);
@@ -89,11 +118,6 @@ define(['app','api'],function(app){
 			};
 			api.POST('modules',b,success,error);
 		};*/
-		$scope.revoke = function(index){
-			data = $scope.Rs[index];
-			data.action = "revoke";
-			console.log(data);
-		};
 		$scope.removeModuleInfo = function(){
 			$scope.activeModule = null;
 			$scope.Rs = [];
@@ -123,11 +147,9 @@ define(['app','api'],function(app){
 			var callback = function(data){
 								LoadModules();
 								$scope.activeModule = data;
-								$scope.Message = 'Modal closed';
 								//PasaLoad();
 							};
 			var fallback = function(data){
-								$scope.Message = 'Modal dismissed';
 							};
 			promise.then(callback,fallback);
 		};

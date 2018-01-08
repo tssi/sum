@@ -36,7 +36,7 @@ define(["model"],function($model){
 	var obj = {meta:meta,data:data};
 	var Module = new $model(obj);
 	Module.POST =  function(data){
-		console.log(data);
+		//console.log(data);
 		switch(data.action){
 			case 'register':
 				data.revoked = [];
@@ -47,7 +47,38 @@ define(["model"],function($model){
 				return {success:Module.save(data)};
 			break;
 			case 'revoke':
-				return {success:Module.save(data)};
+				var activemodule;
+				var modules = Module.data;
+				for (var a in modules){
+					if (modules[a].id == data.id){
+						activemodule = modules[a];
+						for (var b in activemodule.granted){
+							//console.log(activemodule.granted[b]);
+							if (activemodule.granted[b] == data.laman){
+								//console.log(activemodule.granted[b]);
+								activemodule.revoked.push(activemodule.granted[b]);
+								activemodule.granted.splice(b,1);
+							}
+						}
+					}
+				}
+				//console.log(activemodule,data);
+				return {success:Module.save(activemodule)};
+			case 'grant':
+				var activemodule;
+				var modules = Module.data;
+				for (var a in modules){
+					if (modules[a].id == data.id){
+						activemodule = modules[a];
+						for (var b in activemodule.revoked){
+							if (activemodule.revoked[b] == data.laman){
+								activemodule.granted.push(activemodule.revoked[b]);
+								activemodule.revoked.splice(b,1);
+							}
+						}
+					}
+				}
+				return {success:Module.save(activemodule)};
 			break;
 		}
 	}

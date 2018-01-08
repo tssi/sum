@@ -65,19 +65,6 @@ define(['app','api'],function(app){
 				$scope.Mode = mode;
 			}
 			$scope.Mode = mode;
-			alert($scope.Mode);
-			/*else if(mode == "edit"){
-				$scope.Mode = mode;
-			}
-			else if(mode == "reset"){
-				$scope.Mode = mode;
-			}
-			else if(mode == "activate"){
-				$scope.Mode = mode;
-			}
-			else if(mode == "deactivate"){
-				$scope.Mode = mode;
-			}*/
 			var group = $scope.Groups;
 			var config = {
 				templateUrl:"ModalContent.html",
