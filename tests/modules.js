@@ -62,9 +62,34 @@ define(["model"],function($model){
 						}
 					}
 				}
-				//console.log(activemodule,data);
 				return {success:Module.save(activemodule)};
+			break;
 			case 'grant':
+				var modules = Module.data;
+				var activemodule;
+				var b = data.laman;
+				for (var a in modules){
+					if (modules[a].id == data.id){
+						activemodule = modules[a];
+						var index = b.indexOf(activemodule.revoked);
+						activemodule.granted.push(activemodule.revoked[index]);
+						//alert(index);
+						console.log(activemodule.revoked[index]);
+						activemodule.revoked.splice(index,1);
+					}
+				}
+				return {success:Module.save(activemodule)};
+			break;
+			/* function LoadActiveModules(){
+				$scope.activeModules = [];
+				for (var j in $scope.Modules){
+					$scope.modalModules = $scope.ActiveGroup.modules;
+					if ($scope.modalModules.indexOf($scope.Modules[j].id) != -1){
+						$scope.activeModules.push($scope.Modules[j]);
+					}
+				}
+			}; */
+			/* case 'grant':
 				var activemodule;
 				var modules = Module.data;
 				for (var a in modules){
@@ -79,7 +104,7 @@ define(["model"],function($model){
 					}
 				}
 				return {success:Module.save(activemodule)};
-			break;
+			break; */
 		}
 	}
 	return Module;
