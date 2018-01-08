@@ -24,10 +24,6 @@ define(['app','api'],function(app){
 				Pasa();
 				Load();
 			}
-							//console.log("Rs");
-							//console.log($scope.Rs);
-							//console.log("Gs");
-							//console.log($scope.Gs);
 		};
 		function Pasa(){
 				for (var j in $scope.activeModule.revoked){
@@ -91,6 +87,64 @@ define(['app','api'],function(app){
 			};
 			api.POST('modules',data,success,error);
 		};
+		$scope.removeModuleInfo = function(){
+			$scope.activeModule = null;
+			$scope.Rs = [];
+			$scope.Gs = [];
+		};
+		$scope.OpenModal = function(activemodule,mode){
+			if(!mode){
+				mode = "add";
+				$scope.Mode = mode;
+			}
+			$scope.Mode = mode;
+			var config = {
+				templateUrl:"ModalContent.html",
+				controller:"ModalController",
+				resolve:{
+					ActiveModule:function(){
+						return activemodule;
+					},
+					Mode:function(){
+						return mode;
+					}
+				}
+			};
+			var modal = $uibModal.open(config);
+			var promise = modal.result;
+			var callback = function(data){
+								LoadModules();
+								$scope.activeModule = data;
+								PasaLoad();
+							};
+			var fallback = function(data){
+							};
+			promise.then(callback,fallback);
+		};
+	}]);
+	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveModule','Mode',function($scope,$uibModalInstance,api,ActiveModule,Mode){
+		$scope.ActiveModule = ActiveModule;
+		$scope.closeModal = function(){
+			$uibModalInstance.dismiss();
+		};
+		$scope.confirmModal = function(){
+			var data = $scope.ActiveModule;
+			if (Mode == "add"){
+				data.action = "register";
+			}
+			else if (Mode == "edit"){
+				data.action = "edit";
+			}
+			var success = function(response){
+				$uibModalInstance.close(response.data);
+			};
+			var error = function(response){
+				
+			};
+			api.POST('modules',data,success,error);
+		};
+	}]);
+});
 		/*$scope.revoke = function(index){
 			$scope.activeModule.revoked.push($scope.Gs[index]);
 			$scope.Rs.push($scope.Gs[index]);
@@ -118,65 +172,3 @@ define(['app','api'],function(app){
 			};
 			api.POST('modules',b,success,error);
 		};*/
-		$scope.removeModuleInfo = function(){
-			$scope.activeModule = null;
-			$scope.Rs = [];
-			$scope.Gs = [];
-		};
-		$scope.OpenModal = function(activemodule,mode){
-			if(!mode){
-				mode = "add";
-				$scope.Mode = mode;
-			}
-			$scope.Mode = mode;
-			//alert($scope.Mode);
-			var config = {
-				templateUrl:"ModalContent.html",
-				controller:"ModalController",
-				resolve:{
-					ActiveModule:function(){
-						return activemodule;
-					},
-					Mode:function(){
-						return mode;
-					}
-				}
-			};
-			var modal = $uibModal.open(config);
-			var promise = modal.result;
-			var callback = function(data){
-								LoadModules();
-								$scope.activeModule = data;
-								//PasaLoad();
-							};
-			var fallback = function(data){
-							};
-			promise.then(callback,fallback);
-		};
-	}]);
-	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveModule','Mode',function($scope,$uibModalInstance,api,ActiveModule,Mode){
-		//console.log(Mode);
-		$scope.ActiveModule = ActiveModule;
-		$scope.closeModal = function(){
-			//console.log($scope.ActiveModule);
-			$uibModalInstance.dismiss();
-		};
-		$scope.confirmModal = function(){
-			var data = $scope.ActiveModule;
-			if (Mode == "add"){
-				data.action = "register";
-			}
-			else if (Mode == "edit"){
-				data.action = "edit";
-			}
-			//console.log(data);
-			var success = function(response){
-				$uibModalInstance.close(response.data);
-			};
-			var error = function(response){
-				
-			};
-			api.POST('modules',data,success,error);
-		};
-	}]);
-});
