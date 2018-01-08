@@ -56,6 +56,10 @@ define(['app','api'],function(app){
 			LoadModules();
 			LoadGroups();
 		};
+		$scope.navigatePage = function(page){
+			$scope.ActivePage = page;
+			getModules({page:$scope.ActivePage});
+		};
 		$scope.SetActiveModule = function(module){
 			$scope.activeModule = module;
 			//console.log($scope.activeModule);
