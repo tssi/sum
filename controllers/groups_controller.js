@@ -43,7 +43,7 @@ define(['app','api'],function(app){
 		};
 		$scope.OpenModal = function(activegroup,mode){
 			if (!mode){
-				mode = 'add';
+			mode = "add";
 			}
 			$scope.Mode = mode;
 			var modules = $scope.Modules;
@@ -67,12 +67,10 @@ define(['app','api'],function(app){
 			var promise = modal.result;
 			var callback = function(data){
 								$scope.activeGroup = data;
-								$scope.Message = 'Modal closed';
 								LoadGroups();
 								LoadActiveModules();
 							};
 			var fallback = function(data){
-								$scope.Message = 'Modal dismissed';
 							};
 			promise.then(callback,fallback);
 		};
@@ -80,7 +78,7 @@ define(['app','api'],function(app){
 	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveGroup','Modules','Mode',function($scope,$uibModalInstance,api,ActiveGroup,Modules,Mode){
 		$scope.Mode = Mode;
 		$scope.modalModules = [];
-			$scope.activeModules = [];
+		$scope.activeModules = [];
 		$scope.ActiveGroup = angular.copy(ActiveGroup);
 		$scope.Modules = angular.copy(Modules);
 		function LoadActiveModules(){
@@ -94,7 +92,7 @@ define(['app','api'],function(app){
 				}
 			}
 		};
-		if ($scope.Mode == 'edit'){
+		if ($scope.Mode == "edit"){
 			LoadActiveModules();
 		}
 		$scope.addModule = function(){
@@ -111,11 +109,12 @@ define(['app','api'],function(app){
 			$uibModalInstance.dismiss();
 		};
 		$scope.confirmModal = function(){
-			if ($scope.Mode == 'add'){
+			if ($scope.Mode == "add"){
 				$scope.ActiveGroup.modules = $scope.modalModules;
+				var data = $scope.ActiveGroup;
+				data.action = "add";
 			}
-			var data = $scope.ActiveGroup;
-			console.log(data);
+			//console.log(data);
 			var success = function(response){
 				$uibModalInstance.close(response.data);
 			};
@@ -124,17 +123,8 @@ define(['app','api'],function(app){
 			};
 			api.POST('groups',data,success,error);
 		};
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	}]);
+});
 		/*function LoadActiveModules(){
 			$scope.activeModules = [];
 			for (var j in $scope.Modules){
@@ -166,5 +156,3 @@ define(['app','api'],function(app){
 				}
 			}
 		};*/
-	}]);
-});
