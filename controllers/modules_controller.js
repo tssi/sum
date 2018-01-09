@@ -16,7 +16,7 @@ define(['app','api'],function(app){
 			};
 			api.GET('groups',success,error);
 		};
-		function LoadRsGs(){
+		function LoadRevokedGranted(){
 			$scope.Revoked = [];
 			$scope.Granted = [];
 			for (var i in $scope.Groups){
@@ -33,26 +33,6 @@ define(['app','api'],function(app){
 							a.group_id = group.id;
 							$scope.Granted.push(a);
 				}
-				/* for (var j in $scope.activeModule.revoked){
-					if ($scope.activeModule.revoked){
-						if ($scope.Groups[i].id == $scope.activeModule.revoked[j]){
-							var a = [];
-							a.id = $scope.activeModule.id;
-							a.group_id = $scope.activeModule.revoked[j];
-							$scope.Rs.push(a);
-						}
-					}
-				}
-				for (var k in $scope.activeModule.granted){
-					if ($scope.activeModule.granted){
-						if ($scope.Groups[i].id == $scope.activeModule.granted[k]){
-							var b = [];
-							b.id = $scope.activeModule.id;
-							b.group_id = $scope.activeModule.granted[k];
-							$scope.Gs.push(b);
-						}
-					}
-				} */
 			}
 		};
 		$scope.init = function(){
@@ -68,7 +48,7 @@ define(['app','api'],function(app){
 		};
 		$scope.SetActiveModule = function(module){
 			$scope.activeModule = module;
-			LoadRsGs();
+			LoadRevokedGranted();
 		};
 		$scope.revoke = function(index){
 			data = $scope.Granted[index];
@@ -76,7 +56,7 @@ define(['app','api'],function(app){
 			var success = function(response){
 				LoadModules();
 				$scope.activeModule = response.data;
-				LoadRsGs();
+				LoadRevokedGranted();
 			};
 			var error = function(response){
 				
@@ -89,7 +69,7 @@ define(['app','api'],function(app){
 			var success = function(response){
 				LoadModules();
 				$scope.activeModule = response.data;
-				LoadRsGs();
+				LoadRevokedGranted();
 			};
 			var error = function(response){
 				
@@ -124,7 +104,7 @@ define(['app','api'],function(app){
 			var callback = function(data){
 								LoadModules();
 								$scope.activeModule = data;
-								LoadRsGs();
+								LoadRevokedGranted();
 							};
 			var fallback = function(data){
 							};
@@ -154,6 +134,26 @@ define(['app','api'],function(app){
 		};
 	}]);
 });
+				/* for (var j in $scope.activeModule.revoked){
+					if ($scope.activeModule.revoked){
+						if ($scope.Groups[i].id == $scope.activeModule.revoked[j]){
+							var a = [];
+							a.id = $scope.activeModule.id;
+							a.group_id = $scope.activeModule.revoked[j];
+							$scope.Rs.push(a);
+						}
+					}
+				}
+				for (var k in $scope.activeModule.granted){
+					if ($scope.activeModule.granted){
+						if ($scope.Groups[i].id == $scope.activeModule.granted[k]){
+							var b = [];
+							b.id = $scope.activeModule.id;
+							b.group_id = $scope.activeModule.granted[k];
+							$scope.Gs.push(b);
+						}
+					}
+				} */
 		/* function Pasa(){
 				for (var j in $scope.activeModule.revoked){
 					if ($scope.activeModule.revoked){
