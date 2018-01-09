@@ -114,6 +114,10 @@ define(['app','api'],function(app){
 				var data = $scope.ActiveGroup;
 				data.action = "add";
 			}
+			else if ($scope.Mode == "edit"){
+				var data = $scope.ActiveGroup;
+				data.action = "edit";
+			}
 			//console.log(data);
 			var success = function(response){
 				$uibModalInstance.close(response.data);

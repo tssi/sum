@@ -23,6 +23,9 @@ define(["model"],function($model){
 			case 'add':
 				return {success:Group.save(data)};
 			break;
+			case 'edit':
+				return {success:Group.save(data)};
+			break;
 			/* case 'register':
 				data.revoked = [];
 				data.granted = [];
