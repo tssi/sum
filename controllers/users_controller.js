@@ -108,22 +108,24 @@ define(['app','api'],function(app){
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
 		};
-		$scope.confirmModal = function(mode){//change switch case
-			if(mode == "add"){
-				var data = $scope.User;
-				data.action = "register";
-			}
-			else if(mode == "edit"){
-				var data = $scope.User;
-				data.action = "edit";
-			}
-			else if(mode == "activate"){
-				var data = {id:$scope.User.id};
-				data.action = "activate";
-			}
-			else if(mode == "deactivate"){
-				var data = {id:$scope.User.id};
-				data.action = "deactivate";
+		$scope.confirmModal = function(mode){
+			switch(mode){
+				case "add":
+					var data = $scope.User;
+					data.action = "register";
+				break;
+				case "edit":
+					var data = $scope.User;
+					data.action = "edit";
+				break;
+				case "activate":
+					var data = {id:$scope.User.id};
+					data.action = "activate";
+				break;
+				case "deactivate":
+					var data = {id:$scope.User.id};
+					data.action = "deactivate";
+				break;
 			}
 			var success = function(response){
 				$uibModalInstance.close(response.data);
