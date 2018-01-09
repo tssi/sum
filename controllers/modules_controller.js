@@ -50,6 +50,9 @@ define(['app','api'],function(app){
 			$scope.activeModule = module;
 			LoadRevokedGranted();
 		};
+		$scope.clearSearch = function(){
+			$scope.SearchModule = "";
+		};
 		$scope.revoke = function(index){
 			data = $scope.Granted[index];
 			data.action = "revoke";

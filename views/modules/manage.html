@@ -52,7 +52,7 @@
 			</div>
 			<div class="list-group-canvas list-group-search-results">
 				<div class="list-group-item"
-					ng-repeat="Module in Modules | filter:Search"
+					ng-repeat="Module in Modules | filter:SearchModule"
 					ng-click="SetActiveModule(Module)"
 					ng-class="{active:Module.id===activeModule.id}">
 					<h4>{{Module.name}}</h4>
@@ -61,8 +61,8 @@
 			<div class="list-group-item list-group-search-box">
 				<div class="input-group">
 					<div class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></div>
-					<input type="text" class="form-control" placeholder="Search" ng-model="Search"/>
-					<div class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button></div>
+					<input type="text" class="form-control" placeholder="Search" ng-model="SearchModule"/>
+					<div class="input-group-btn"><button class="btn btn-default" ng-click="clearSearch()"><span class="glyphicon glyphicon-remove"></span></button></div>
 				</div>
 			</div>
 		</div>
