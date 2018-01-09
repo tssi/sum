@@ -38,6 +38,9 @@ define(['app','api'],function(app){
 			$scope.activeGroup = group;
 			LoadActiveModules();
 		};
+		$scope.clearSearch = function(){
+			$scope.SearchGroup = "";
+		};
 		$scope.removeGroupInfo = function(){
 			$scope.activeGroup = null;
 		};
