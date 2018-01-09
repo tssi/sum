@@ -49,7 +49,7 @@ define(["model"],function($model){
 			case 'revoke':
 				var modules = Module.data;
 				var activemodule;
-				var b = data.laman;
+				var b = data.group_id;
 				for (var a in modules){
 					if (modules[a].id == data.id){
 						console.log(modules[a].id,data.id);
@@ -64,7 +64,7 @@ define(["model"],function($model){
 			case 'grant':
 				var modules = Module.data;
 				var activemodule;
-				var b = data.laman;
+				var b = data.group_id;
 				for (var a in modules){
 					if (modules[a].id == data.id){
 						console.log(modules[a].id,data.id);

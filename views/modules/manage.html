@@ -108,11 +108,11 @@
 						</thead>
 						<tbody>
 							<tr class="text-center" ng-repeat="G in Gs">
-								<td>{{G.laman}}</td>
+								<td>{{G.group_id}}</td>
 								<td><button class="btn btn-danger" ng-click="revoke($index)">Revoke</button></td>
 							</tr>
 							<tr class="text-center" ng-repeat="R in Rs">
-								<td>{{R.laman}}</td>
+								<td>{{R.group_id}}</td>
 								<td><button class="btn btn-success" ng-click="grant($index)">Grant</button></td>
 							</tr>
 						</tbody>
