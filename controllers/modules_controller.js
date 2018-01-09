@@ -20,7 +20,20 @@ define(['app','api'],function(app){
 			$scope.Rs = [];
 			$scope.Gs = [];
 			for (var i in $scope.Groups){
-				for (var j in $scope.activeModule.revoked){
+				var group = $scope.Groups[i];
+				if ($scope.activeModule.revoked.indexOf(group.id) != -1){
+							var a = [];
+							a.id = $scope.activeModule.id;
+							a.group_id = group.id;
+							$scope.Rs.push(a);
+				}
+				if ($scope.activeModule.granted.indexOf(group.id) != -1){
+							var a = [];
+							a.id = $scope.activeModule.id;
+							a.group_id = group.id;
+							$scope.Gs.push(a);
+				}
+				/* for (var j in $scope.activeModule.revoked){
 					if ($scope.activeModule.revoked){
 						if ($scope.Groups[i].id == $scope.activeModule.revoked[j]){
 							var a = [];
@@ -39,7 +52,7 @@ define(['app','api'],function(app){
 							$scope.Gs.push(b);
 						}
 					}
-				}
+				} */
 			}
 		};
 		$scope.init = function(){
