@@ -56,6 +56,9 @@ define(['app','api'],function(app){
 			$scope.activeUser = user;
 			AGAM();
 		};
+		$scope.clearSearch = function(){
+			$scope.SearchUser = "";
+		};
 		$scope.removeUserInfo = function(){
 			$scope.activeUser = null;
 		};
