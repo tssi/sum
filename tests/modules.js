@@ -49,12 +49,12 @@ define(["model"],function($model){
 			case 'revoke':
 				var modules = Module.data;
 				var activemodule;
-				var b = data.group_id;
-				for (var a in modules){
-					if (modules[a].id == data.id){
-						console.log(modules[a].id,data.id);
-						activemodule = modules[a];
-						var index = activemodule.granted.indexOf(b);
+				var group_id = data.group_id;
+				for (var ctr in modules){
+					if (modules[ctr].id == data.id){
+						console.log(modules[ctr].id,data.id);
+						activemodule = modules[ctr];
+						var index = activemodule.granted.indexOf(group_id);
 						activemodule.revoked.push(activemodule.granted[index]);
 						activemodule.granted.splice(index,1);
 					}
@@ -64,18 +64,22 @@ define(["model"],function($model){
 			case 'grant':
 				var modules = Module.data;
 				var activemodule;
-				var b = data.group_id;
-				for (var a in modules){
-					if (modules[a].id == data.id){
-						console.log(modules[a].id,data.id);
-						activemodule = modules[a];
-						var index = activemodule.revoked.indexOf(b);
+				var group_id = data.group_id;
+				for (var ctr in modules){
+					if (modules[ctr].id == data.id){
+						console.log(modules[ctr].id,data.id);
+						activemodule = modules[ctr];
+						var index = activemodule.revoked.indexOf(group_id);
 						activemodule.granted.push(activemodule.revoked[index]);
 						activemodule.revoked.splice(index,1);
 					}
 				}
 				return {success:Module.save(activemodule)};
 			break;
+		}
+	}
+	return Module;
+});
 			/* 
 			case 'revoke':
 				var activemodule;
@@ -111,7 +115,3 @@ define(["model"],function($model){
 				}
 				return {success:Module.save(activemodule)};
 			break; */
-		}
-	}
-	return Module;
-});
