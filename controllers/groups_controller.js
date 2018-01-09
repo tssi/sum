@@ -96,14 +96,16 @@ define(['app','api'],function(app){
 			LoadActiveModules();
 		}
 		$scope.addModule = function(){
-			var module = $scope.Mod;
-			var module_id = parseInt(module.id);
-			$scope.modalModules.push(module_id);
-			$scope.activeModules.push(module);
+			if ($scope.Mod){
+				var module = $scope.Mod;
+				var module_id = parseInt(module.id);
+				$scope.modalModules.push(module_id);
+				$scope.activeModules.push(module);
+			}
 		};
 		$scope.removeModule = function(index){
-				$scope.modalModules.splice(index,1);
-				LoadActiveModules();
+			$scope.modalModules.splice(index,1);
+			LoadActiveModules();
 		};
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
