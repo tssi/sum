@@ -71,7 +71,7 @@ define(['app','api'],function(app){
 			var group = $scope.Groups;
 			var config = {
 				templateUrl:"ModalContent.html",
-				controller:"ModalController",
+				controller:"UserModalController",
 				resolve:{
 					User:function(){
 						return user;
@@ -104,7 +104,7 @@ define(['app','api'],function(app){
 			promise.then(callback,fallback);
 		};
 	}]);
-	app.register.controller('ModalController',['$scope','$uibModalInstance','api','Groups','User','Mode',function($scope,$uibModalInstance,api,Groups,User,Mode){
+	app.register.controller('UserModalController',['$scope','$uibModalInstance','api','Groups','User','Mode',function($scope,$uibModalInstance,api,Groups,User,Mode){
 		$scope.Groups = angular.copy(Groups);
 		$scope.User = angular.copy(User);
 		$scope.Mode = Mode;
