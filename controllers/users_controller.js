@@ -84,27 +84,18 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								/* for (var k in $scope.Users){
-									if (data.id == $scope.Users[k].id){
-										if ($scope.Mode == "reset"){
-											$scope.Users[k].password = data.password;
-										}
-										$scope.activeUser = $scope.Users[k];
-										//console.log($scope.Mode);
-									}
-								} */
-								if (data.action == "reset"){
-									$scope.activeUser.password = data.password;
-								}
-								if (data.action == "register" || data.action == "edit"){
-									$scope.activeUser = data;
-								}
-								LoadUsers();
-								AGAM();
-								if (data.action == "activate" || data.action == "deactivate"){
-									$scope.activeUser = null;
-								}
-							};
+				if (data.action == "reset"){
+					$scope.activeUser.password = data.password;
+				}
+				if (data.action == "register" || data.action == "edit"){
+					$scope.activeUser = data;
+				}
+				LoadUsers();
+				AGAM();
+				if (data.action == "activate" || data.action == "deactivate"){
+					$scope.activeUser = null;
+				}
+			};
 			var fallback = function(data){
 							};
 			promise.then(callback,fallback);
