@@ -107,12 +107,12 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="text-center" ng-repeat="G in Gs">
-								<td>{{G.group_id}}</td>
+							<tr class="text-center" ng-repeat="Grant in Granted">
+								<td>{{Grant.group_id}}</td>
 								<td><button class="btn btn-danger" ng-click="revoke($index)">Revoke</button></td>
 							</tr>
-							<tr class="text-center" ng-repeat="R in Rs">
-								<td>{{R.group_id}}</td>
+							<tr class="text-center" ng-repeat="Revoke in Revoked">
+								<td>{{Revoke.group_id}}</td>
 								<td><button class="btn btn-success" ng-click="grant($index)">Grant</button></td>
 							</tr>
 						</tbody>

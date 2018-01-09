@@ -17,21 +17,21 @@ define(['app','api'],function(app){
 			api.GET('groups',success,error);
 		};
 		function LoadRsGs(){
-			$scope.Rs = [];
-			$scope.Gs = [];
+			$scope.Revoked = [];
+			$scope.Granted = [];
 			for (var i in $scope.Groups){
 				var group = $scope.Groups[i];
 				if ($scope.activeModule.revoked.indexOf(group.id) != -1){
 							var a = [];
 							a.id = $scope.activeModule.id;
 							a.group_id = group.id;
-							$scope.Rs.push(a);
+							$scope.Revoked.push(a);
 				}
 				if ($scope.activeModule.granted.indexOf(group.id) != -1){
 							var a = [];
 							a.id = $scope.activeModule.id;
 							a.group_id = group.id;
-							$scope.Gs.push(a);
+							$scope.Granted.push(a);
 				}
 				/* for (var j in $scope.activeModule.revoked){
 					if ($scope.activeModule.revoked){
@@ -71,7 +71,7 @@ define(['app','api'],function(app){
 			LoadRsGs();
 		};
 		$scope.revoke = function(index){
-			data = $scope.Gs[index];
+			data = $scope.Granted[index];
 			data.action = "revoke";
 			var success = function(response){
 				LoadModules();
@@ -84,7 +84,7 @@ define(['app','api'],function(app){
 			api.POST('modules',data,success,error);
 		};
 		$scope.grant = function(index){
-			data = $scope.Rs[index];
+			data = $scope.Revoked[index];
 			data.action = "grant";
 			var success = function(response){
 				LoadModules();
@@ -98,8 +98,8 @@ define(['app','api'],function(app){
 		};
 		$scope.removeModuleInfo = function(){
 			$scope.activeModule = null;
-			$scope.Rs = [];
-			$scope.Gs = [];
+			$scope.Revoked = [];
+			$scope.Granted = [];
 		};
 		$scope.OpenModal = function(activemodule,mode){
 			if(!mode){
