@@ -50,7 +50,7 @@ define(['app','api'],function(app){
 			var activemodules = $scope.activeModules;
 			var config = {
 				templateUrl:"ModalContent.html",
-				controller:"ModalController",
+				controller:"GroupModalController",
 				resolve:{
 					ActiveGroup:function(){
 						return activegroup;
@@ -75,7 +75,7 @@ define(['app','api'],function(app){
 			promise.then(callback,fallback);
 		};
 	}]);
-	app.register.controller('ModalController',['$scope','$uibModalInstance','api','ActiveGroup','Modules','Mode',function($scope,$uibModalInstance,api,ActiveGroup,Modules,Mode){
+	app.register.controller('GroupModalController',['$scope','$uibModalInstance','api','ActiveGroup','Modules','Mode',function($scope,$uibModalInstance,api,ActiveGroup,Modules,Mode){
 		$scope.Mode = Mode;
 		$scope.modalModules = [];
 		$scope.activeModules = [];
