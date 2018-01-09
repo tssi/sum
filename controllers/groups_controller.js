@@ -96,10 +96,10 @@ define(['app','api'],function(app){
 			LoadActiveModules();
 		}
 		$scope.addModule = function(){
-			var a = $scope.Tom;
-			var b = parseInt(a.id);
-			$scope.modalModules.push(b);
-			$scope.activeModules.push(a);
+			var module = $scope.Mod;
+			var module_id = parseInt(module.id);
+			$scope.modalModules.push(module_id);
+			$scope.activeModules.push(module);
 		};
 		$scope.removeModule = function(index){
 				$scope.modalModules.splice(index,1);

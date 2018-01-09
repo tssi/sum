@@ -17,7 +17,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-						<input type="text" placeholder="ID" class="form-control" ng-model="ActiveGroup.id" ng-disabled="Mode==='edit'"/>
+						<input type="text" placeholder="ID" class="form-control" ng-model="ActiveGroup.id"/>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -52,7 +52,7 @@
 							<tbody>
 								<tr>
 									<td>	
-										<select class="form-control" ng-model="Tom" ng-options="module as module.name for module in Modules track by module.id"  >
+										<select class="form-control" ng-model="Mod" ng-options="module as module.name for module in Modules track by module.id"  >
 										</select>
 									</td>
 									<td class="text-center">
