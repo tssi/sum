@@ -126,7 +126,6 @@ define(['app','api'],function(app){
 							};
 			promise.then(callback,fallback);
 		};
-	//};
 	}]);
 	app.register.controller('ModuleModalController',['$scope','$uibModalInstance','api','ActiveModule','Mode',function($scope,$uibModalInstance,api,ActiveModule,Mode){
 		$scope.ActiveModule = ActiveModule;
