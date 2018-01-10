@@ -53,7 +53,7 @@ define(["model"],function($model){
 				  "password": "password",
 				  "status": "LOCKED",
 				  "group_id": "USER"
-				}/* ,
+				},
 				{
 				  "id": 6,
 				  "last_name": "Quiambao",
@@ -83,7 +83,7 @@ define(["model"],function($model){
 				  "password": "password",
 				  "status": "ACTIVE",
 				  "group_id": "USER"
-				} */
+				}
 	];
 	var obj = {meta:meta,data:data};
 	var User = new $model(obj);

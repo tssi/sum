@@ -83,6 +83,9 @@ define(['app','api'],function(app){
 			$scope.activeUser = user;
 			AGAM();
 		};
+		$scope.confirmSearch = function(){
+			LoadUsers({page:$scope.ActivePage,keyword:$scope.SearchUser.last_name,fields:['last_name']});
+		}
 		$scope.clearSearch = function(){
 			$scope.SearchUser = "";
 		};
