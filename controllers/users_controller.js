@@ -1,6 +1,25 @@
 define(['app','api'],function(app){
 	app.register.controller('UserController',['$scope','api','$uibModal',function($scope,api,$uibModal){
-		function LoadUsers(){
+		function LoadUsers(data){
+			$scope.DataLoading = true;
+			var success = function(response){
+				$scope.Users = response.data;
+				$scope.NextPage = response.meta.next;
+				$scope.PrevPage = response.meta.prev;
+				$scope.TotalItems = response.meta.count;
+				$scope.LastItem = response.meta.page * response.meta.limit;
+				$scope.FirstItem = $scope.LastItem - (response.meta.limit - 1);
+				if ($scope.LastItem > $scope.TotalItems){
+					$scope.LastItem = $scope.TotalItems;
+				};
+				$scope.DataLoading = false;	
+			};
+			var error = function(response){
+			};
+			//data = {status:"ACTIVE"};
+			api.GET('users',data,success,error);
+		};
+		/* function LoadUsers(){
 			var successLoad = function(response){
 				$scope.Users = response.data;
 			};
@@ -8,7 +27,7 @@ define(['app','api'],function(app){
 			};
 			var data = {status:"ACTIVE"};
 			api.GET('users',data,successLoad,errorLoad);
-		};
+		}; */
 		function LoadModules(){
 			var successLoad = function(response){
 				$scope.Modules = response.data;
@@ -46,11 +65,19 @@ define(['app','api'],function(app){
 			$scope.Users = [];
 			$scope.Modules = [];
 			$scope.Groups = [];
+			$scope.ActivePage = 1;
+			$scope.NextPage = null;
+			$scope.PrevPage = null;
 			$scope.activeGroup = null;
 			$scope.activeUser = null;
-			LoadUsers();
+			LoadUsers({page:$scope.ActivePage});
 			LoadModules();
 			LoadGroups();
+		};
+		$scope.navigatePage = function(page){
+			console.log(page);
+			$scope.ActivePage = page;
+			LoadUsers({page:$scope.ActivePage});
 		};
 		$scope.SetActiveUser = function(user){
 			$scope.activeUser = user;
