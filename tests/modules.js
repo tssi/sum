@@ -31,7 +31,7 @@ define(["model"],function($model){
 					"url":"#/trip",
 					"revoked":['ADMIN','USER'],
 					"granted":[]
-				}/* ,
+				},
 				{
 					"id": 5,
 					"name":"a",
@@ -80,7 +80,7 @@ define(["model"],function($model){
 					"url":"#/trip",
 					"revoked":['ADMIN','USER'],
 					"granted":[]
-				} */
+				}
 	];
 	var obj = {meta:meta,data:data};
 	var Module = new $model(obj);

@@ -63,6 +63,9 @@ define(['app','api'],function(app){
 			$scope.activeModule = module;
 			LoadRevokedGranted();
 		};
+		$scope.confirmSearch = function(){
+			LoadModules({page:$scope.ActivePage,keyword:$scope.SearchModule.name,fields:['name']});
+		}
 		$scope.clearSearch = function(){
 			$scope.SearchModule = "";
 		};
