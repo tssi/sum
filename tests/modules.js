@@ -1,7 +1,7 @@
 "use strict";
 define(["model"],function($model){
 	var meta =  {
-					title:"Modules"
+					title:"Modules",
 				};
 	var data = [
 				{
@@ -31,7 +31,56 @@ define(["model"],function($model){
 					"url":"#/trip",
 					"revoked":['ADMIN','USER'],
 					"granted":[]
-				}
+				}/* ,
+				{
+					"id": 5,
+					"name":"a",
+					"url":"#/trip",
+					"revoked":['ADMIN','USER'],
+					"granted":[]
+				},
+				{
+					"id": 6,
+					"name":"b",
+					"url":"#/trip",
+					"revoked":['ADMIN','USER'],
+					"granted":[]
+				},
+				{
+					"id": 7,
+					"name":"c",
+					"url":"#/trip",
+					"revoked":['ADMIN','USER'],
+					"granted":[]
+				},
+				{
+					"id": 8,
+					"name":"d",
+					"url":"#/trip",
+					"revoked":['ADMIN','USER'],
+					"granted":[]
+				},
+				{
+					"id": 9,
+					"name":"e",
+					"url":"#/trip",
+					"revoked":['ADMIN','USER'],
+					"granted":[]
+				},
+				{
+					"id": 10,
+					"name":"f",
+					"url":"#/trip",
+					"revoked":['ADMIN','USER'],
+					"granted":[]
+				},
+				{
+					"id": 11,
+					"name":"g",
+					"url":"#/trip",
+					"revoked":['ADMIN','USER'],
+					"granted":[]
+				} */
 	];
 	var obj = {meta:meta,data:data};
 	var Module = new $model(obj);

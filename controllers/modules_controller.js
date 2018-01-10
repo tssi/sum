@@ -1,13 +1,21 @@
 define(['app','api'],function(app){
 	app.register.controller('ModulesController',['$scope','api','$uibModal',function($scope,api,$uibModal){
-		function LoadModules(){
-			var success = function(response){
-				$scope.Modules = response.data;
-			};
-			var error = function(response){
-			};
-			api.GET('modules',success,error);
-		};
+		function LoadModules(data){
+			$scope.DataLoading=true;
+			api.GET('modules',data,function success(response){
+				//console.log(response.data);
+				$scope.Modules=response.data;
+				$scope.NextPage=response.meta.next;
+				$scope.PrevPage=response.meta.prev;
+				$scope.TotalItems=response.meta.count;
+				$scope.LastItem=response.meta.page*response.meta.limit;
+				$scope.FirstItem=$scope.LastItem-(response.meta.limit-1);
+				if($scope.LastItem>$scope.TotalItems){
+					$scope.LastItem=$scope.TotalItems;
+				};
+				$scope.DataLoading = false;							
+			});
+		}
 		function LoadGroups(){
 			var success = function(response){
 				$scope.Groups = response.data;
@@ -38,13 +46,16 @@ define(['app','api'],function(app){
 		$scope.init = function(){
 			$scope.Modules = [];
 			$scope.Groups = [];
-			$scope.Message = null;
-			LoadModules();
+			$scope.ActivePage = 1;
+			$scope.NextPage = null;
+			$scope.PrevPage = null;
 			LoadGroups();
+			LoadModules({page:$scope.ActivePage});
 		};
 		$scope.navigatePage = function(page){
+			console.log(page);
 			$scope.ActivePage = page;
-			getModules({page:$scope.ActivePage});
+			LoadModules({page:$scope.ActivePage});
 		};
 		$scope.SetActiveModule = function(module){
 			$scope.activeModule = module;
@@ -113,6 +124,7 @@ define(['app','api'],function(app){
 							};
 			promise.then(callback,fallback);
 		};
+	//};
 	}]);
 	app.register.controller('ModuleModalController',['$scope','$uibModalInstance','api','ActiveModule','Mode',function($scope,$uibModalInstance,api,ActiveModule,Mode){
 		$scope.ActiveModule = ActiveModule;
@@ -187,7 +199,6 @@ define(['app','api'],function(app){
 			$scope.activeModule.granted.splice(index,1);
 			$scope.Gs.splice(index,1);
 			var a = $scope.activeModule;
-			//console.log(a);
 			var success = function(response){
 			};
 			var error = function(response){
@@ -207,4 +218,22 @@ define(['app','api'],function(app){
 				
 			};
 			api.POST('modules',b,success,error);
+		};
+		function LoadModules(){
+			var success = function(response){
+				$scope.Modules = response.data;
+				$scope.NextPage = response.meta.next;
+				$scope.PrevPage = response.meta.prev;
+				$scope.TotalItems=response.meta.count;
+				$scope.LastItem=response.meta.page*response.meta.limit;
+				$scope.FirstItem=$scope.LastItem-(response.meta.limit-1);
+				if($scope.LastItem>$scope.TotalItems){
+					$scope.LastItem=$scope.TotalItems;
+				};
+				$scope.DataLoading = false;	
+				//console.log(response.data);
+			};
+			var error = function(response){
+			};
+			api.GET('modules',success,error);
 		}; */
