@@ -1,21 +1,23 @@
 define(['app','api'],function(app){
 	app.register.controller('ModulesController',['$scope','api','$uibModal',function($scope,api,$uibModal){
 		function LoadModules(data){
-			$scope.DataLoading=true;
-			api.GET('modules',data,function success(response){
-				//console.log(response.data);
-				$scope.Modules=response.data;
-				$scope.NextPage=response.meta.next;
-				$scope.PrevPage=response.meta.prev;
-				$scope.TotalItems=response.meta.count;
-				$scope.LastItem=response.meta.page*response.meta.limit;
-				$scope.FirstItem=$scope.LastItem-(response.meta.limit-1);
-				if($scope.LastItem>$scope.TotalItems){
-					$scope.LastItem=$scope.TotalItems;
+			$scope.DataLoading = true;
+			var success = function(response){
+				$scope.Modules = response.data;
+				$scope.NextPage = response.meta.next;
+				$scope.PrevPage = response.meta.prev;
+				$scope.TotalItems = response.meta.count;
+				$scope.LastItem = response.meta.page * response.meta.limit;
+				$scope.FirstItem = $scope.LastItem - (response.meta.limit - 1);
+				if ($scope.LastItem > $scope.TotalItems){
+					$scope.LastItem = $scope.TotalItems;
 				};
-				$scope.DataLoading = false;							
-			});
-		}
+				$scope.DataLoading = false;	
+			};
+			var error = function(response){
+			};
+			api.GET('modules',data,success,error);
+		};
 		function LoadGroups(){
 			var success = function(response){
 				$scope.Groups = response.data;
@@ -236,4 +238,19 @@ define(['app','api'],function(app){
 			var error = function(response){
 			};
 			api.GET('modules',success,error);
-		}; */
+		};
+		function LoadModules(data){
+			$scope.DataLoading=true;
+			api.GET('modules',data,function success(response){
+				$scope.Modules=response.data;
+				$scope.NextPage=response.meta.next;
+				$scope.PrevPage=response.meta.prev;
+				$scope.TotalItems=response.meta.count;
+				$scope.LastItem=response.meta.page*response.meta.limit;
+				$scope.FirstItem=$scope.LastItem-(response.meta.limit-1);
+				if($scope.LastItem>$scope.TotalItems){
+					$scope.LastItem=$scope.TotalItems;
+				};
+				$scope.DataLoading = false;							
+			});
+		} */
