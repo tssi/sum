@@ -68,6 +68,7 @@ define(['app','api'],function(app){
 		}
 		$scope.clearSearch = function(){
 			$scope.SearchModule = "";
+			LoadModules({page:$scope.ActivePage});
 		};
 		$scope.revoke = function(index){
 			data = $scope.Granted[index];

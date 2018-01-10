@@ -19,15 +19,6 @@ define(['app','api'],function(app){
 			//data = {status:"ACTIVE"};
 			api.GET('users',data,success,error);
 		};
-		/* function LoadUsers(){
-			var successLoad = function(response){
-				$scope.Users = response.data;
-			};
-			var errorLoad = function(response){
-			};
-			var data = {status:"ACTIVE"};
-			api.GET('users',data,successLoad,errorLoad);
-		}; */
 		function LoadModules(){
 			var successLoad = function(response){
 				$scope.Modules = response.data;
@@ -88,6 +79,7 @@ define(['app','api'],function(app){
 		}
 		$scope.clearSearch = function(){
 			$scope.SearchUser = "";
+			LoadUsers({page:$scope.ActivePage});
 		};
 		$scope.removeUserInfo = function(){
 			$scope.activeUser = null;
@@ -192,3 +184,12 @@ define(['app','api'],function(app){
 		};*/
 	}]);
 });
+		/* function LoadUsers(){
+			var successLoad = function(response){
+				$scope.Users = response.data;
+			};
+			var errorLoad = function(response){
+			};
+			var data = {status:"ACTIVE"};
+			api.GET('users',data,successLoad,errorLoad);
+		}; */

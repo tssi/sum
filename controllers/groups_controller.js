@@ -61,6 +61,7 @@ define(['app','api'],function(app){
 		}
 		$scope.clearSearch = function(){
 			$scope.SearchGroup = "";
+			LoadGroups({page:$scope.ActivePage});
 		};
 		$scope.removeGroupInfo = function(){
 			$scope.activeGroup = null;
