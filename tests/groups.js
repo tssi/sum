@@ -13,6 +13,26 @@ define(["model"],function($model){
 				  "id": "USER",
 				  "name": "User",
 				  "modules": [2]
+				},
+				{
+				  "id": "a",
+				  "name": "User",
+				  "modules": [2]
+				},
+				{
+				  "id": "b",
+				  "name": "User",
+				  "modules": [2]
+				},
+				{
+				  "id": "c",
+				  "name": "User",
+				  "modules": [2]
+				},
+				{
+				  "id": "d",
+				  "name": "User",
+				  "modules": [2]
 				}
 	];
 	var obj = {meta:meta,data:data};

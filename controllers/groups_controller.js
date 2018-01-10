@@ -1,12 +1,22 @@
 define(['app','api'],function(app){
 	app.register.controller('GroupsController',['$scope','api','$uibModal',function($scope,api,$uibModal){
-		function LoadGroups(){
-			var successLoad = function(response){
+		function LoadGroups(data){
+			$scope.DataLoading = true;
+			var success = function(response){
 				$scope.Groups = response.data;
+				$scope.NextPage = response.meta.next;
+				$scope.PrevPage = response.meta.prev;
+				$scope.TotalItems = response.meta.count;
+				$scope.LastItem = response.meta.page * response.meta.limit;
+				$scope.FirstItem = $scope.LastItem - (response.meta.limit - 1);
+				if ($scope.LastItem > $scope.TotalItems){
+					$scope.LastItem = $scope.TotalItems;
+				};
+				$scope.DataLoading = false;	
 			};
-			var errorLoad = function(response){
+			var error = function(response){
 			};
-			api.GET('groups',successLoad,errorLoad);
+			api.GET('groups',data,success,error);
 		};
 		function LoadModules(){
 			var successLoad = function(response){
@@ -31,8 +41,16 @@ define(['app','api'],function(app){
 		$scope.init = function(){
 			$scope.Groups = [];
 			$scope.Modules = [];
-			LoadGroups();
+			$scope.ActivePage = 1;
+			$scope.NextPage = null;
+			$scope.PrevPage = null;
+			LoadGroups({page:$scope.ActivePage});
 			LoadModules();
+		};
+		$scope.navigatePage = function(page){
+			console.log(page);
+			$scope.ActivePage = page;
+			LoadGroups({page:$scope.ActivePage});
 		};
 		$scope.SetActiveGroup = function(group){
 			$scope.activeGroup = group;
@@ -164,4 +182,12 @@ define(['app','api'],function(app){
 					$scope.activeModules.push($scope.Modules[i]);
 				}
 			}
-		};*/
+		};
+		function LoadGroups(){
+			var successLoad = function(response){
+				$scope.Groups = response.data;
+			};
+			var errorLoad = function(response){
+			};
+			api.GET('groups',successLoad,errorLoad);
+		}; */
