@@ -56,6 +56,9 @@ define(['app','api'],function(app){
 			$scope.activeGroup = group;
 			LoadActiveModules();
 		};
+		$scope.confirmSearch = function(){
+			LoadGroups({page:$scope.ActivePage,keyword:$scope.SearchGroup.id,fields:['id']});
+		}
 		$scope.clearSearch = function(){
 			$scope.SearchGroup = "";
 		};
