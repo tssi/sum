@@ -3,6 +3,7 @@ define(['app','api'],function(app){
 		function LoadUsers(data){
 			var success = function(response){
 				$scope.Users = response.data;
+				console.log(response.data);
 				$scope.NextPage = response.meta.next;
 				$scope.PrevPage = response.meta.prev;
 				$scope.TotalItems = response.meta.count;

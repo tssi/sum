@@ -123,8 +123,7 @@
 				<div class="list-group-item"
 					ng-repeat="User in Users | filter:SearchUser"
 					ng-click="SetActiveUser(User)"
-					ng-class="{active:User.id===activeUser.id}"
-					ng-hide="User.status!=='ACTIVE'">
+					ng-class="{active:User.id===activeUser.id}">
 					<h4>{{User.last_name}}</h4>
 				</div>
 			</div>

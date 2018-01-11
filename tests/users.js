@@ -10,19 +10,19 @@ define(["model"],function($model){
 				  "first_name": "Melchor",
 				  "middle_initial": "E",
 				  "username": "kuya mel",
-				  "password": "password",
+				  "password": "jowni",
 				  "status": "ACTIVE",
 				  "group_id": "ADMIN"
 				},
 				{
 				  "id": 2,
-				  "last_name": "NoMasChenko",
-				  "first_name": "Vasyl",
-				  "middle_initial": "X",
-				  "username": "matrix",
+				  "last_name": "c",
+				  "first_name": "Enrika",
+				  "middle_initial": "T",
+				  "username": "betis",
 				  "password": "password",
 				  "status": "INACTIVE",
-				  "group_id": "ADMIN"
+				  "group_id": "USER"
 				},
 				{
 				  "id": 3,
@@ -30,7 +30,7 @@ define(["model"],function($model){
 				  "first_name": "Xtian",
 				  "middle_initial": "C",
 				  "username": "habhab",
-				  "password": "password",
+				  "password": "petlags",
 				  "status": "ACTIVE",
 				  "group_id": "ADMIN"
 				},
@@ -38,15 +38,15 @@ define(["model"],function($model){
 				  "id": 4,
 				  "last_name": "Arago",
 				  "first_name": "Aaron",
-				  "middle_initial": "K",
-				  "username": "petlags",
+				  "middle_initial": "A",
+				  "username": "yes",
 				  "password": "password",
 				  "status": "ACTIVE",
 				  "group_id": "USER"
 				},
 				{
 				  "id": 5,
-				  "last_name": "Quiambao",
+				  "last_name": "f",
 				  "first_name": "Enrika",
 				  "middle_initial": "T",
 				  "username": "betis",
@@ -56,11 +56,11 @@ define(["model"],function($model){
 				},
 				{
 				  "id": 6,
-				  "last_name": "a",
+				  "last_name": "Quiambao",
 				  "first_name": "Enrika",
 				  "middle_initial": "T",
 				  "username": "betis",
-				  "password": "password",
+				  "password": "tt",
 				  "status": "ACTIVE",
 				  "group_id": "USER"
 				},
@@ -76,13 +76,13 @@ define(["model"],function($model){
 				},
 				{
 				  "id": 8,
-				  "last_name": "c",
-				  "first_name": "Enrika",
-				  "middle_initial": "T",
-				  "username": "betis",
+				  "last_name": "NoMasChenko",
+				  "first_name": "Vasyl",
+				  "middle_initial": "X",
+				  "username": "matrix",
 				  "password": "password",
 				  "status": "ACTIVE",
-				  "group_id": "USER"
+				  "group_id": "ADMIN"
 				},
 				{
 				  "id": 9,
@@ -106,7 +106,7 @@ define(["model"],function($model){
 				},
 				{
 				  "id": 11,
-				  "last_name": "f",
+				  "last_name": "a",
 				  "first_name": "Enrika",
 				  "middle_initial": "T",
 				  "username": "betis",
