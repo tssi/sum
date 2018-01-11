@@ -45,12 +45,19 @@
 		<div class="list-group">
 			<div class="list-group-item list-group-header">
 				<div class="btn-group btn-group-sm pull-right" uib-dropdown>
-					<button class="btn btn-default" ng-disabled="!PrevPage || DataLoading" ng-click="navigatePage(PrevPage)"><span class="glyphicon glyphicon-chevron-left"></span></button>
-					<button class="btn btn-default" ng-disabled="!NextPage || DataLoading" ng-click="navigatePage(NextPage)"><span class="glyphicon glyphicon-chevron-right"></span></button>
+					<button class="btn btn-default" ng-disabled="!PrevPage" ng-click="navigatePage(PrevPage)"><span class="glyphicon glyphicon-chevron-left"></span></button>
+					<button class="btn btn-default" ng-disabled="!NextPage" ng-click="navigatePage(NextPage)"><span class="glyphicon glyphicon-chevron-right"></span></button>
 				</div>
 				<label class="clear-fix">Modules</label>
 			</div>
 			<div class="list-group-canvas list-group-search-results">
+				<div class="list-group-item text-center" ng-show="SearchModule">
+					<h4 class="list-group-item-heading">Search result(s) for <b><i>{{SearchModule.nam}}</i></b>.</h4>
+					<p class="list-group-item-text">
+						Click the <span class="glyphicon glyphicon-search" aria-hidden="true"></span> to look further.
+						Click the <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> to cancel.
+					</p>
+				</div>
 				<div class="list-group-item"
 					ng-repeat="Module in Modules | filter:SearchModule"
 					ng-click="SetActiveModule(Module)"
