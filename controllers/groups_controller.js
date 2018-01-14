@@ -1,6 +1,6 @@
 define(['app','api'],function(app){
 	app.register.controller('GroupsController',['$scope','api','$uibModal',function($scope,api,$uibModal){
-		function LoadGroups(data){
+		function getGroups(data){
 			var success = function(response){
 				$scope.Groups = response.data;
 				$scope.NextPage = response.meta.next;
@@ -16,7 +16,7 @@ define(['app','api'],function(app){
 			};
 			api.GET('groups',data,success,error);
 		};
-		function LoadModules(){
+		function getModules(){
 			var successLoad = function(response){
 				$scope.Modules = response.data;
 			};
@@ -24,7 +24,7 @@ define(['app','api'],function(app){
 			};
 			api.GET('modules',successLoad,errorLoad);
 		};
-		function LoadActiveModules(){
+		function getActiveModules(){
 			$scope.activeModules = [];
 			var am = $scope.activeGroup.modules;
 			if (am){
@@ -42,16 +42,16 @@ define(['app','api'],function(app){
 			$scope.ActivePage = 1;
 			$scope.NextPage = null;
 			$scope.PrevPage = null;
-			LoadGroups({page:$scope.ActivePage});
-			LoadModules();
+			getGroups({page:$scope.ActivePage});
+			getModules();
 		};
 		$scope.navigatePage = function(page){
 			$scope.ActivePage = page;
-			LoadGroups({page:$scope.ActivePage});
+			getGroups({page:$scope.ActivePage});
 		};
 		$scope.SetActiveGroup = function(group){
 			$scope.activeGroup = group;
-			LoadActiveModules();
+			getActiveModules();
 		};
 		$scope.filterGroup=function(group){
 			var searchBox = $scope.SearchGroup;
@@ -60,18 +60,18 @@ define(['app','api'],function(app){
 			return !searchBox || test;
 		};
 		$scope.confirmSearch = function(){
-			LoadGroups({page:1,keyword:$scope.SearchGroup,fields:['id']});
+			getGroups({page:1,keyword:$scope.SearchGroup,fields:['id']});
 		}
 		$scope.clearSearch = function(){
 			$scope.SearchGroup = "";
-			LoadGroups({page:1});
+			getGroups({page:1});
 		};
 		$scope.removeGroupInfo = function(){
 			$scope.activeGroup = null;
 		};
 		$scope.OpenModal = function(activegroup,mode){
 			if (!mode){
-			mode = "add";
+				mode = "add";
 			}
 			$scope.Mode = mode;
 			var modules = $scope.Modules;
@@ -94,12 +94,12 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								$scope.activeGroup = data;
-								LoadGroups();
-								LoadActiveModules();
-							};
+				$scope.activeGroup = data;
+				getGroups();
+				getActiveModules();
+			};
 			var fallback = function(data){
-							};
+			};
 			promise.then(callback,fallback);
 		};
 	}]);
@@ -109,19 +109,17 @@ define(['app','api'],function(app){
 		$scope.activeModules = [];
 		$scope.ActiveGroup = angular.copy(ActiveGroup);
 		$scope.Modules = angular.copy(Modules);
-		function LoadActiveModules(){
+		function getActiveModules(){
 			$scope.activeModules = [];
 			for (var j in $scope.Modules){
-				//if ($scope.Mode == 'edit'){
 				$scope.modalModules = $scope.ActiveGroup.modules;
-				//}
 				if ($scope.modalModules.indexOf($scope.Modules[j].id) != -1){
 					$scope.activeModules.push($scope.Modules[j]);
 				}
 			}
 		};
 		if ($scope.Mode == "edit"){
-			LoadActiveModules();
+			getActiveModules();
 		}
 		$scope.addModule = function(){
 			if ($scope.Mod){
@@ -133,7 +131,7 @@ define(['app','api'],function(app){
 		};
 		$scope.removeModule = function(index){
 			$scope.modalModules.splice(index,1);
-			LoadActiveModules();
+			getActiveModules();
 		};
 		$scope.closeModal = function(){
 			$uibModalInstance.dismiss();
@@ -148,7 +146,6 @@ define(['app','api'],function(app){
 				var data = $scope.ActiveGroup;
 				data.action = "edit";
 			}
-			//console.log(data);
 			var success = function(response){
 				$uibModalInstance.close(response.data);
 			};
@@ -159,7 +156,7 @@ define(['app','api'],function(app){
 		};
 	}]);
 });
-		/*function LoadActiveModules(){
+		/*function getActiveModules(){
 			$scope.activeModules = [];
 			for (var j in $scope.Modules){
 				if ($scope.Mode == 'edit'){
@@ -174,7 +171,7 @@ define(['app','api'],function(app){
 				}
 			}
 		};
-		function LoadActiveModules(){
+		function getActiveModules(){
 			$scope.activeModules = [];
 			for (var j in $scope.Modules){
 				if ($scope.ActiveGroup.modules.indexOf($scope.Modules[j].id) != -1){
@@ -190,7 +187,7 @@ define(['app','api'],function(app){
 				}
 			}
 		};
-		function LoadGroups(){
+		function getGroups(){
 			var successLoad = function(response){
 				$scope.Groups = response.data;
 			};
