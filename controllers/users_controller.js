@@ -43,9 +43,9 @@ define(['app','api'],function(app){
 			}
 			var am = $scope.activeGroup.modules;
 			for(var j in $scope.Modules){
-				var m = $scope.Modules[j];
-				if(am.indexOf(m.id) != -1){
-					$scope.activeModules.push(m);
+				var module = $scope.Modules[j];
+				if(am.indexOf(module.id) != -1){
+					$scope.activeModules.push(module);
 				}
 			}
 		};
