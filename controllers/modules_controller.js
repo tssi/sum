@@ -30,16 +30,16 @@ define(['app','api'],function(app){
 			for (var i in $scope.Groups){
 				var group = $scope.Groups[i];
 				if ($scope.activeModule.revoked.indexOf(group.id) != -1){
-							var a = [];
-							a.id = $scope.activeModule.id;
-							a.group_id = group.id;
-							$scope.Revoked.push(a);
+					var a = [];
+					a.id = $scope.activeModule.id;
+					a.group_id = group.id;
+					$scope.Revoked.push(a);
 				}
 				if ($scope.activeModule.granted.indexOf(group.id) != -1){
-							var a = [];
-							a.id = $scope.activeModule.id;
-							a.group_id = group.id;
-							$scope.Granted.push(a);
+					var a = [];
+					a.id = $scope.activeModule.id;
+					a.group_id = group.id;
+					$scope.Granted.push(a);
 				}
 			}
 		};
