@@ -1,6 +1,6 @@
 define(['app','api'],function(app){
 	app.register.controller('UserController',['$scope','api','$uibModal',function($scope,api,$uibModal){
-		function LoadUsers(data){
+		function getUsers(data){
 			var success = function(response){
 				$scope.Users = response.data;
 				$scope.NextPage = response.meta.next;
@@ -14,10 +14,9 @@ define(['app','api'],function(app){
 			};
 			var error = function(response){
 			};
-			//data = {status:"ACTIVE"};
 			api.GET('users',data,success,error);
 		};
-		function LoadModules(){
+		function getModules(){
 			var successLoad = function(response){
 				$scope.Modules = response.data;
 			};
@@ -25,7 +24,7 @@ define(['app','api'],function(app){
 			};
 			api.GET('modules',successLoad,errorLoad);
 		};
-		function LoadGroups(){
+		function getGroups(){
 			var successLoad = function(response){
 				$scope.Groups = response.data;
 			};
@@ -33,7 +32,7 @@ define(['app','api'],function(app){
 			};
 			api.GET('groups',successLoad,errorLoad);
 		};
-		function AGAM(){
+		function getActiveGroupsActiveModules(){
 			$scope.activeGroup = null;
 			$scope.activeModules = [];
 			for(var i in $scope.Groups){
@@ -59,17 +58,17 @@ define(['app','api'],function(app){
 			$scope.PrevPage = null;
 			$scope.activeGroup = null;
 			$scope.activeUser = null;
-			LoadUsers({page:$scope.ActivePage});
-			LoadModules();
-			LoadGroups();
+			getUsers({page:$scope.ActivePage});
+			getModules();
+			getGroups();
 		};
 		$scope.navigatePage = function(page){
 			$scope.ActivePage = page;
-			LoadUsers({page:$scope.ActivePage});
+			getUsers({page:$scope.ActivePage});
 		};
 		$scope.SetActiveUser = function(user){
 			$scope.activeUser = user;
-			AGAM();
+			getActiveGroupsActiveModules();
 		};
 		$scope.filterUser=function(user){
 			var searchBox = $scope.SearchUser;
@@ -78,12 +77,12 @@ define(['app','api'],function(app){
 			return !searchBox || test;
 		};
 		$scope.confirmSearch = function(){
-			LoadUsers({page:1,keyword:$scope.SearchUser,fields:['last_name']});
+			getUsers({page:1,keyword:$scope.SearchUser,fields:['last_name']});
 			console.log($scope.ActivePage);
 		}
 		$scope.clearSearch = function(){
 			$scope.SearchUser = "";
-			LoadUsers({page:1});
+			getUsers({page:1});
 		};
 		$scope.removeUserInfo = function(){
 			$scope.activeUser = null;
@@ -119,8 +118,8 @@ define(['app','api'],function(app){
 				if (data.action == "register" || data.action == "edit"){
 					$scope.activeUser = data;
 				}
-				LoadUsers();
-				AGAM();
+				getUsers();
+				getActiveGroupsActiveModules();
 				if (data.action == "activate" || data.action == "deactivate"){
 					$scope.activeUser = null;
 				}
@@ -175,25 +174,5 @@ define(['app','api'],function(app){
 			};
 			api.POST('users',data,success,error);
 		};
-		/*$scope.deactivateModal = function(){
-			var data = {id:$scope.User.id,status:"INACTIVE"};
-			data.action = "deactivate";
-			var success = function(response){
-				$uibModalInstance.close(response.data);
-			};
-			var error = function(response){
-				
-			};
-			api.POST('users',data,success,error);
-		};*/
 	}]);
 });
-		/* function LoadUsers(){
-			var successLoad = function(response){
-				$scope.Users = response.data;
-			};
-			var errorLoad = function(response){
-			};
-			var data = {status:"ACTIVE"};
-			api.GET('users',data,successLoad,errorLoad);
-		}; */
