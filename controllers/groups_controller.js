@@ -53,7 +53,7 @@ define(['app','api'],function(app){
 			$scope.activeGroup = group;
 			getActiveModules();
 		};
-		$scope.filterGroup=function(group){
+		$scope.filterGroup = function(group){
 			var searchBox = $scope.SearchGroup;
 			var keyword = new RegExp(searchBox,'i');
 			var test = keyword.test(group.id);
