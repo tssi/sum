@@ -125,7 +125,7 @@ define(['app','api'],function(app){
 				}
 			};
 			var fallback = function(data){
-							};
+			};
 			promise.then(callback,fallback);
 		};
 	}]);
