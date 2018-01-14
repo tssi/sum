@@ -60,7 +60,7 @@ define(['app','api'],function(app){
 			return !searchBox || test;
 		};
 		$scope.confirmSearch = function(){
-			LoadGroups({page:$scope.ActivePage,keyword:$scope.SearchGroup,fields:['id']});
+			LoadGroups({page:1,keyword:$scope.SearchGroup,fields:['id']});
 		}
 		$scope.clearSearch = function(){
 			$scope.SearchGroup = "";
