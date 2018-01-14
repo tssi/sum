@@ -16,13 +16,13 @@ define(["model"],function($model){
 				},
 				{
 				  "id": 2,
-				  "last_name": "c",
-				  "first_name": "Enrika",
-				  "middle_initial": "T",
-				  "username": "betis",
+				  "last_name": "NoMasChenko",
+				  "first_name": "Vasyl",
+				  "middle_initial": "X",
+				  "username": "matrix",
 				  "password": "password",
 				  "status": "INACTIVE",
-				  "group_id": "USER"
+				  "group_id": "ADMIN"
 				},
 				{
 				  "id": 3,
@@ -38,29 +38,29 @@ define(["model"],function($model){
 				  "id": 4,
 				  "last_name": "Arago",
 				  "first_name": "Aaron",
-				  "middle_initial": "A",
-				  "username": "yes",
+				  "middle_initial": "K",
+				  "username": "Ogip",
 				  "password": "password",
 				  "status": "ACTIVE",
 				  "group_id": "USER"
 				},
 				{
 				  "id": 5,
-				  "last_name": "f",
-				  "first_name": "Enrika",
-				  "middle_initial": "T",
-				  "username": "betis",
-				  "password": "password",
-				  "status": "LOCKED",
-				  "group_id": "USER"
-				},
-				{
-				  "id": 6,
 				  "last_name": "Quiambao",
 				  "first_name": "Enrika",
 				  "middle_initial": "T",
 				  "username": "betis",
 				  "password": "tt",
+				  "status": "LOCKED",
+				  "group_id": "USER"
+				},
+				{
+				  "id": 6,
+				  "last_name": "a",
+				  "first_name": "Enrika",
+				  "middle_initial": "T",
+				  "username": "betis",
+				  "password": "password",
 				  "status": "ACTIVE",
 				  "group_id": "USER"
 				},
@@ -73,16 +73,6 @@ define(["model"],function($model){
 				  "password": "password",
 				  "status": "ACTIVE",
 				  "group_id": "USER"
-				},
-				{
-				  "id": 8,
-				  "last_name": "NoMasChenko",
-				  "first_name": "Vasyl",
-				  "middle_initial": "X",
-				  "username": "matrix",
-				  "password": "password",
-				  "status": "ACTIVE",
-				  "group_id": "ADMIN"
 				},
 				{
 				  "id": 9,
@@ -106,7 +96,7 @@ define(["model"],function($model){
 				},
 				{
 				  "id": 11,
-				  "last_name": "a",
+				  "last_name": "f",
 				  "first_name": "Enrika",
 				  "middle_initial": "T",
 				  "username": "betis",

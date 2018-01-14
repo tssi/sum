@@ -3,7 +3,6 @@ define(['app','api'],function(app){
 		function LoadUsers(data){
 			var success = function(response){
 				$scope.Users = response.data;
-				console.log(response.data);
 				$scope.NextPage = response.meta.next;
 				$scope.PrevPage = response.meta.prev;
 				$scope.TotalItems = response.meta.count;
@@ -72,12 +71,19 @@ define(['app','api'],function(app){
 			$scope.activeUser = user;
 			AGAM();
 		};
+		$scope.filterUser=function(user){
+			var searchBox = $scope.SearchUser;
+			var keyword = new RegExp(searchBox,'i');
+			var test = keyword.test(user.last_name);
+			return !searchBox || test;
+		};
 		$scope.confirmSearch = function(){
-			LoadUsers({page:$scope.ActivePage,keyword:$scope.SearchUser.last_name,fields:['last_name']});
+			LoadUsers({page:1,keyword:$scope.SearchUser,fields:['last_name']});
+			console.log($scope.ActivePage);
 		}
 		$scope.clearSearch = function(){
 			$scope.SearchUser = "";
-			LoadUsers({page:$scope.ActivePage});
+			LoadUsers({page:1});
 		};
 		$scope.removeUserInfo = function(){
 			$scope.activeUser = null;
