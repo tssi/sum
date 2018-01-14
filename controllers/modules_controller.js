@@ -61,12 +61,18 @@ define(['app','api'],function(app){
 			$scope.activeModule = module;
 			LoadRevokedGranted();
 		};
+		$scope.filterModule = function(module){
+			var searchBox = $scope.SearchModule;
+			var keyword = new RegExp(searchBox,'i');
+			var test = keyword.test(module.name);
+			return !searchBox || test;
+		};
 		$scope.confirmSearch = function(){
-			LoadModules({page:$scope.ActivePage,keyword:$scope.SearchModule.name,fields:['name']});
+			LoadModules({page:1,keyword:$scope.SearchModule,fields:['name']});
 		}
 		$scope.clearSearch = function(){
 			$scope.SearchModule = "";
-			LoadModules({page:$scope.ActivePage});
+			LoadModules({page:1});
 		};
 		$scope.revoke = function(index){
 			data = $scope.Granted[index];
