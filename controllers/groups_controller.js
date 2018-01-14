@@ -137,13 +137,16 @@ define(['app','api'],function(app){
 			$uibModalInstance.dismiss();
 		};
 		$scope.confirmModal = function(){
-			if ($scope.Mode == "add"){
-				$scope.ActiveGroup.modules = $scope.modalModules;
-				var data = $scope.ActiveGroup;
-				data.action = "add";
-			} else if ($scope.Mode == "edit"){
-				var data = $scope.ActiveGroup;
-				data.action = "edit";
+			switch ($scope.Mode){
+				case "add":
+					$scope.ActiveGroup.modules = $scope.modalModules;
+					var data = $scope.ActiveGroup;
+					data.action = "add";
+				break;
+				case "edit":
+					var data = $scope.ActiveGroup;
+					data.action = "edit";
+				break;
 			}
 			var success = function(response){
 				$uibModalInstance.close(response.data);
