@@ -112,17 +112,21 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-				if (data.action == "reset"){
-					$scope.activeUser.password = data.password;
-				}
-				if (data.action == "register" || data.action == "edit"){
-					$scope.activeUser = data;
+				switch(data.action){
+					case "reset":
+						$scope.activeUser.password = data.password;
+					break;
+					case "register":
+					case "edit":
+						$scope.activeUser = data;
+					break;
+					case "activate":
+					case "deactivate":
+						$scope.activeUser = null;
+					break;
 				}
 				getUsers();
 				getActiveGroupsActiveModules();
-				if (data.action == "activate" || data.action == "deactivate"){
-					$scope.activeUser = null;
-				}
 			};
 			var fallback = function(data){
 			};
