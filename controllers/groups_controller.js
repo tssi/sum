@@ -29,9 +29,9 @@ define(['app','api'],function(app){
 			var am = $scope.activeGroup.modules;
 			if (am){
 				for (var j in $scope.Modules){
-					var m = $scope.Modules[j];
-					if (am.indexOf(m.id) != -1){
-						$scope.activeModules.push(m);
+					var module = $scope.Modules[j];
+					if (am.indexOf(module.id) != -1){
+						$scope.activeModules.push(module);
 					}
 				}
 			}
@@ -141,8 +141,7 @@ define(['app','api'],function(app){
 				$scope.ActiveGroup.modules = $scope.modalModules;
 				var data = $scope.ActiveGroup;
 				data.action = "add";
-			}
-			else if ($scope.Mode == "edit"){
+			} else if ($scope.Mode == "edit"){
 				var data = $scope.ActiveGroup;
 				data.action = "edit";
 			}
@@ -156,42 +155,3 @@ define(['app','api'],function(app){
 		};
 	}]);
 });
-		/*function getActiveModules(){
-			$scope.activeModules = [];
-			for (var j in $scope.Modules){
-				if ($scope.Mode == 'edit'){
-					if ($scope.ActiveGroup.modules.indexOf($scope.Modules[j].id) != -1){
-						$scope.activeModules.push($scope.Modules[j]);
-					}
-				}
-				else if ($scope.Mode == 'add'){
-					if ($scope.ggg.indexOf($scope.Modules[j].id) != -1){
-						$scope.activeModules.push($scope.Modules[j]);
-					}
-				}
-			}
-		};
-		function getActiveModules(){
-			$scope.activeModules = [];
-			for (var j in $scope.Modules){
-				if ($scope.ActiveGroup.modules.indexOf($scope.Modules[j].id) != -1){
-					$scope.activeModules.push($scope.Modules[j]);
-				}
-			}
-		};
-		function LoadActiveModuless(){
-			$scope.activeModules = [];
-			for (var i in $scope.Modules){
-				if ($scope.ggg.indexOf($scope.Modules[i].id) != -1){
-					$scope.activeModules.push($scope.Modules[i]);
-				}
-			}
-		};
-		function getGroups(){
-			var successLoad = function(response){
-				$scope.Groups = response.data;
-			};
-			var errorLoad = function(response){
-			};
-			api.GET('groups',successLoad,errorLoad);
-		}; */
