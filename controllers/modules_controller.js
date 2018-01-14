@@ -105,7 +105,7 @@ define(['app','api'],function(app){
 			$scope.Granted = [];
 		};
 		$scope.OpenModal = function(activemodule,mode){
-			if(!mode){
+			if (!mode){
 				mode = "add";
 				$scope.Mode = mode;
 			}
