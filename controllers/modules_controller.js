@@ -141,10 +141,13 @@ define(['app','api'],function(app){
 		};
 		$scope.confirmModal = function(){
 			var data = $scope.ActiveModule;
-			if (Mode == "add"){
-				data.action = "register";
-			} else if (Mode == "edit"){
-				data.action = "edit";
+			switch (Mode){
+				case "add":
+					data.action = "register";
+				break;
+				case "edit":
+					data.action = "edit";
+				break;
 			}
 			var success = function(response){
 				$uibModalInstance.close(response.data);
