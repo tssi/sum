@@ -1,6 +1,6 @@
 define(['app','api'],function(app){
 	app.register.controller('ModulesController',['$scope','api','$uibModal',function($scope,api,$uibModal){
-		function LoadModules(data){
+		function getModules(data){
 			var success = function(response){
 				$scope.Modules = response.data;
 				$scope.NextPage = response.meta.next;
@@ -16,7 +16,7 @@ define(['app','api'],function(app){
 			};
 			api.GET('modules',data,success,error);
 		};
-		function LoadGroups(){
+		function getGroups(){
 			var success = function(response){
 				$scope.Groups = response.data;
 			};
@@ -24,7 +24,7 @@ define(['app','api'],function(app){
 			};
 			api.GET('groups',success,error);
 		};
-		function LoadRevokedGranted(){
+		function getRevokedGranted(){
 			$scope.Revoked = [];
 			$scope.Granted = [];
 			for (var i in $scope.Groups){
@@ -49,17 +49,16 @@ define(['app','api'],function(app){
 			$scope.ActivePage = 1;
 			$scope.NextPage = null;
 			$scope.PrevPage = null;
-			LoadGroups();
-			LoadModules({page:$scope.ActivePage});
+			getGroups();
+			getModules({page:$scope.ActivePage});
 		};
 		$scope.navigatePage = function(page){
-			console.log(page);
 			$scope.ActivePage = page;
-			LoadModules({page:$scope.ActivePage});
+			getModules({page:$scope.ActivePage});
 		};
 		$scope.SetActiveModule = function(module){
 			$scope.activeModule = module;
-			LoadRevokedGranted();
+			getRevokedGranted();
 		};
 		$scope.filterModule = function(module){
 			var searchBox = $scope.SearchModule;
@@ -68,19 +67,19 @@ define(['app','api'],function(app){
 			return !searchBox || test;
 		};
 		$scope.confirmSearch = function(){
-			LoadModules({page:1,keyword:$scope.SearchModule,fields:['name']});
+			getModules({page:1,keyword:$scope.SearchModule,fields:['name']});
 		}
 		$scope.clearSearch = function(){
 			$scope.SearchModule = "";
-			LoadModules({page:1});
+			getModules({page:1});
 		};
 		$scope.revoke = function(index){
 			data = $scope.Granted[index];
 			data.action = "revoke";
 			var success = function(response){
-				LoadModules();
+				getModules();
 				$scope.activeModule = response.data;
-				LoadRevokedGranted();
+				getRevokedGranted();
 			};
 			var error = function(response){
 				
@@ -91,9 +90,9 @@ define(['app','api'],function(app){
 			data = $scope.Revoked[index];
 			data.action = "grant";
 			var success = function(response){
-				LoadModules();
+				getModules();
 				$scope.activeModule = response.data;
-				LoadRevokedGranted();
+				getRevokedGranted();
 			};
 			var error = function(response){
 				
@@ -126,12 +125,12 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-								LoadModules();
-								$scope.activeModule = data;
-								LoadRevokedGranted();
-							};
+						   getModules();
+						   $scope.activeModule = data;
+						   getRevokedGranted();
+			};
 			var fallback = function(data){
-							};
+			};
 			promise.then(callback,fallback);
 		};
 	}]);
@@ -144,8 +143,7 @@ define(['app','api'],function(app){
 			var data = $scope.ActiveModule;
 			if (Mode == "add"){
 				data.action = "register";
-			}
-			else if (Mode == "edit"){
+			} else if (Mode == "edit"){
 				data.action = "edit";
 			}
 			var success = function(response){
@@ -158,106 +156,3 @@ define(['app','api'],function(app){
 		};
 	}]);
 });
-				/* for (var j in $scope.activeModule.revoked){
-					if ($scope.activeModule.revoked){
-						if ($scope.Groups[i].id == $scope.activeModule.revoked[j]){
-							var a = [];
-							a.id = $scope.activeModule.id;
-							a.group_id = $scope.activeModule.revoked[j];
-							$scope.Rs.push(a);
-						}
-					}
-				}
-				for (var k in $scope.activeModule.granted){
-					if ($scope.activeModule.granted){
-						if ($scope.Groups[i].id == $scope.activeModule.granted[k]){
-							var b = [];
-							b.id = $scope.activeModule.id;
-							b.group_id = $scope.activeModule.granted[k];
-							$scope.Gs.push(b);
-						}
-					}
-				} */
-		/* function Pasa(){
-				for (var j in $scope.activeModule.revoked){
-					if ($scope.activeModule.revoked){
-						if ($scope.Groups[$scope.i].id == $scope.activeModule.revoked[j]){
-							var a = [];
-							a.id = $scope.activeModule.id;
-							a.group_id = $scope.activeModule.revoked[j];
-							$scope.Rs.push(a);
-						}
-					}
-				}
-		};
-		function Load(){
-				for (var k in $scope.activeModule.granted){
-					if ($scope.activeModule.granted){
-						if ($scope.Groups[$scope.i].id == $scope.activeModule.granted[k]){
-							var b = [];
-							b.id = $scope.activeModule.id;
-							b.group_id = $scope.activeModule.granted[k];
-							$scope.Gs.push(b);
-						}
-					}
-				}
-		};
-		$scope.revoke = function(index){
-			$scope.activeModule.revoked.push($scope.Gs[index]);
-			$scope.Rs.push($scope.Gs[index]);
-			$scope.activeModule.granted.splice(index,1);
-			$scope.Gs.splice(index,1);
-			var a = $scope.activeModule;
-			var success = function(response){
-			};
-			var error = function(response){
-				
-			};
-			api.POST('modules',a,success,error);
-		};
-		$scope.grant = function(index){
-			$scope.activeModule.granted.push($scope.Rs[index]);
-			$scope.Gs.push($scope.Rs[index]);
-			$scope.activeModule.revoked.splice(index,1);
-			$scope.Rs.splice(index,1);
-			var b = $scope.activeModule;
-			var success = function(response){
-			};
-			var error = function(response){
-				
-			};
-			api.POST('modules',b,success,error);
-		};
-		function LoadModules(){
-			var success = function(response){
-				$scope.Modules = response.data;
-				$scope.NextPage = response.meta.next;
-				$scope.PrevPage = response.meta.prev;
-				$scope.TotalItems=response.meta.count;
-				$scope.LastItem=response.meta.page*response.meta.limit;
-				$scope.FirstItem=$scope.LastItem-(response.meta.limit-1);
-				if($scope.LastItem>$scope.TotalItems){
-					$scope.LastItem=$scope.TotalItems;
-				};
-				$scope.DataLoading = false;	
-				//console.log(response.data);
-			};
-			var error = function(response){
-			};
-			api.GET('modules',success,error);
-		};
-		function LoadModules(data){
-			$scope.DataLoading=true;
-			api.GET('modules',data,function success(response){
-				$scope.Modules=response.data;
-				$scope.NextPage=response.meta.next;
-				$scope.PrevPage=response.meta.prev;
-				$scope.TotalItems=response.meta.count;
-				$scope.LastItem=response.meta.page*response.meta.limit;
-				$scope.FirstItem=$scope.LastItem-(response.meta.limit-1);
-				if($scope.LastItem>$scope.TotalItems){
-					$scope.LastItem=$scope.TotalItems;
-				};
-				$scope.DataLoading = false;							
-			});
-		} */
