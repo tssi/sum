@@ -125,9 +125,9 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-						   getModules();
-						   $scope.activeModule = data;
-						   getRevokedGranted();
+				getModules();
+				$scope.activeModule = data;
+				getRevokedGranted();
 			};
 			var fallback = function(data){
 			};
