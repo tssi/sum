@@ -70,7 +70,7 @@ define(['app','api'],function(app){
 			$scope.activeUser = user;
 			getActiveGroupsActiveModules();
 		};
-		$scope.filterUser=function(user){
+		$scope.filterUser = function(user){
 			var searchBox = $scope.SearchUser;
 			var keyword = new RegExp(searchBox,'i');
 			var test = keyword.test(user.last_name);
