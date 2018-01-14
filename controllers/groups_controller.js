@@ -54,8 +54,14 @@ define(['app','api'],function(app){
 			$scope.activeGroup = group;
 			LoadActiveModules();
 		};
+		$scope.filterGroup=function(group){
+			var searchBox = $scope.SearchGroup;
+			var keyword = new RegExp(searchBox,'i');
+			var test = keyword.test(group.id);
+			return !searchBox || test;
+		};
 		$scope.confirmSearch = function(){
-			LoadGroups({page:$scope.ActivePage,keyword:$scope.SearchGroup.id,fields:['id']});
+			LoadGroups({page:$scope.ActivePage,keyword:$scope.SearchGroup,fields:['id']});
 		}
 		$scope.clearSearch = function(){
 			$scope.SearchGroup = "";
