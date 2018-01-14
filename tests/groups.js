@@ -17,22 +17,22 @@ define(["model"],function($model){
 				{
 				  "id": "a",
 				  "name": "User",
-				  "modules": [2]
+				  "modules": [3]
 				},
 				{
 				  "id": "b",
 				  "name": "User",
-				  "modules": [2]
+				  "modules": [1]
 				},
 				{
 				  "id": "c",
 				  "name": "User",
-				  "modules": [2]
+				  "modules": [2,3]
 				},
 				{
 				  "id": "d",
 				  "name": "User",
-				  "modules": [2]
+				  "modules": [1,2]
 				}
 	];
 	var obj = {meta:meta,data:data};

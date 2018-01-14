@@ -46,7 +46,6 @@ define(['app','api'],function(app){
 			LoadModules();
 		};
 		$scope.navigatePage = function(page){
-			console.log(page);
 			$scope.ActivePage = page;
 			LoadGroups({page:$scope.ActivePage});
 		};
