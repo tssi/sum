@@ -35,16 +35,16 @@ define(['app','api'],function(app){
 		function getActiveGroupsActiveModules(){
 			$scope.activeGroup = null;
 			$scope.activeModules = [];
-			for(var i in $scope.Groups){
+			for (var i in $scope.Groups){
 				var group = $scope.Groups[i];
 				if($scope.activeUser.group_id == group.id){
 					$scope.activeGroup = group;
 				}
 			}
 			var am = $scope.activeGroup.modules;
-			for(var j in $scope.Modules){
+			for (var j in $scope.Modules){
 				var module = $scope.Modules[j];
-				if(am.indexOf(module.id) != -1){
+				if (am.indexOf(module.id) != -1){
 					$scope.activeModules.push(module);
 				}
 			}
@@ -88,7 +88,7 @@ define(['app','api'],function(app){
 			$scope.activeUser = null;
 		};
 		$scope.OpenModal = function(user,mode){
-			if(!mode){
+			if (!mode){
 				mode = "add";
 				$scope.Mode = mode;
 			}
@@ -112,7 +112,7 @@ define(['app','api'],function(app){
 			var modal = $uibModal.open(config);
 			var promise = modal.result;
 			var callback = function(data){
-				switch(data.action){
+				switch (data.action){
 					case "reset":
 						$scope.activeUser.password = data.password;
 					break;
@@ -141,7 +141,7 @@ define(['app','api'],function(app){
 			$uibModalInstance.dismiss();
 		};
 		$scope.confirmModal = function(mode){
-			switch(mode){
+			switch (mode){
 				case "add":
 					var data = $scope.User;
 					data.action = "register";
