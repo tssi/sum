@@ -77,11 +77,11 @@ define(['app','api'],function(app){
 		$scope.filterUser = function(user){
 			var searchBox = $scope.SearchUser;
 			var keyword = new RegExp(searchBox,'i');
-			var test = keyword.test(user.last_name);
+			var test = keyword.test(user.first_name) || keyword.test(user.last_name) || keyword.test(user.username);
 			return !searchBox || test;
 		};
 		$scope.confirmSearch = function(){
-			getUsers({page:1,keyword:$scope.SearchUser,fields:['last_name']});
+			getUsers({page:1,keyword:$scope.SearchUser,fields:['first_name','last_name','username']});
 			console.log($scope.ActivePage);
 		}
 		$scope.clearSearch = function(){
