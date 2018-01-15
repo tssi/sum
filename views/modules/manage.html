@@ -64,6 +64,9 @@
 					ng-class="{active:Module.id===activeModule.id}">
 					<h4>{{Module.name}}</h4>
 				</div>
+				<div class="list-group-item text-center" ng-show="DataLoading">
+					Loading...
+				</div>
 			</div>
 			<div class="list-group-item list-group-search-box">
 				<div class="input-group">

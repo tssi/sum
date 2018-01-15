@@ -1,6 +1,7 @@
 define(['app','api'],function(app){
 	app.register.controller('ModulesController',['$scope','api','$uibModal',function($scope,api,$uibModal){
 		function getModules(data){
+			$scope.DataLoading = true;
 			var success = function(response){
 				$scope.Modules = response.data;
 				$scope.NextPage = response.meta.next;
@@ -11,6 +12,7 @@ define(['app','api'],function(app){
 				if ($scope.LastItem > $scope.TotalItems){
 					$scope.LastItem = $scope.TotalItems;
 				};
+				$scope.DataLoading = false;
 			};
 			var error = function(response){
 			};
@@ -49,6 +51,7 @@ define(['app','api'],function(app){
 			$scope.ActivePage = 1;
 			$scope.NextPage = null;
 			$scope.PrevPage = null;
+			$scope.DataLoading = false;
 			getGroups();
 			getModules({page:$scope.ActivePage});
 		};
