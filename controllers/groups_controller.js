@@ -1,6 +1,7 @@
 define(['app','api'],function(app){
 	app.register.controller('GroupsController',['$scope','api','$uibModal',function($scope,api,$uibModal){
 		function getGroups(data){
+			$scope.DataLoading = true;
 			var success = function(response){
 				$scope.Groups = response.data;
 				$scope.NextPage = response.meta.next;
@@ -11,6 +12,7 @@ define(['app','api'],function(app){
 				if ($scope.LastItem > $scope.TotalItems){
 					$scope.LastItem = $scope.TotalItems;
 				};
+				$scope.DataLoading = false;
 			};
 			var error = function(response){
 			};
