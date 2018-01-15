@@ -44,6 +44,7 @@ define(['app','api'],function(app){
 			$scope.ActivePage = 1;
 			$scope.NextPage = null;
 			$scope.PrevPage = null;
+			$scope.DataLoading = false;
 			getGroups({page:$scope.ActivePage});
 			getModules();
 		};
